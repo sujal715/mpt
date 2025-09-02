@@ -293,14 +293,8 @@ function Home() {
         <div className="mpt-content">
           <div className="mpt-text">
             <div className="mpt-header">
-              <div className="mpt-badge luxury-section-badge">
-                <FaStar className="badge-icon" />
-                <span>Professional Excellence</span>
-                <div className="badge-glow" />
-              </div>
               <h2 className="luxury-mpt-title">Movement Performance Training</h2>
               <h3 className="luxury-mpt-subtitle">MPT</h3>
-              <div className="title-underline" />
             </div>
             
             <div className="mpt-description">
@@ -310,45 +304,30 @@ function Home() {
             </div>
             
             <div className="mpt-features luxury-features">
-              <h4 className="mpt-features-title">
-                <FaTrophy className="title-icon" />
-                Our Core Focus Areas
-              </h4>
+              <h4 className="mpt-features-title">Our Core Focus Areas</h4>
               <div className="features-grid">
                 <div className="feature-item luxury-feature-item">
-                  <div className="feature-icon">
-                    <FaCheck />
-                  </div>
+                  <FaCheck />
                   <span>Movement Quality Assessment</span>
                 </div>
                 <div className="feature-item luxury-feature-item">
-                  <div className="feature-icon">
-                    <FaCheck />
-                  </div>
+                  <FaCheck />
                   <span>Performance Enhancement</span>
                 </div>
                 <div className="feature-item luxury-feature-item">
-                  <div className="feature-icon">
-                    <FaCheck />
-                  </div>
+                  <FaCheck />
                   <span>Injury Prevention Focus</span>
                 </div>
                 <div className="feature-item luxury-feature-item">
-                  <div className="feature-icon">
-                    <FaCheck />
-                  </div>
+                  <FaCheck />
                   <span>Athletic Development</span>
                 </div>
                 <div className="feature-item luxury-feature-item">
-                  <div className="feature-icon">
-                    <FaCheck />
-                  </div>
+                  <FaCheck />
                   <span>Movement Pattern Optimization</span>
                 </div>
                 <div className="feature-item luxury-feature-item">
-                  <div className="feature-icon">
-                    <FaCheck />
-                  </div>
+                  <FaCheck />
                   <span>Strength & Conditioning</span>
                 </div>
               </div>
@@ -356,18 +335,14 @@ function Home() {
           </div>
           
           <div className="mpt-image luxury-image">
-            <div className="image-container">
-              <img 
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" 
-                alt="Professional training facility showcasing world-class equipment"
-                loading="lazy"
-              />
-              <div className="image-overlay luxury-overlay">
-                <FaTrophy className="overlay-icon" />
-                <span>Training Excellence</span>
-                <div className="overlay-glow" />
-              </div>
-              <div className="image-luxury-border" />
+            <img 
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" 
+              alt="Professional training facility showcasing world-class equipment"
+              loading="lazy"
+            />
+            <div className="image-overlay luxury-overlay">
+              <FaTrophy />
+              <span>Training Excellence</span>
             </div>
           </div>
         </div>
