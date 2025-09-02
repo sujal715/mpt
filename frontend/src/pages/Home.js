@@ -293,7 +293,6 @@ function Home() {
         <div className="mpt-content">
           <div className="mpt-text">
             <div className="mpt-header">
-              <h3 className="luxury-mpt-subtitle">MPT</h3>
               <h2 className="luxury-mpt-title">Movement Performance Training</h2>
             </div>
             

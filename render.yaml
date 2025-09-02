@@ -10,7 +10,7 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: REACT_APP_API_URL
+      - key: eveREACT_APP_API_URL
         value: https://mpt-backend.onrender.com
       - key: NODE_VERSION
         value: "16"
