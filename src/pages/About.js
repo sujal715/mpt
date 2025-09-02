@@ -131,15 +131,6 @@ function About() {
           </div>
         </div>
       </section>
-
-      {/* Contact CTA */}
-      <section className="about-cta">
-        <div className="container">
-          <h2>Ready to Start Your Journey?</h2>
-          <p>Join our community and discover the thrill of water sports with our expert team.</p>
-          <button className="cta-btn">Contact Us Today</button>
-        </div>
-      </section>
     </div>
   );
 }
