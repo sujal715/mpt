@@ -22,16 +22,16 @@ const Footer = () => {
         {/* Contact Information Section */}
         <div className="footer-section">
           <h3 className="footer-title">GET IN TOUCH</h3>
-          <div className="contact-info">
-            <div className="contact-item">
+          <div className="footer-links">
+            <div className="footer-link">
               <span className="contact-icon">📍</span>
               <span className="contact-text">Ezyfit Health Club, Birtinya, QLD 4575</span>
             </div>
-            <div className="contact-item">
+            <div className="footer-link">
               <span className="contact-icon">📞</span>
               <span className="contact-text">04 98 471 509</span>
             </div>
-            <div className="contact-item">
+            <div className="footer-link">
               <span className="contact-icon">✉️</span>
               <span className="contact-text">chloebarrettraining@icloud.com</span>
             </div>
