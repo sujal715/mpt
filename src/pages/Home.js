@@ -293,26 +293,51 @@ function Home() {
         <div className="mpt-content">
           <div className="mpt-text">
             <div className="mpt-header">
-              <h2 className="luxury-mpt-title">MPT</h2>
+              <div className="mpt-badge luxury-section-badge">
+                <FaStar />
+                <span>Professional Training</span>
+              </div>
+              <h2 className="luxury-mpt-title">Movement Performance Training</h2>
+              <h3 className="luxury-mpt-subtitle">MPT</h3>
             </div>
-                               <h3 className="luxury-mpt-subtitle">Movement Performance Training</h3>
-                   <p className="luxury-mpt-description">MPT specializes in movement performance training, helping athletes and professionals improve their movement quality, efficiency, and performance. We focus on enhancing movement patterns, strength, and overall athletic capabilities.</p>
+            
+            <div className="mpt-description">
+              <p className="luxury-mpt-description">
+                MPT specializes in movement performance training, helping athletes and professionals improve their movement quality, efficiency, and performance. We focus on enhancing movement patterns, strength, and overall athletic capabilities.
+              </p>
+            </div>
+            
             <div className="mpt-features luxury-features">
-                                   <div className="feature-item luxury-feature-item">
-                       <FaCheck />
-                       <span>Movement Quality Assessment</span>
-                     </div>
-                     <div className="feature-item luxury-feature-item">
-                       <FaCheck />
-                       <span>Performance Enhancement</span>
-                     </div>
-                     <div className="feature-item luxury-feature-item">
-                       <FaCheck />
-                       <span>Injury Prevention Focus</span>
-                     </div>
+              <h4 className="mpt-features-title">Our Core Focus Areas</h4>
+              <div className="features-grid">
+                <div className="feature-item luxury-feature-item">
+                  <FaCheck />
+                  <span>Movement Quality Assessment</span>
+                </div>
+                <div className="feature-item luxury-feature-item">
+                  <FaCheck />
+                  <span>Performance Enhancement</span>
+                </div>
+                <div className="feature-item luxury-feature-item">
+                  <FaCheck />
+                  <span>Injury Prevention Focus</span>
+                </div>
+                <div className="feature-item luxury-feature-item">
+                  <FaCheck />
+                  <span>Athletic Development</span>
+                </div>
+                <div className="feature-item luxury-feature-item">
+                  <FaCheck />
+                  <span>Movement Pattern Optimization</span>
+                </div>
+                <div className="feature-item luxury-feature-item">
+                  <FaCheck />
+                  <span>Strength & Conditioning</span>
+                </div>
+              </div>
             </div>
-
           </div>
+          
           <div className="mpt-image luxury-image">
             <img 
               src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" 
@@ -322,7 +347,6 @@ function Home() {
             <div className="image-overlay luxury-overlay">
               <FaTrophy />
               <span>Training Excellence</span>
-              <FaCrown className="luxury-crown" />
             </div>
             <div className="image-luxury-border" />
           </div>
