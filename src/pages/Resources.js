@@ -313,10 +313,6 @@ function Resources() {
               <h3>What age can you start?</h3>
               <p>We offer programs for ages 12 and up, with special youth programs designed for younger athletes.</p>
             </div>
-            <div className="faq-item">
-              <h3>Do you offer group lessons?</h3>
-              <p>Yes, we offer both private and group lessons. Group lessons are great for friends and families.</p>
-            </div>
           </div>
         </div>
       </section>
