@@ -36,7 +36,7 @@ const Header = () => {
         </nav>
 
         <Link to="/contact" className="contact-button">
-          CONTACT US
+          CONTACT
         </Link>
       </div>
     </header>
