@@ -317,15 +317,6 @@ function Resources() {
         </div>
       </section>
 
-      {/* Contact Information */}
-      <section className="contact-resources">
-        <div className="container">
-          <h2>Need More Information?</h2>
-          <p>Contact our team for personalized advice and recommendations.</p>
-          <button className="contact-btn">Get in Touch</button>
-        </div>
-      </section>
-
       {/* Download Success Notification */}
       {downloadSuccess && (
         <div className={`download-notification ${downloadSuccess.isError ? 'error' : 'success'}`}>
