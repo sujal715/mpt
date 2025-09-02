@@ -353,7 +353,7 @@
 
 /* MPT Section */
 .mpt-section {
-  padding: var(--spacing-32) 0;
+  padding: var(--spacing-16) 0;
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   position: relative;
 }
@@ -387,7 +387,7 @@
 .mpt-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-24);
+  gap: var(--spacing-12);
   align-items: start;
 }
 
@@ -822,7 +822,7 @@
 
 /* Professional Services Section */
 .thrill-seekers {
-  padding: var(--spacing-32) 0;
+  padding: var(--spacing-16) 0;
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
   position: relative;
 }
@@ -835,7 +835,7 @@
 .thrill-content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-16);
+  gap: var(--spacing-8);
 }
 
 .thrill-text {
@@ -1075,7 +1075,7 @@
 
 /* Features Section */
 .features {
-  padding: var(--spacing-32) 0;
+  padding: var(--spacing-16) 0;
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   position: relative;
 }
@@ -1087,12 +1087,12 @@
 
 .section-header {
   text-align: center;
-  margin-bottom: var(--spacing-16);
+  margin-bottom: var(--spacing-8);
 }
 
 .luxury-header {
   text-align: center;
-  margin-bottom: var(--spacing-16);
+  margin-bottom: var(--spacing-8);
 }
 
 .luxury-features-title {
@@ -1201,7 +1201,7 @@
 
 /* Testimonials Section */
 .testimonials {
-  padding: var(--spacing-32) 0;
+  padding: var(--spacing-16) 0;
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
   position: relative;
 }
