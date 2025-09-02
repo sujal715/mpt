@@ -212,40 +212,87 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: center;
+  align-items: start;
 }
 
-.location-info h3 {
-  font-size: 1.8rem;
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.location-header h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.location-address {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0066cc;
+  margin-bottom: 0.25rem;
+}
+
+.location-region {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.location-description p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 0;
+}
+
+.location-features h4 {
+  font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #333;
 }
 
-.location-info p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  color: #555;
-}
-
-.location-info ul {
+.location-features ul {
   list-style: none;
+  padding: 0;
 }
 
-.location-info ul li {
-  padding: 0.5rem 0;
+.location-features ul li {
+  padding: 0.75rem 0;
   color: #555;
   position: relative;
   padding-left: 1.5rem;
+  line-height: 1.6;
 }
 
-.location-info ul li:before {
+.location-features ul li:before {
   content: "✓";
   position: absolute;
   left: 0;
   color: #0066cc;
   font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.location-features ul li strong {
+  color: #333;
+}
+
+.location-contact h4 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.location-contact p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 0;
 }
 
 .location-map {
