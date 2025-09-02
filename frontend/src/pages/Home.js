@@ -384,10 +384,6 @@ function Home() {
         <div className="features-grid luxury-features-grid">
           {professionalFeatures.map((feature, index) => (
             <div key={feature.id} className="feature-card luxury-feature-card" style={{ animationDelay: `${index * 0.2}s` }}>
-              <div className="feature-icon luxury-icon">
-                {feature.icon}
-                <div className="icon-luxury-glow" />
-              </div>
               <h3 className="luxury-feature-title">{feature.title}</h3>
               <p className="luxury-feature-description">{feature.description}</p>
               <div className="feature-benefits luxury-benefits">
