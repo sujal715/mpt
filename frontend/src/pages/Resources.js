@@ -192,79 +192,37 @@ function Resources() {
           <h2>Safety Guides</h2>
           <div className="resources-grid">
             <div className="resource-card">
-              <div className="resource-header">
-                <h3>Kitesurfing Safety</h3>
-                <button 
-                  className={`resource-btn ${downloadStates.kitesurfing ? 'downloading' : ''}`}
-                  onClick={() => handleDownloadClick('kitesurfing')}
-                  disabled={downloadStates.kitesurfing}
-                >
-                  {downloadStates.kitesurfing ? '📥 Downloading...' : '📥 Download Guide'}
-                </button>
-              </div>
+              <h3>Kitesurfing Safety</h3>
               <p>Essential safety guidelines for kitesurfing, including weather conditions, equipment checks, and emergency procedures.</p>
+              <button 
+                className={`resource-btn ${downloadStates.kitesurfing ? 'downloading' : ''}`}
+                onClick={() => handleDownloadClick('kitesurfing')}
+                disabled={downloadStates.kitesurfing}
+              >
+                {downloadStates.kitesurfing ? '📥 Downloading...' : '📥 Download Guide'}
+              </button>
             </div>
             <div className="resource-card">
-              <div className="resource-header">
-                <h3>Hydrofoil Safety</h3>
-                <button 
-                  className={`resource-btn ${downloadStates.hydrofoil ? 'downloading' : ''}`}
-                  onClick={() => handleDownloadClick('hydrofoil')}
-                  disabled={downloadStates.hydrofoil}
-                >
-                  {downloadStates.hydrofoil ? '📥 Downloading...' : '📥 Download Guide'}
-                </button>
-              </div>
+              <h3>Hydrofoil Safety</h3>
               <p>Safety protocols for hydrofoiling, including foil handling, launch techniques, and emergency procedures.</p>
+              <button 
+                className={`resource-btn ${downloadStates.hydrofoil ? 'downloading' : ''}`}
+                onClick={() => handleDownloadClick('hydrofoil')}
+                disabled={downloadStates.hydrofoil}
+              >
+                {downloadStates.hydrofoil ? '📥 Downloading...' : '📥 Download Guide'}
+              </button>
             </div>
             <div className="resource-card">
-              <div className="resource-header">
-                <h3>Wing Foil Safety</h3>
-                <button 
-                  className={`resource-btn ${downloadStates.wingFoil ? 'downloading' : ''}`}
-                  onClick={() => handleDownloadClick('wingFoil')}
-                  disabled={downloadStates.wingFoil}
-                >
-                  {downloadStates.wingFoil ? '📥 Downloading...' : '📥 Download Guide'}
-                </button>
-              </div>
+              <h3>Wing Foil Safety</h3>
               <p>Comprehensive safety guide for wing foiling, covering wing control, foil safety, and rescue procedures.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tips & Tricks */}
-      <section className="tips-section">
-        <div className="container">
-          <h2>Tips & Tricks</h2>
-          <div className="tips-grid">
-            <div className="tip-card">
-              <h3>Beginner Tips</h3>
-              <ul>
-                <li>Start with proper instruction</li>
-                <li>Practice kite control on land</li>
-                <li>Always check weather conditions</li>
-                <li>Use appropriate safety gear</li>
-              </ul>
-            </div>
-            <div className="tip-card">
-              <h3>Advanced Techniques</h3>
-              <ul>
-                <li>Master wave riding</li>
-                <li>Perfect your jumps</li>
-                <li>Learn advanced maneuvers</li>
-                <li>Improve board control</li>
-              </ul>
-            </div>
-            <div className="tip-card">
-              <h3>Equipment Care</h3>
-              <ul>
-                <li>Regular equipment inspection</li>
-                <li>Proper storage techniques</li>
-                <li>Maintenance schedules</li>
-                <li>Repair best practices</li>
-              </ul>
+              <button 
+                className={`resource-btn ${downloadStates.wingFoil ? 'downloading' : ''}`}
+                onClick={() => handleDownloadClick('wingFoil')}
+                disabled={downloadStates.wingFoil}
+              >
+                {downloadStates.wingFoil ? '📥 Downloading...' : '📥 Download Guide'}
+              </button>
             </div>
           </div>
         </div>

@@ -26,16 +26,12 @@
   max-width: 600px;
 }
 
-.resources-section, .tips-section, .weather-section, .faq-section {
+.resources-section, .weather-section, .faq-section {
   padding: 80px 0;
 }
 
 .resources-section {
   background: white;
-}
-
-.tips-section {
-  background: #f8f9fa;
 }
 
 .weather-section {
@@ -46,7 +42,7 @@
   background: #f8f9fa;
 }
 
-.resources-section h2, .tips-section h2, .weather-section h2, .faq-section h2 {
+.resources-section h2, .weather-section h2, .faq-section h2 {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bold;
@@ -54,7 +50,7 @@
   color: #333;
 }
 
-.resources-grid, .tips-grid, .faq-grid {
+.resources-grid, .faq-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
@@ -65,32 +61,24 @@
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s;
 }
 
 .resource-card:hover {
   transform: translateY(-5px);
 }
 
-.resource-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.resource-header h3 {
-  margin: 0;
+.resource-card h3 {
   font-size: 1.5rem;
   font-weight: bold;
+  margin-bottom: 1rem;
   color: #333;
-  flex: 1;
 }
 
 .resource-card p {
   color: #666;
   line-height: 1.6;
-  margin: 0;
+  margin-bottom: 1.5rem;
 }
 
 .resource-btn {
@@ -377,25 +365,6 @@
   }
 }
 
-.tip-card ul {
-  list-style: none;
-}
-
-.tip-card ul li {
-  padding: 0.5rem 0;
-  color: #555;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.tip-card ul li:before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #0066cc;
-  font-weight: bold;
-}
-
 .weather-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -475,7 +444,7 @@
     font-size: 2.5rem;
   }
   
-  .resources-grid, .tips-grid, .faq-grid {
+  .resources-grid, .faq-grid {
     grid-template-columns: 1fr;
   }
   
@@ -494,7 +463,7 @@
     font-size: 1rem;
   }
   
-  .resource-card, .tip-card, .faq-item {
+  .resource-card, .faq-item {
     padding: 1.5rem;
   }
 } 
