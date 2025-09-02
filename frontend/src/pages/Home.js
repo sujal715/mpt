@@ -156,18 +156,12 @@ function Home() {
   }, []);
 
   const handleProfessionalConsultation = useCallback(() => {
-    alert('💬 Premium consultation portal would open here!\n\n' +
-          'Connect with our certified instructors for:\n' +
-          '• Personalized guidance\n' +
-          '• Comprehensive assessments\n' +
-          '• Strategic training planning\n' +
-          '• Performance optimization\n' +
+    alert('Professional consultation feature coming soon!\n\n' +
+          'This will include:\n' +
+          '• Personalized performance assessment\n' +
+          '• Custom training program design\n' +
           '• Professional development roadmap\n' +
           '• VIP consultation services');
-  }, []);
-
-  const handleProgramExploration = useCallback(() => {
-    window.location.href = '/products';
   }, []);
 
   const handleTestimonialNavigation = useCallback((index) => {

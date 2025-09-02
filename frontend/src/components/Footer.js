@@ -47,7 +47,6 @@ const Footer = () => {
           <h3 className="footer-title">USEFUL LINKS</h3>
           <div className="footer-nav">
             <Link to="/" className="footer-link">Home</Link>
-            <Link to="/products" className="footer-link">Products/Packages</Link>
             <Link to="/about" className="footer-link">About Us</Link>
             <Link to="/resources" className="footer-link">Blog</Link>
             <Link to="/services" className="footer-link">Services</Link>

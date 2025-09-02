@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 
 // Import pages
 import Home from './pages/Home';
-import Products from './pages/Products';
 import Services from './pages/Services';
 import Resources from './pages/Resources';
 import About from './pages/About';
@@ -27,7 +26,6 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
           <Route path="/services" element={<Services />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/about" element={<About />} />

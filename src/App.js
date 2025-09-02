@@ -15,7 +15,6 @@ import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import FAQ from './pages/FAQ';
 import Gallery from './pages/Gallery';
-import Products from './pages/Products';
 import Resources from './pages/Resources';
 import Services from './pages/Services';
 
@@ -34,7 +33,6 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/products" element={<Products />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/services" element={<Services />} />
           </Routes>
