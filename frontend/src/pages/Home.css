@@ -407,10 +407,10 @@
 .luxury-mpt-title {
   font-size: var(--font-size-5xl);
   font-weight: 900;
-  color: white;
+  color: #1e293b;
   margin: 0;
   animation: slideInLeft var(--transition-slow) ease-out;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0 30px rgba(30, 41, 59, 0.4);
 }
 
 .luxury-mpt-subtitle {
