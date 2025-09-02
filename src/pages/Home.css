@@ -407,13 +407,10 @@
 .luxury-mpt-title {
   font-size: var(--font-size-5xl);
   font-weight: 900;
-  color: #1e293b;
+  color: white;
   margin: 0;
   animation: slideInLeft var(--transition-slow) ease-out;
-  background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
 }
 
 .luxury-mpt-subtitle {
