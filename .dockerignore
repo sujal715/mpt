@@ -1,0 +1,12 @@
+.git
+.mvn
+mvnw
+pom.xml
+src
+*.md
+.env
+node_modules
+target/classes
+target/maven-archiver
+target/maven-status
+target/*.jar.original

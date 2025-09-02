@@ -1,0 +1,126 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          
+      - name: Debug Environment
+        run: |
+          echo "=== ENVIRONMENT DEBUG ==="
+          echo "Java version: $(java -version 2>&1)"
+          echo "Maven version: $(mvn -version 2>&1 || echo 'Maven not available')"
+          echo "Current directory: $(pwd)"
+          echo "Directory contents: $(ls -la)"
+          echo "Backend directory: $(ls -la backend/)"
+          echo "Maven wrapper: $(ls -la backend/mvnw)"
+          echo "========================="
+          
+      - name: Build Backend
+        run: |
+          echo "Building Spring Boot backend..."
+          cd backend
+          echo "Current directory: $(pwd)"
+          echo "Maven wrapper permissions: $(ls -la mvnw)"
+          chmod +x ./mvnw
+          echo "Maven wrapper permissions after chmod: $(ls -la mvnw)"
+          echo "Running Maven build..."
+          ./mvnw clean package -DskipTests
+          echo "Backend build completed successfully!"
+          echo "Target directory contents:"
+          ls -la target/
+          echo "JAR file details:"
+          ls -la target/*.jar
+          
+      - name: Deploy Backend to Render
+        run: |
+          echo "Backend built successfully!"
+          echo "Manual deployment to Render required for now"
+          echo "Your backend JAR is ready in backend/target/"
+          if [ -f "backend/target/mpt-0.0.1-SNAPSHOT.jar" ]; then
+            echo "JAR file size: $(du -h backend/target/mpt-0.0.1-SNAPSHOT.jar)"
+            echo "JAR file exists and is ready!"
+          else
+            echo "❌ JAR file not found!"
+            exit 1
+          fi
+          
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    needs: deploy-backend
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Debug Frontend Environment
+        run: |
+          echo "=== FRONTEND ENVIRONMENT DEBUG ==="
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+          echo "Current directory: $(pwd)"
+          echo "Frontend directory: $(ls -la frontend/)"
+          echo "Package.json: $(cat frontend/package.json | head -10)"
+          echo "================================"
+          
+      - name: Install Frontend Dependencies
+        run: |
+          echo "Installing frontend dependencies..."
+          cd frontend
+          npm install
+          echo "Dependencies installed successfully!"
+          echo "Node modules size: $(du -sh node_modules/)"
+          
+      - name: Build Frontend
+        run: |
+          echo "Building React frontend..."
+          cd frontend
+          npm run build
+          echo "Frontend build completed successfully!"
+          echo "Build directory contents:"
+          ls -la build/
+          echo "Build directory size: $(du -sh build/)"
+          
+      - name: Deploy Frontend to Render
+        run: |
+          echo "Frontend built successfully!"
+          echo "Manual deployment to Render required for now"
+          echo "Your frontend build is ready in frontend/build/"
+          if [ -d "frontend/build" ]; then
+            echo "Build directory exists and is ready!"
+            echo "Build directory size: $(du -sh frontend/build/)"
+          else
+            echo "❌ Build directory not found!"
+            exit 1
+          fi
+          
+      - name: Show Build Results
+        run: |
+          echo "=== BUILD SUMMARY ==="
+          echo "Backend: ✅ Built successfully"
+          echo "Frontend: ✅ Built successfully"
+          echo "Both applications are ready for deployment!"
+          echo "Check your Render dashboard to deploy manually"
+          echo ""
+          echo "📱 Backend JAR: backend/target/mpt-0.0.1-SNAPSHOT.jar"
+          echo "🌐 Frontend Build: frontend/build/"
+          echo ""
+          echo "🚀 Next steps:"
+          echo "1. Go to Render dashboard"
+          echo "2. Update your services with these build outputs"
+          echo "3. Or wait for manual deployment"

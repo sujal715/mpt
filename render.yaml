@@ -1,0 +1,19 @@
+services:
+  # Frontend Service (React)
+  - type: web
+    name: ppt-app
+    buildCommand: |
+      export SKIP_PREFLIGHT_CHECK=true
+      npm install
+      npm run build
+    startCommand: npm run start-prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REACT_APP_API_URL
+        value: https://mpt-backend.onrender.com
+      - key: NODE_VERSION
+        value: "16"
+      - key: SKIP_PREFLIGHT_CHECK
+        value: "true"
+    autoDeploy: true

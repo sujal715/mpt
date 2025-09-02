@@ -1,0 +1,32 @@
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+# Copy only essential files
+COPY . .
+
+# Make Maven wrapper executable
+RUN chmod +x mvnw
+
+# Build the application
+RUN ./mvnw clean package -DskipTests
+
+# Expose port (Railway will override this)
+EXPOSE 8080
+
+# Create startup script
+RUN echo '#!/bin/bash\n\
+echo "Starting MPT Spring Boot Application..."\n\
+echo "PORT: $PORT"\n\
+echo "SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE"\n\
+\n\
+# Set Java options for Railway\n\
+export JAVA_OPTS="-Xmx512m -Xms256m -Dserver.port=${PORT:-8080}"\n\
+\n\
+# Start the application\n\
+java $JAVA_OPTS -jar target/mpt-0.0.1-SNAPSHOT.jar' > /app/start.sh
+
+RUN chmod +x /app/start.sh
+
+# Start the application
+CMD ["/app/start.sh"]

@@ -1,0 +1,338 @@
+/* Resources Page Styles */
+.resources-page {
+  margin-top: 80px;
+}
+
+.resources-hero {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+              url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=400&fit=crop') center/cover;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.resources-hero .hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.resources-hero .hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.resources-section, .tips-section, .weather-section, .faq-section {
+  padding: 80px 0;
+}
+
+.resources-section {
+  background: white;
+}
+
+.tips-section {
+  background: #f8f9fa;
+}
+
+.weather-section {
+  background: white;
+}
+
+.faq-section {
+  background: #f8f9fa;
+}
+
+.resources-section h2, .tips-section h2, .weather-section h2, .faq-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+  color: #333;
+}
+
+.resources-grid, .tips-grid, .faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.resource-card, .tip-card, .faq-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.resource-card:hover, .tip-card:hover {
+  transform: translateY(-5px);
+}
+
+.resource-card h3, .tip-card h3, .faq-item h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.resource-card p, .faq-item p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.resource-btn {
+  background: #0066cc;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.resource-btn:hover {
+  background: #0052a3;
+}
+
+.resource-btn.downloading {
+  background: #28a745;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+  .resource-btn.downloading:hover {
+    background: #28a745;
+  }
+
+/* Download Notification Styles */
+.download-notification {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideInRight 0.3s ease-out;
+  max-width: 400px;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.download-notification.success {
+  background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.download-notification.error {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+.notification-message {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.notification-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive notification */
+@media (max-width: 768px) {
+  .download-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+.tip-card ul {
+  list-style: none;
+}
+
+.tip-card ul li {
+  padding: 0.5rem 0;
+  color: #555;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.tip-card ul li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+.weather-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.weather-info, .weather-widget {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.weather-info h3, .weather-widget h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.weather-info p, .weather-widget p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.weather-info ul {
+  list-style: none;
+}
+
+.weather-info ul li {
+  padding: 0.5rem 0;
+  color: #555;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.weather-info ul li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+.weather-display {
+  text-align: center;
+}
+
+.weather-btn {
+  background: #ff6b9d;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.weather-btn:hover {
+  background: #e55a8a;
+}
+
+.weather-btn.loading {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.weather-btn.loading:hover {
+  background: #ccc;
+}
+
+.contact-resources {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #0066cc, #0052a3);
+  color: white;
+  text-align: center;
+}
+
+.contact-resources h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.contact-resources p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-btn {
+  background: #ff6b9d;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-btn:hover {
+  background: #e55a8a;
+}
+
+@media (max-width: 768px) {
+  .resources-hero .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .resources-grid, .tips-grid, .faq-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .weather-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resources-hero .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .resources-hero .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .resource-card, .tip-card, .faq-item {
+    padding: 1.5rem;
+  }
+} 

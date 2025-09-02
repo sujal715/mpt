@@ -1,0 +1,131 @@
+/* Header Styles */
+.header {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1.5rem 0; /* Increased padding */
+}
+
+.header-container {
+  max-width: 1400px; /* Increased max-width */
+  margin: 0 auto;
+  padding: 0 3rem; /* Increased padding */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Increased gap */
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logo-icon {
+  width: 50px; /* Increased size */
+  height: 50px; /* Increased size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wave-icon {
+  font-size: 2.5rem; /* Increased font size */
+  color: #0066cc;
+}
+
+.logo-text {
+  font-size: 1.3rem; /* Increased font size */
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.navigation {
+  display: flex;
+  gap: 3rem; /* Increased gap */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem; /* Increased font size */
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1rem; /* Added padding */
+  border-radius: 5px;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #0066cc;
+  background-color: #f8f9fa; /* Added hover background */
+}
+
+.nav-link.active {
+  color: #0066cc;
+  background-color: #e3f2fd; /* Light blue background for active state */
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background-color: #0066cc;
+  border-radius: 2px;
+}
+
+.contact-button {
+  background-color: #ff6b9d;
+  color: white;
+  padding: 1rem 2rem; /* Increased padding */
+  border-radius: 6px; /* Increased border-radius */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem; /* Increased font size */
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3); /* Added shadow */
+}
+
+.contact-button:hover {
+  background-color: #e55a8a;
+  transform: translateY(-2px); /* Added transform */
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4); /* Increased shadow on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 0;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 1.5rem; /* Increased gap */
+    padding: 0 2rem;
+  }
+
+  .navigation {
+    gap: 2rem; /* Increased gap */
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+} 

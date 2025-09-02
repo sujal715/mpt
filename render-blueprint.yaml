@@ -1,0 +1,29 @@
+services:
+  # Complete MPT Application (Single Service)
+  - type: web
+    name: mpt-complete-app
+    env: java
+    buildCommand: |
+      # Build React frontend first
+      npm install && npm run build
+      # Then build Spring Boot backend
+      ./mvnw clean package -DskipTests
+    startCommand: java -jar target/mpt-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: JAVA_VERSION
+        value: 17
+      - key: PORT
+        value: 8080
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /api/health
+    autoDeploy: true
+    plan: free
+    # Serve React frontend from Spring Boot
+    staticPublishPath: ./build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

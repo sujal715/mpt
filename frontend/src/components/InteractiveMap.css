@@ -1,0 +1,415 @@
+/* Simple, Clean Interactive Map Styles */
+
+.simple-map {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Map Container */
+.map-container {
+  flex: 1;
+  min-height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+}
+
+.map-display {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+.map-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 400px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+.map-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.map-placeholder h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.location-pin {
+  font-size: 3rem;
+  margin-top: 20px;
+}
+
+/* Simple Controls Panel */
+.simple-controls {
+  flex: 0 0 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+/* Location Info */
+.location-info {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #0066cc;
+}
+
+.location-info h4 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.location-info p {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.location-info p:last-child {
+  margin-bottom: 0;
+}
+
+/* Transport Options */
+.transport-options {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.transport-options h5 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.transport-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.transport-btn {
+  padding: 12px 8px;
+  border: 2px solid #e9ecef;
+  background: white;
+  color: #666;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.transport-btn:hover {
+  border-color: #0066cc;
+  color: #0066cc;
+  transform: translateY(-1px);
+}
+
+.transport-btn.active {
+  background: #0066cc;
+  color: white;
+  border-color: #0066cc;
+}
+
+/* Search Section */
+.search-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.search-section h5 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 45px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: white;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #999;
+  pointer-events: none;
+}
+
+/* Google Places Autocomplete Styling */
+.pac-container {
+  border-radius: 8px;
+  border: 2px solid #0066cc;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  margin-top: 5px;
+  font-family: inherit;
+}
+
+.pac-item {
+  padding: 12px 16px;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pac-item:hover {
+  background-color: #f8f9fa;
+}
+
+.pac-item:last-child {
+  border-bottom: none;
+}
+
+.pac-item-query {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.pac-matched {
+  font-weight: 600;
+  color: #0066cc;
+}
+
+.pac-secondary-text {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* Search Tips */
+.search-tips {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.search-tips small {
+  color: #666;
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.search-btn {
+  padding: 12px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-btn:hover {
+  background: #0052a3;
+}
+
+.search-btn:active {
+  transform: translateY(1px);
+}
+
+/* Quick Actions */
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-btn {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.action-btn.primary {
+  background: #0066cc;
+  color: white;
+}
+
+.action-btn.primary:hover {
+  background: #0052a3;
+  transform: translateY(-1px);
+}
+
+.action-btn.secondary {
+  background: #f8f9fa;
+  color: #333;
+  border: 2px solid #e9ecef;
+}
+
+.action-btn.secondary:hover {
+  background: #e9ecef;
+  border-color: #0066cc;
+  color: #0066cc;
+}
+
+.action-btn:active {
+  transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .simple-map {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .simple-controls {
+    flex: none;
+    width: 100%;
+  }
+  
+  .map-container {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .simple-map {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  .map-container {
+    min-height: 300px;
+  }
+  
+  .simple-controls {
+    padding: 15px;
+    gap: 20px;
+  }
+  
+  .transport-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .transport-btn {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .location-info,
+  .transport-options,
+  .search-section {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .simple-map {
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  .map-container {
+    min-height: 250px;
+  }
+  
+  .simple-controls {
+    padding: 12px;
+    gap: 15px;
+  }
+  
+  .location-info,
+  .transport-options,
+  .search-section {
+    padding: 12px;
+  }
+  
+  .search-input {
+    padding: 10px 16px 10px 40px;
+    font-size: 0.9rem;
+  }
+  
+  .search-icon {
+    left: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .search-btn,
+  .action-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .search-tips small {
+    font-size: 0.75rem;
+  }
+}

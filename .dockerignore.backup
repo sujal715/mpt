@@ -1,0 +1,14 @@
+node_modules/
+target/
+.git/
+.idea/
+.vscode/
+*.log
+.DS_Store
+frontend-src/
+public/
+build/
+*.md
+.env
+.env.local
+.env.production

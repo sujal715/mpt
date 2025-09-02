@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: mpt-backend
+    env: java
+    buildCommand: |
+      cd mpt-unified
+      chmod +x ./mvnw
+      ./mvnw clean package -DskipTests
+    startCommand: |
+      cd mpt-unified
+      java -jar target/mpt-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: PORT
+        value: 8080
+    healthCheckPath: /api/health
+
+  - type: web
+    name: mpt-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: REACT_APP_API_URL
+        value: https://mpt-backend.onrender.com
+    healthCheckPath: /
