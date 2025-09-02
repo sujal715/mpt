@@ -113,47 +113,6 @@ function Services() {
         </div>
       </section>
 
-      {/* Equipment Services */}
-      <section className="equipment-services">
-        <div className="container">
-          <h2>Equipment Services</h2>
-          <div className="equipment-services-grid">
-            <div className="equipment-service">
-              <h3>Equipment Rental</h3>
-              <p>High-quality equipment available for rent, including kites, boards, foils, and safety gear.</p>
-              <ul>
-                <li>Daily and weekly rates</li>
-                <li>Professional equipment</li>
-                <li>Safety gear included</li>
-                <li>Equipment maintenance</li>
-              </ul>
-            </div>
-
-            <div className="equipment-service">
-              <h3>Equipment Sales</h3>
-              <p>Purchase your own equipment from our selection of premium water sports gear and accessories.</p>
-              <ul>
-                <li>New and used equipment</li>
-                <li>Expert advice</li>
-                <li>Financing options</li>
-                <li>Warranty coverage</li>
-              </ul>
-            </div>
-
-            <div className="equipment-service">
-              <h3>Equipment Maintenance</h3>
-              <p>Professional maintenance and repair services for all types of water sports equipment.</p>
-              <ul>
-                <li>Regular maintenance</li>
-                <li>Repair services</li>
-                <li>Equipment inspection</li>
-                <li>Safety checks</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Safety & Certification */}
       <section className="safety-section">
         <div className="container">
