@@ -319,14 +319,10 @@ function Home() {
           
           <div className="mpt-image luxury-image">
             <img 
-              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" 
-              alt="Professional training facility showcasing world-class equipment"
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop" 
+              alt="Mountain landscape showcasing natural beauty and performance"
               loading="lazy"
             />
-            <div className="image-overlay luxury-overlay">
-              <FaTrophy />
-              <span>Training Excellence</span>
-            </div>
           </div>
         </div>
       </div>
