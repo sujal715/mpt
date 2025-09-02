@@ -115,6 +115,26 @@ function Home() {
 
   const professionalFeatures = useMemo(() => [
     {
+      id: 'feature-001',
+      icon: "🏗️",
+      title: "World-Class Infrastructure",
+      description: "State-of-the-art facilities and equipment designed to support elite performance training and professional development.",
+      benefits: ["Advanced Equipment", "Modern Facilities", "Professional Environment"],
+      category: "infrastructure",
+      priority: "high",
+      luxury: "Elite Tier"
+    },
+    {
+      id: 'feature-002',
+      icon: "👨‍🏫",
+      title: "Certified Expert Instructors",
+      description: "Highly qualified and experienced professionals dedicated to delivering exceptional training and mentorship.",
+      benefits: ["Certified Professionals", "Expert Guidance", "Personalized Attention"],
+      category: "instruction",
+      priority: "high",
+      luxury: "Elite Tier"
+    },
+    {
       id: 'feature-004',
       icon: "💎",
       title: "Personalized Excellence",
