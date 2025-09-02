@@ -74,11 +74,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
-      {/* Attribution Line */}
-      <div className="footer-attribution">
-        Made with ❤️ and ☕ in India
-      </div>
     </footer>
   );
 };
