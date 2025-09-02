@@ -296,27 +296,6 @@ function Resources() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="faq-section">
-        <div className="container">
-          <h2>Frequently Asked Questions</h2>
-          <div className="faq-grid">
-            <div className="faq-item">
-              <h3>What equipment do I need to start?</h3>
-              <p>We provide all necessary equipment for beginners. As you progress, you may want to invest in your own gear.</p>
-            </div>
-            <div className="faq-item">
-              <h3>How long does it take to learn?</h3>
-              <p>Most students see significant progress within 5-10 lessons, depending on their athletic background and dedication.</p>
-            </div>
-            <div className="faq-item">
-              <h3>What age can you start?</h3>
-              <p>We offer programs for ages 12 and up, with special youth programs designed for younger athletes.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Download Success Notification */}
       {downloadSuccess && (
         <div className={`download-notification ${downloadSuccess.isError ? 'error' : 'success'}`}>
