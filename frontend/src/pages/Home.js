@@ -424,115 +424,6 @@ function Home() {
     </section>
   );
 
-  const renderSkillsSection = () => (
-    <section className="skills-section luxury-skills-section">
-      <div className="container">
-        <div className="section-header luxury-header">
-          <div className="section-badge luxury-section-badge">
-            <FaStar />
-            <span>Expertise Areas</span>
-            <FaCrown className="luxury-crown" />
-          </div>
-          <h2 className="luxury-skills-title">Explore Top Skills and Certifications</h2>
-          <p className="luxury-skills-description">Comprehensive training programs designed for elite performance development</p>
-        </div>
-        
-        <div className="skills-grid luxury-skills-grid">
-          {/* In-demand Careers */}
-          <div className="skills-column luxury-skills-column">
-            <h3 className="skills-column-title">In-demand Careers</h3>
-            <div className="skills-list luxury-skills-list">
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Performance Coach</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Sports Scientist</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Fitness Trainer</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Wellness Consultant</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Rehabilitation Specialist</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">All Career Accelerators</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Performance Training */}
-          <div className="skills-column luxury-skills-column">
-            <h3 className="skills-column-title">Performance Training</h3>
-            <div className="skills-list luxury-skills-list">
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Strength Training</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Conditioning</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Flexibility</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Agility</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Endurance</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Professional Certifications */}
-          <div className="skills-column luxury-skills-column">
-            <h3 className="skills-column-title">Professional Certifications</h3>
-            <div className="skills-list luxury-skills-list">
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Personal Training</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Sports Nutrition</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">First Aid & CPR</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Strength & Conditioning</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Rehabilitation</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Leadership Development */}
-          <div className="skills-column luxury-skills-column">
-            <h3 className="skills-column-title">Leadership Development</h3>
-            <div className="skills-list luxury-skills-list">
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Leadership</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Management Skills</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Team Building</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Communication</span>
-              </div>
-              <div className="skill-item luxury-skill-item">
-                <span className="skill-name">Motivation</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-
   const renderTestimonials = () => (
     <section className="testimonials luxury-testimonials" ref={testimonialsRef}>
       <div className="container">
@@ -609,7 +500,6 @@ function Home() {
       {renderMPTSection()}
       {renderProfessionalServices()}
       {renderFeaturesSection()}
-      {renderSkillsSection()}
       {renderTestimonials()}
       
       {/* Luxury Mouse Follower */}
