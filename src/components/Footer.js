@@ -29,11 +29,11 @@ const Footer = () => {
             </div>
             <div className="contact-item">
               <span className="contact-icon">📞</span>
-              <span className="contact-text">0404 445 000</span>
+              <span className="contact-text">04 98 471 509</span>
             </div>
             <div className="contact-item">
               <span className="contact-icon">✉️</span>
-              <span className="contact-text">info@goldcoastwatersports.com.au</span>
+              <span className="contact-text">chloebarrettraining@icloud.com</span>
             </div>
             <div className="contact-item">
               <span className="contact-icon">🕒</span>
