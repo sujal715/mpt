@@ -255,11 +255,8 @@
   font-size: var(--font-size-7xl);
   margin-bottom: var(--spacing-6);
   font-weight: 800;
-  background: linear-gradient(135deg, var(--luxury-gold) 0%, var(--accent-gold) 25%, #ffffff 50%, var(--luxury-gold) 75%, var(--accent-gold) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+  color: white;
+  text-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
   animation: luxuryTitleGlow 3s ease-in-out infinite;
   line-height: 1.1;
   letter-spacing: -0.025em;
@@ -267,10 +264,10 @@
 
 @keyframes luxuryTitleGlow {
   0%, 100% { 
-    filter: brightness(1) drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+    filter: brightness(1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
   }
   50% { 
-    filter: brightness(1.2) drop-shadow(0 0 40px rgba(255, 215, 0, 0.8));
+    filter: brightness(1.2) drop-shadow(0 0 40px rgba(255, 255, 255, 0.5));
   }
 }
 
