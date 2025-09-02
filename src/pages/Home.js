@@ -115,16 +115,6 @@ function Home() {
 
   const professionalFeatures = useMemo(() => [
     {
-      id: 'feature-003',
-      icon: "🌍",
-      title: "Quality Training",
-      description: "We focus on delivering high-quality training programs that help clients achieve their performance goals and improve their movement capabilities.",
-      benefits: ["Quality Standards", "Client Focus", "Results-Driven"],
-      category: "quality",
-      priority: "medium",
-      luxury: "Gold Tier"
-    },
-    {
       id: 'feature-004',
       icon: "💎",
       title: "Personalized Excellence",
@@ -296,11 +286,6 @@ function Home() {
           <div className="mpt-text">
             <div className="mpt-header">
               <h2 className="luxury-mpt-title">MPT</h2>
-              <div className="mpt-accreditation luxury-accreditation">
-                <FaShieldAlt />
-                <span>Quality Training Standards</span>
-                <FaGem className="luxury-gem" />
-              </div>
             </div>
                                <h3 className="luxury-mpt-subtitle">Movement Performance Training</h3>
                    <p className="luxury-mpt-description">MPT specializes in movement performance training, helping athletes and professionals improve their movement quality, efficiency, and performance. We focus on enhancing movement patterns, strength, and overall athletic capabilities.</p>
