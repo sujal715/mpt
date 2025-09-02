@@ -183,18 +183,6 @@ function Services() {
           </div>
         </div>
       </section>
-
-      {/* Call to Action */}
-      <section className="services-cta">
-        <div className="container">
-          <h2>Ready to Start Your Training?</h2>
-          <p>Contact us today to discuss your training needs and book your first session.</p>
-          <div className="cta-buttons">
-            <button className="primary-btn">Book a Session</button>
-            <button className="secondary-btn">Contact Us</button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
