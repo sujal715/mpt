@@ -55,17 +55,11 @@ const Footer = () => {
         <div className="footer-section">
           <h3 className="footer-title">FOLLOW US</h3>
           <div className="footer-links">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+            <a href="https://www.facebook.com/movementperformancetraining" target="_blank" rel="noopener noreferrer" className="footer-link">
               <span className="social-icon">f</span>Facebook
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+            <a href="https://www.instagram.com/movementperformancetraining" target="_blank" rel="noopener noreferrer" className="footer-link">
               <span className="social-icon">📷</span>Instagram
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-link">
-              <span className="social-icon">𝕏</span>Twitter
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link">
-              <span className="social-icon">in</span>LinkedIn
             </a>
           </div>
         </div>
