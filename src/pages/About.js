@@ -118,23 +118,17 @@ function About() {
               </div>
               
               <div className="location-description">
-                <p>Nestled in the stunning Sunshine Coast region, our facility at Ezyfit Health Club provides the perfect environment for water sports training and development.</p>
+                <p>Nestled in the stunning Sunshine Coast region, our facility provides the perfect environment for movement performance training and development.</p>
               </div>
               
               <div className="location-features">
-                <h4>Why Choose Our Location?</h4>
+                <h4>Facility Highlights</h4>
                 <ul>
-                  <li><strong>Prime Water Sports Hub:</strong> Excellent wind and wave conditions year-round</li>
-                  <li><strong>Modern Facilities:</strong> State-of-the-art training equipment and amenities</li>
-                  <li><strong>Easy Access:</strong> Convenient location with ample parking</li>
-                  <li><strong>Beautiful Surroundings:</strong> Stunning coastal views and natural environment</li>
-                  <li><strong>Community Focus:</strong> Part of a vibrant health and fitness community</li>
+                  <li>Modern training equipment and amenities</li>
+                  <li>Convenient location with ample parking</li>
+                  <li>Professional training environment</li>
+                  <li>Part of a vibrant health and fitness community</li>
                 </ul>
-              </div>
-              
-              <div className="location-contact">
-                <h4>Getting Here</h4>
-                <p>Located just minutes from the Sunshine Coast's main attractions, our facility is easily accessible by car with plenty of parking available.</p>
               </div>
             </div>
             
