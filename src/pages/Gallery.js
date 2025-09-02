@@ -213,18 +213,6 @@ const Gallery = () => {
         </div>
       </div>
 
-      {/* Call to Action */}
-      <div className="gallery-cta">
-        <div className="cta-content">
-          <h2>Ready to Join the Adventure?</h2>
-          <p>Book your first lesson and start creating your own amazing moments!</p>
-          <div className="cta-buttons">
-            <button className="cta-btn primary">🚀 Book Now</button>
-            <button className="cta-btn secondary">📞 Contact Us</button>
-          </div>
-        </div>
-      </div>
-
       {/* Image Modal */}
       {selectedImage && (
         <div className="image-modal" onClick={closeModal}>
@@ -253,6 +241,7 @@ const Gallery = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };

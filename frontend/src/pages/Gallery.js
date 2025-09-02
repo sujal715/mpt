@@ -189,17 +189,6 @@ const Gallery = () => {
         </div>
       )}
 
-      {/* Call to Action */}
-      <section className="gallery-cta">
-        <div className="container">
-          <h2>Ready to Create Your Own Memories?</h2>
-          <p>Join our training programs and capture your own amazing moments on the water!</p>
-          <div className="cta-buttons">
-            <a href="/booking" className="cta-btn primary">Book Your Session</a>
-            <a href="/contact" className="cta-btn secondary">Contact Us</a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
