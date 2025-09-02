@@ -29,8 +29,71 @@ function Resources() {
 
   // Email validation function
   const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    // Basic email format validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return { isValid: false, error: 'Please enter a valid email address format' };
+    }
+
+    // Check for disposable email providers
+    const disposableDomains = [
+      '10minutemail.com', '10minutemail.net', '10minutemail.org',
+      'guerrillamail.com', 'guerrillamail.net', 'guerrillamail.org',
+      'tempmail.org', 'temp-mail.org', 'temp-mail.com',
+      'mailinator.com', 'mailinator.net', 'mailinator.org',
+      'yopmail.com', 'yopmail.net', 'yopmail.org',
+      'throwaway.email', 'disposablemail.com', 'disposablemail.net',
+      'fakeinbox.com', 'fakeinbox.net', 'fakeinbox.org',
+      'temp-mail.ru', 'tempmail.ru', 'temp-mail.com',
+      'sharklasers.com', 'grr.la', 'guerrillamailblock.com',
+      'pokemail.net', 'spam4.me', 'bccto.me',
+      'chacuo.net', 'dispostable.com', 'fake-mail.net',
+      'mailnesia.com', 'mintemail.com', 'mohmal.com',
+      'nwldx.com', 'pookmail.com', 'spamgourmet.com',
+      'spammotel.com', 'spamspot.com', 'spam.la',
+      'trashmail.com', 'trashmail.net', 'trashmail.org',
+      'wegwerfemail.de', 'wegwerfemail.net', 'wegwerfemail.org',
+      'getairmail.com', 'getairmail.net', 'getairmail.org',
+      'maildrop.cc', 'maildrop.net', 'maildrop.org',
+      'tempr.email', 'tmpeml.com', 'tmpmail.net',
+      'tmpmail.org', 'tmpeml.net', 'tmpeml.org',
+      'test.com', 'test.net', 'test.org',
+      'example.com', 'example.net', 'example.org',
+      'fake.com', 'fake.net', 'fake.org',
+      'dummy.com', 'dummy.net', 'dummy.org'
+    ];
+
+    const domain = email.split('@')[1].toLowerCase();
+    if (disposableDomains.includes(domain)) {
+      return { isValid: false, error: 'Please use a real email address, not a temporary one' };
+    }
+
+    // Check for common real email providers (whitelist approach)
+    const realEmailProviders = [
+      'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com',
+      'icloud.com', 'me.com', 'mac.com', 'live.com',
+      'msn.com', 'aol.com', 'protonmail.com', 'tutanota.com',
+      'zoho.com', 'fastmail.com', 'mail.com', 'gmx.com',
+      'yandex.com', 'mail.ru', 'qq.com', '163.com',
+      '126.com', 'sina.com', 'sohu.com', 'naver.com',
+      'daum.net', 'hanmail.net', 'rediffmail.com', 'sify.com',
+      'indiatimes.com', 'rediff.com', 'timesmail.com',
+      'company.com', 'business.com', 'corporate.com',
+      'enterprise.com', 'organization.com', 'institution.com',
+      'university.com', 'college.com', 'school.com',
+      'education.com', 'academy.com', 'institute.com'
+    ];
+
+    // Allow real providers and custom domains (domains with more than 2 parts)
+    const domainParts = domain.split('.');
+    const isCustomDomain = domainParts.length > 2;
+    const isRealProvider = realEmailProviders.includes(domain);
+
+    if (!isRealProvider && !isCustomDomain) {
+      return { isValid: false, error: 'Please use a recognized email provider or your company email' };
+    }
+
+    return { isValid: true, error: null };
   };
 
   // Handle download button click
@@ -48,8 +111,9 @@ function Resources() {
       return;
     }
 
-    if (!validateEmail(emailInput)) {
-      setEmailError('Please enter a valid email address');
+    const validationResult = validateEmail(emailInput);
+    if (!validationResult.isValid) {
+      setEmailError(validationResult.error);
       return;
     }
 
