@@ -26,7 +26,7 @@
   max-width: 600px;
 }
 
-.resources-section, .weather-section, .faq-section {
+.resources-section, .tips-section, .weather-section, .faq-section {
   padding: 80px 0;
 }
 
@@ -34,20 +34,27 @@
   background: white;
 }
 
+.tips-section {
+  background: #f8f9fa;
+}
+
 .weather-section {
   background: white;
 }
 
-.faq-section {
-  background: #f8f9fa;
-}
-
-.resources-section h2, .weather-section h2, .faq-section h2 {
+.resources-section h2, .tips-section h2, .weather-section h2, .faq-section h2 {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 3rem;
   color: #333;
+}
+
+.resources-grid, .tips-grid, .faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
 .resources-grid {
@@ -57,7 +64,7 @@
   margin-top: 3rem;
 }
 
-.resource-card {
+.resource-card, .tip-card, .faq-item {
   background: white;
   padding: 2rem;
   border-radius: 10px;
@@ -65,21 +72,40 @@
   transition: transform 0.3s;
 }
 
-.resource-card:hover {
+.resource-card:hover, .tip-card:hover {
   transform: translateY(-5px);
 }
 
-.resource-card h3 {
+.resource-card h3, .tip-card h3, .faq-item h3 {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #333;
 }
 
-.resource-card p {
+.resource-card p, .faq-item p {
   color: #666;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+}
+
+.tip-card ul {
+  list-style: none;
+}
+
+.tip-card ul li {
+  padding: 0.5rem 0;
+  color: #555;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.tip-card ul li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #0066cc;
+  font-weight: bold;
 }
 
 .resource-btn {

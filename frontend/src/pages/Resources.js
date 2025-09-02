@@ -228,6 +228,42 @@ function Resources() {
         </div>
       </section>
 
+      {/* Tips & Tricks */}
+      <section className="tips-section">
+        <div className="container">
+          <h2>Tips & Tricks</h2>
+          <div className="tips-grid">
+            <div className="tip-card">
+              <h3>Beginner Tips</h3>
+              <ul>
+                <li>Start with proper instruction</li>
+                <li>Practice kite control on land</li>
+                <li>Always check weather conditions</li>
+                <li>Use appropriate safety gear</li>
+              </ul>
+            </div>
+            <div className="tip-card">
+              <h3>Advanced Techniques</h3>
+              <ul>
+                <li>Master wave riding</li>
+                <li>Perfect your jumps</li>
+                <li>Learn advanced maneuvers</li>
+                <li>Improve board control</li>
+              </ul>
+            </div>
+            <div className="tip-card">
+              <h3>Equipment Care</h3>
+              <ul>
+                <li>Regular equipment inspection</li>
+                <li>Proper storage techniques</li>
+                <li>Maintenance schedules</li>
+                <li>Repair best practices</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Weather Information */}
       <section className="weather-section">
         <div className="container">
