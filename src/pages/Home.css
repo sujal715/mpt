@@ -392,7 +392,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: var(--spacing-12);
-  align-items: center;
+  align-items: flex-start;
 }
 
 .mpt-text {
@@ -506,7 +506,7 @@
   position: relative;
   animation: slideInRight var(--transition-slow) ease-out 0.4s both;
   align-self: flex-start;
-  margin-top: 0;
+  margin-top: var(--spacing-4);
 }
 
 .luxury-image {
@@ -516,7 +516,7 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   align-self: flex-start;
-  margin-top: 0;
+  margin-top: var(--spacing-4);
 }
 
 .luxury-image:hover {
