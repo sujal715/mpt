@@ -19,9 +19,9 @@ function About() {
           <div className="story-content">
             <div className="story-text">
               <h2>Our Story</h2>
-              <p>With 14 years of experience in the sports and fitness industry, Chloe paused her personal training journey in 2021 to dedicate her time to educating the next generation of trainers on the Sunshine Coast and advancing her expertise through a Bachelor of Clinical Exercise Physiology.</p>
-              <p>An extreme sports enthusiast and adrenaline seeker, Chloe's passion for fitness extends beyond the gym. When she's not coaching or training, you'll likely find her at the beach, mastering the waves through kitesurfing, wing foiling, or preparing for her next triathlon when the winds and swells calm down.</p>
-              <p>Before stepping into the world of personal training, Chloe honed her skills as a scuba diving and kitesurfing instructor. Today, she channels her diverse experience into helping clients achieve their fitness goals, with an overarching mission to create a healthier, happier world. If you're up for it, she might just convince you to try flying a kite or exploring the underwater world!</p>
+              <p>With 14 years of experience in sports and fitness, Chloe paused her personal training journey in 2021 to educate the next generation of trainers on the Sunshine Coast while pursuing a Bachelor of Clinical Exercise Physiology.</p>
+              <p>An extreme sports enthusiast, Chloe's passion extends beyond the gym. When not coaching, you'll find her mastering waves through kitesurfing, wing foiling, or preparing for triathlons when conditions allow.</p>
+              <p>Before personal training, Chloe was a scuba diving and kitesurfing instructor. Today, she channels this diverse experience into helping clients achieve their fitness goals, with a mission to create a healthier, happier world.</p>
             </div>
             <div className="story-image">
               <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Our Story" />
