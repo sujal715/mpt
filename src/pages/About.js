@@ -72,22 +72,6 @@ function About() {
               <p className="member-title">Head Instructor</p>
               <p>With 14 years of experience in water sports, Chloe leads our training programs with passion and expertise. She specializes in kitesurfing and hydrofoiling instruction.</p>
             </div>
-            <div className="team-member">
-              <div className="member-image">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Mike - Senior Instructor" />
-              </div>
-              <h3>Mike</h3>
-              <p className="member-title">Senior Instructor</p>
-              <p>Mike brings 10 years of experience in wing foiling and advanced kitesurfing techniques. He's passionate about helping students master advanced maneuvers.</p>
-            </div>
-            <div className="team-member">
-              <div className="member-image">
-                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop" alt="Sarah - Safety Coordinator" />
-              </div>
-              <h3>Sarah</h3>
-              <p className="member-title">Safety Coordinator</p>
-              <p>Sarah ensures all our programs meet the highest safety standards. She's certified in water rescue and emergency response.</p>
-            </div>
           </div>
         </div>
       </section>
