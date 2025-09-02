@@ -35,10 +35,6 @@ const Footer = () => {
               <span className="contact-icon">✉️</span>
               <span className="contact-text">chloebarrettraining@icloud.com</span>
             </div>
-            <div className="contact-item">
-              <span className="contact-icon">🕒</span>
-              <span className="contact-text">Mon-Sun: 08:00-18:00</span>
-            </div>
           </div>
         </div>
 
