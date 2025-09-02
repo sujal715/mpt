@@ -6,52 +6,70 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        {/* Main Column */}
+        {/* Logo and Branding Section */}
         <div className="footer-section">
-          <h3 className="footer-title">Main</h3>
+          <Link to="/" className="footer-logo">
+            <div className="footer-logo-icon">🌊</div>
+            <div className="footer-logo-text">
+              Movement Performance Training
+            </div>
+          </Link>
+          <div className="tripadvisor-badge">
+            2021 Travellers' Choice Tripadvisor
+          </div>
+        </div>
+
+        {/* Contact Information Section */}
+        <div className="footer-section">
+          <h3 className="footer-title">GET IN TOUCH</h3>
+          <div className="contact-info">
+            <div className="contact-item">
+              <span className="contact-icon">📍</span>
+              <span className="contact-text">Ezyfit Health Club, Birtinya, QLD 4575</span>
+            </div>
+            <div className="contact-item">
+              <span className="contact-icon">📞</span>
+              <span className="contact-text">0404 445 000</span>
+            </div>
+            <div className="contact-item">
+              <span className="contact-icon">✉️</span>
+              <span className="contact-text">info@goldcoastwatersports.com.au</span>
+            </div>
+            <div className="contact-item">
+              <span className="contact-icon">🕒</span>
+              <span className="contact-text">Mon-Sun: 08:00-18:00</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Links Section */}
+        <div className="footer-section">
+          <h3 className="footer-title">USEFUL LINKS</h3>
           <div className="footer-links">
             <Link to="/" className="footer-link">Home</Link>
-            <Link to="/contact" className="footer-link">Contact</Link>
-            <Link to="/about" className="footer-link">Work With Us</Link>
-            <Link to="/gallery" className="footer-link">My Gear</Link>
+            <Link to="/about" className="footer-link">About Us</Link>
+            <Link to="/resources" className="footer-link">Blog</Link>
+            <Link to="/services" className="footer-link">Services</Link>
+            <Link to="/privacy" className="footer-link">Privacy Policies</Link>
+            <Link to="/faqs" className="footer-link">FAQs</Link>
           </div>
         </div>
 
-        {/* Learn Column */}
+        {/* Social Media Section */}
         <div className="footer-section">
-          <h3 className="footer-title">Learn</h3>
+          <h3 className="footer-title">FOLLOW US</h3>
           <div className="footer-links">
-            <Link to="/services" className="footer-link">Courses</Link>
-            <Link to="/resources" className="footer-link">Tutorials</Link>
-            <Link to="/about" className="footer-link">Notes</Link>
-          </div>
-        </div>
-
-        {/* Legal Column */}
-        <div className="footer-section">
-          <h3 className="footer-title">Legal</h3>
-          <div className="footer-links">
-            <Link to="/privacy" className="footer-link">Terms</Link>
-            <Link to="/privacy" className="footer-link">Privacy</Link>
-            <Link to="/contact" className="footer-link">Refund</Link>
-          </div>
-        </div>
-
-        {/* Social Column */}
-        <div className="footer-section">
-          <h3 className="footer-title">Social</h3>
-          <div className="footer-links">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-link">
-              <span className="social-icon">?</span>GitHub
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+              <span className="social-icon">f</span>Facebook
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+              <span className="social-icon">📷</span>Instagram
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-link">
-              <span className="social-icon">𝕏</span>Twitter (X)
+              <span className="social-icon">𝕏</span>Twitter
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="footer-link">
-              <span className="social-icon">?</span>YouTube
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-link">
-              <span className="social-icon">?</span>Facebook
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+              <span className="social-icon">in</span>LinkedIn
             </a>
           </div>
         </div>
