@@ -121,8 +121,7 @@ function Home() {
       description: "Highly qualified and experienced professionals dedicated to delivering exceptional training and mentorship.",
       benefits: ["Certified Professionals", "Expert Guidance", "Personalized Attention"],
       category: "instruction",
-      priority: "high",
-      luxury: "Elite Tier"
+      priority: "high"
     },
     {
       id: 'feature-004',
@@ -131,8 +130,7 @@ function Home() {
       description: "Data-driven, customized training programs designed to unlock maximum potential and achieve measurable, sustainable results.",
       benefits: ["Individual Assessment", "Progress Tracking", "Adaptive Programming"],
       category: "methodology",
-      priority: "high",
-      luxury: "Elite Tier"
+      priority: "high"
     }
   ], []);
 
@@ -378,7 +376,6 @@ function Home() {
           <div className="section-badge luxury-section-badge">
             <FaStar />
             <span>Professional Excellence</span>
-            <FaCrown className="luxury-crown" />
           </div>
           <h2 className="luxury-features-title">World-Class Training Programs</h2>
           <p className="luxury-features-description">Comprehensive programs designed to elevate your performance to elite standards</p>
@@ -400,10 +397,6 @@ function Home() {
                     <span>{benefit}</span>
                   </div>
                 ))}
-              </div>
-              <div className="feature-luxury-badge">
-                <FaGem />
-                <span>{feature.luxury}</span>
               </div>
               <div className="feature-luxury-border" />
             </div>
