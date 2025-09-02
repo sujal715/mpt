@@ -13,14 +13,14 @@
   --accent-gold-dark: #f59e0b;
   
   /* Luxury Color Palette */
-  --luxury-gold: #ffd700;
-  --luxury-silver: #c0c0c0;
-  --luxury-platinum: #e5e4e2;
-  --luxury-diamond: #b9f2ff;
-  --luxury-emerald: #50c878;
-  --luxury-ruby: #e0115f;
-  --luxury-sapphire: #0f52ba;
-  --luxury-onyx: #000000;
+  --luxury-gold: #0891b2;
+  --luxury-silver: #64748b;
+  --luxury-platinum: #f1f5f9;
+  --luxury-diamond: #0ea5e9;
+  --luxury-emerald: #10b981;
+  --luxury-ruby: #ef4444;
+  --luxury-sapphire: #1e40af;
+  --luxury-onyx: #0f172a;
   
   /* Professional Typography Scale */
   --font-size-xs: 0.75rem;
@@ -72,8 +72,8 @@
   --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
   /* Luxury Variables */
-  --luxury-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-  --luxury-shadow-glow: 0 0 50px rgba(255, 215, 0, 0.5);
+  --luxury-shadow: 0 0 30px rgba(8, 145, 178, 0.3);
+  --luxury-shadow-glow: 0 0 50px rgba(8, 145, 178, 0.5);
   --luxury-transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -116,10 +116,10 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: var(--luxury-gold);
+  background: var(--luxury-diamond);
   border-radius: 50%;
   animation: luxuryFloat 5s ease-in-out infinite;
-  box-shadow: 0 0 20px var(--luxury-gold);
+  box-shadow: 0 0 20px var(--luxury-diamond);
 }
 
 @keyframes luxuryFloat {
@@ -147,7 +147,7 @@
   left: 50%;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent);
+  background: radial-gradient(circle, rgba(8, 145, 178, 0.2), transparent);
   transform: translate(-50%, -50%);
   animation: luxuryGlow 4s ease-in-out infinite;
 }
@@ -191,7 +191,7 @@
 
 .luxury-badge {
   background: linear-gradient(135deg, var(--luxury-gold), var(--luxury-diamond));
-  color: var(--luxury-onyx);
+  color: white;
   border: 2px solid var(--luxury-gold);
   box-shadow: var(--luxury-shadow), var(--shadow-xl);
   position: relative;
@@ -235,7 +235,7 @@
   right: -5px;
   width: 10px;
   height: 10px;
-  background: var(--luxury-gold);
+  background: var(--luxury-diamond);
   border-radius: 50%;
   animation: luxurySparkle 2s ease-in-out infinite;
 }
@@ -278,8 +278,8 @@
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
-  color: var(--luxury-platinum);
-  text-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+  color: #e2e8f0;
+  text-shadow: 0 0 20px rgba(226, 232, 240, 0.3);
   animation: luxurySubtitleFade 2s ease-in-out infinite;
   font-weight: 400;
 }
@@ -316,7 +316,7 @@
 .scroll-line {
   width: 2px;
   height: 40px;
-  background: linear-gradient(to bottom, var(--luxury-gold), transparent);
+  background: linear-gradient(to bottom, var(--luxury-diamond), transparent);
   animation: luxuryScrollLine 2s ease-in-out infinite;
 }
 
@@ -332,7 +332,7 @@
 }
 
 .scroll-text {
-  color: var(--luxury-gold);
+  color: var(--luxury-diamond);
   font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -370,7 +370,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.02) 50%, transparent 70%);
+  background: linear-gradient(45deg, transparent 30%, rgba(8, 145, 178, 0.02) 50%, transparent 70%);
   animation: float 6s ease-in-out infinite;
   pointer-events: none;
 }
@@ -422,7 +422,7 @@
   font-weight: 600;
   margin: 0;
   animation: slideInLeft var(--transition-slow) ease-out 0.2s both;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  text-shadow: 0 0 20px rgba(8, 145, 178, 0.3);
 }
 
 .mpt-description {
