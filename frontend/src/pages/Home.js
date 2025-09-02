@@ -293,18 +293,17 @@ function Home() {
         <div className="mpt-content">
           <div className="mpt-text">
             <div className="mpt-header">
-              <h2 className="luxury-mpt-title">Movement Performance Training</h2>
               <h3 className="luxury-mpt-subtitle">MPT</h3>
+              <h2 className="luxury-mpt-title">Movement Performance Training</h2>
             </div>
             
             <div className="mpt-description">
               <p className="luxury-mpt-description">
-                MPT specializes in movement performance training, helping athletes and professionals improve their movement quality, efficiency, and performance. We focus on enhancing movement patterns, strength, and overall athletic capabilities through evidence-based methodologies.
+                MPT specializes in movement performance training, helping athletes and professionals improve their movement quality, efficiency, and performance. We focus on enhancing movement patterns, strength, and overall athletic capabilities.
               </p>
             </div>
             
             <div className="mpt-features luxury-features">
-              <h4 className="mpt-features-title">Our Core Focus Areas</h4>
               <div className="features-grid">
                 <div className="feature-item luxury-feature-item">
                   <FaCheck />
@@ -317,18 +316,6 @@ function Home() {
                 <div className="feature-item luxury-feature-item">
                   <FaCheck />
                   <span>Injury Prevention Focus</span>
-                </div>
-                <div className="feature-item luxury-feature-item">
-                  <FaCheck />
-                  <span>Athletic Development</span>
-                </div>
-                <div className="feature-item luxury-feature-item">
-                  <FaCheck />
-                  <span>Movement Pattern Optimization</span>
-                </div>
-                <div className="feature-item luxury-feature-item">
-                  <FaCheck />
-                  <span>Strength & Conditioning</span>
                 </div>
               </div>
             </div>
