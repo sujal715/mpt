@@ -270,13 +270,10 @@ function Home() {
 
       <div className="hero-content">
         <div className="hero-badge luxury-badge">
-          <FaGem className="luxury-icon" />
-          <span>Movement Performance Training</span>
-          <div className="badge-sparkle" />
+          <span>MOVEMENT PERFORMANCE TRAINING</span>
         </div>
         <h1 className="luxury-title">Unlock Your Performance Potential</h1>
         <p className="luxury-subtitle">Experience world-class training methodologies backed by scientific research and proven results. Our comprehensive programs are designed to optimize performance, enhance capabilities, and deliver measurable outcomes for elite athletes and professionals.</p>
-
       </div>
 
       {/* Luxury Scroll Indicator */}
