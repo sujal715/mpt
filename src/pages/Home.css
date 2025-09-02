@@ -390,7 +390,7 @@
 
 .mpt-content {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: var(--spacing-12);
   align-items: flex-start;
 }
@@ -532,12 +532,13 @@
 }
 
 .luxury-image img {
-  width: 100%;
+  width: 120%;
   height: 400px;
   object-fit: cover;
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-xl);
   transition: all var(--transition-normal);
+  margin-left: -10%;
 }
 
 .luxury-image:hover img {
