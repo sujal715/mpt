@@ -26,14 +26,21 @@ class ResourcesService {
   }
 
   // Download a specific resource
-  downloadResource(resourceKey) {
+  downloadResource(resourceKey, userEmail = null) {
     const resource = this.resources[resourceKey];
     if (!resource) {
       throw new Error('Resource not found');
     }
 
+    // Log the download with user email if provided
+    if (userEmail) {
+      console.log(`Download requested for ${resourceKey} by ${userEmail}`);
+      // Here you could send the email to your backend for tracking
+      this.logDownload(resourceKey, userEmail);
+    }
+
     // Create HTML content for better formatting
-    const htmlContent = this.createHTMLDocument(resource);
+    const htmlContent = this.createHTMLDocument(resource, userEmail);
     
     // Create a blob with the HTML content
     const blob = new Blob([htmlContent], { type: 'text/html' });
@@ -53,8 +60,26 @@ class ResourcesService {
     window.URL.revokeObjectURL(url);
   }
 
+  // Log download for tracking
+  logDownload(resourceKey, userEmail) {
+    const downloadData = {
+      resource: resourceKey,
+      email: userEmail,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+    
+    // Store in localStorage for tracking
+    const downloads = JSON.parse(localStorage.getItem('mpt_downloads') || '[]');
+    downloads.push(downloadData);
+    localStorage.setItem('mpt_downloads', JSON.stringify(downloads));
+    
+    // Here you could send this data to your backend
+    console.log('Download logged:', downloadData);
+  }
+
   // Create a formatted HTML document
-  createHTMLDocument(resource) {
+  createHTMLDocument(resource, userEmail = null) {
     const timestamp = new Date().toLocaleString();
     
     return `
@@ -123,6 +148,16 @@ class ResourcesService {
         .download-info strong {
             color: #1976d2;
         }
+        .user-info {
+            background-color: #f3e5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #9c27b0;
+        }
+        .user-info strong {
+            color: #7b1fa2;
+        }
         @media print {
             body { background-color: white; }
             .header { background: #0066cc !important; }
@@ -142,13 +177,21 @@ class ResourcesService {
         <strong>For:</strong> Educational and Safety Purposes
     </div>
     
+    ${userEmail ? `
+    <div class="user-info">
+        <strong>Downloaded by:</strong> ${userEmail}<br>
+        <strong>Thank you for your interest in water sports safety!</strong><br>
+        <em>We'll send you additional resources and tips to enhance your learning experience.</em>
+    </div>
+    ` : ''}
+    
     <div class="content">
         <pre>${resource.content}</pre>
     </div>
     
     <div class="footer">
         <p><strong>MPT Water Sports Academy</strong></p>
-        <p>Contact: info@mpt.com | Emergency: 911</p>
+        <p>Contact: chloebarrettraining@icloud.com | Phone: 04 98 471 509</p>
         <p>This document is for educational purposes only. Always follow local safety regulations.</p>
         <p>Generated on: ${timestamp}</p>
     </div>

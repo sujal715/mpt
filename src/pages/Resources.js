@@ -12,6 +12,10 @@ function Resources() {
     wingFoil: false
   });
   const [downloadSuccess, setDownloadSuccess] = useState(null);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [emailInput, setEmailInput] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [pendingDownload, setPendingDownload] = useState(null);
 
   const openWeather = async () => {
     setIsWeatherLoading(true);
@@ -23,17 +27,62 @@ function Resources() {
   
   const closeWeather = () => setIsWeatherOpen(false);
 
-  const handleDownload = async (resourceKey) => {
+  // Email validation function
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Handle download button click
+  const handleDownloadClick = (resourceKey) => {
+    setPendingDownload(resourceKey);
+    setShowEmailModal(true);
+    setEmailInput('');
+    setEmailError('');
+  };
+
+  // Handle email submission
+  const handleEmailSubmit = async () => {
+    if (!emailInput.trim()) {
+      setEmailError('Please enter your email address');
+      return;
+    }
+
+    if (!validateEmail(emailInput)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+
+    // Close modal and proceed with download
+    setShowEmailModal(false);
+    setEmailError('');
+    
+    // Proceed with the actual download
+    await handleDownload(pendingDownload, emailInput);
+  };
+
+  // Handle modal close
+  const handleModalClose = () => {
+    setShowEmailModal(false);
+    setPendingDownload(null);
+    setEmailInput('');
+    setEmailError('');
+  };
+
+  const handleDownload = async (resourceKey, userEmail) => {
     setDownloadStates(prev => ({ ...prev, [resourceKey]: true }));
     setDownloadSuccess(null);
     
     try {
-      await resourcesService.downloadResource(resourceKey);
+      // Log the download with user email
+      console.log(`Download requested for ${resourceKey} by ${userEmail}`);
+      
+      await resourcesService.downloadResource(resourceKey, userEmail);
       
       // Show success message
       const resourceName = resourcesService.getResource(resourceKey).title;
       setDownloadSuccess({
-        message: `✅ ${resourceName} downloaded successfully!`,
+        message: `✅ ${resourceName} downloaded successfully! Check your email for additional resources.`,
         resourceKey
       });
       
@@ -83,7 +132,7 @@ function Resources() {
               <p>Essential safety guidelines for kitesurfing, including weather conditions, equipment checks, and emergency procedures.</p>
               <button 
                 className={`resource-btn ${downloadStates.kitesurfing ? 'downloading' : ''}`}
-                onClick={() => handleDownload('kitesurfing')}
+                onClick={() => handleDownloadClick('kitesurfing')}
                 disabled={downloadStates.kitesurfing}
               >
                 {downloadStates.kitesurfing ? '📥 Downloading...' : '📥 Download Guide'}
@@ -94,7 +143,7 @@ function Resources() {
               <p>Safety protocols for hydrofoiling, including foil handling, launch techniques, and emergency procedures.</p>
               <button 
                 className={`resource-btn ${downloadStates.hydrofoil ? 'downloading' : ''}`}
-                onClick={() => handleDownload('hydrofoil')}
+                onClick={() => handleDownloadClick('hydrofoil')}
                 disabled={downloadStates.hydrofoil}
               >
                 {downloadStates.hydrofoil ? '📥 Downloading...' : '📥 Download Guide'}
@@ -105,7 +154,7 @@ function Resources() {
               <p>Comprehensive safety guide for wing foiling, covering wing control, foil safety, and rescue procedures.</p>
               <button 
                 className={`resource-btn ${downloadStates.wingFoil ? 'downloading' : ''}`}
-                onClick={() => handleDownload('wingFoil')}
+                onClick={() => handleDownloadClick('wingFoil')}
                 disabled={downloadStates.wingFoil}
               >
                 {downloadStates.wingFoil ? '📥 Downloading...' : '📥 Download Guide'}
@@ -227,6 +276,40 @@ function Resources() {
           >
             ×
           </button>
+        </div>
+      )}
+
+      {/* Email Validation Modal */}
+      {showEmailModal && (
+        <div className="email-modal-overlay">
+          <div className="email-modal">
+            <div className="email-modal-header">
+              <h3>📧 Enter Your Email</h3>
+              <button className="modal-close" onClick={handleModalClose}>×</button>
+            </div>
+            <div className="email-modal-content">
+              <p>Please enter your email address to download the safety guide. We'll also send you additional resources and tips!</p>
+              <div className="email-input-group">
+                <input
+                  type="email"
+                  placeholder="your.email@example.com"
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  className={`email-input ${emailError ? 'error' : ''}`}
+                  onKeyPress={(e) => e.key === 'Enter' && handleEmailSubmit()}
+                />
+                {emailError && <span className="email-error">{emailError}</span>}
+              </div>
+              <div className="email-modal-actions">
+                <button className="btn-cancel" onClick={handleModalClose}>
+                  Cancel
+                </button>
+                <button className="btn-download" onClick={handleEmailSubmit}>
+                  Download Guide
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
