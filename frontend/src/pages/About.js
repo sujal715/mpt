@@ -141,48 +141,25 @@ function About() {
                 </div>
               </div>
               
-              <div className="transport-directions-row">
-                <div className="location-section-item">
-                  <div className="section-header">
-                    <span className="section-icon">🚗</span>
-                    <h4>How to get here:</h4>
-                  </div>
-                  <div className="transport-options">
-                    <button className="transport-btn active">
-                      <span className="btn-icon">🚗</span>
-                      <span>Driving</span>
-                    </button>
-                    <button className="transport-btn">
-                      <span className="btn-icon">🚶</span>
-                      <span>Walking</span>
-                    </button>
-                    <button className="transport-btn">
-                      <span className="btn-icon">🚲</span>
-                      <span>Cycling</span>
-                    </button>
-                  </div>
+              <div className="location-section-item">
+                <div className="section-header">
+                  <span className="section-icon">🔍</span>
+                  <h4>Get directions from:</h4>
                 </div>
-                
-                <div className="location-section-item">
-                  <div className="section-header">
-                    <span className="section-icon">🔍</span>
-                    <h4>Get directions from:</h4>
+                <div className="directions-input">
+                  <div className="input-wrapper">
+                    <span className="input-icon">🔍</span>
+                    <input 
+                      type="text" 
+                      placeholder="Start typing your address..." 
+                      className="directions-field"
+                    />
                   </div>
-                  <div className="directions-input">
-                    <div className="input-wrapper">
-                      <span className="input-icon">🔍</span>
-                      <input 
-                        type="text" 
-                        placeholder="Start typing your address..." 
-                        className="directions-field"
-                      />
-                    </div>
-                    <button className="directions-btn">Get Directions</button>
-                    <p className="directions-hint">
-                      <span className="hint-icon">💡</span>
-                      Type to see suggestions • Select from dropdown
-                    </p>
-                  </div>
+                  <button className="directions-btn">Get Directions</button>
+                  <p className="directions-hint">
+                    <span className="hint-icon">💡</span>
+                    Type to see suggestions • Select from dropdown
+                  </p>
                 </div>
               </div>
             </div>
