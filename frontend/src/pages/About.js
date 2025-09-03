@@ -112,7 +112,6 @@ function About() {
           <div className="location-content">
             <div className="location-sidebar">
               <div className="location-header">
-                <h3>Ezyfit Health Club</h3>
                 <p className="location-address">📍 Birtinya, QLD 4575</p>
                 <p className="location-region">Sunshine Coast, Queensland, Australia</p>
               </div>
@@ -124,7 +123,7 @@ function About() {
             
             <div className="location-banner">
               <div className="banner-icon">🌍</div>
-              <div className="banner-title">Ezyfit Health Club</div>
+              <div className="banner-title">Our Location</div>
               <div className="banner-pin">📍</div>
             </div>
             
@@ -135,7 +134,6 @@ function About() {
                   <h4>Our Location</h4>
                 </div>
                 <div className="section-content">
-                  <h5>Ezyfit Health Club</h5>
                   <p>Birtinya, QLD 4575, Sunshine Coast, Queensland, Australia</p>
                 </div>
               </div>
