@@ -121,21 +121,10 @@ function About() {
                 <p>Our facility provides the perfect environment for movement performance training and development, located in the beautiful Sunshine Coast region.</p>
               </div>
               
-              <div className="location-details">
-                <div className="detail-item">
-                  <h4>📍 Address</h4>
-                  <p>Ezyfit Health Club<br />Birtinya, QLD 4575</p>
-                </div>
-                
-                <div className="detail-item">
-                  <h4>🚗 Parking</h4>
-                  <p>Ample free parking available on-site</p>
-                </div>
-                
-                <div className="detail-item">
-                  <h4>🏋️ Facilities</h4>
-                  <p>Modern training equipment and professional environment</p>
-                </div>
+              <div className="location-simple">
+                <p><strong>📍 Address:</strong> Ezyfit Health Club, Birtinya, QLD 4575</p>
+                <p><strong>🚗 Parking:</strong> Free parking available</p>
+                <p><strong>🏋️ Facilities:</strong> Modern training equipment</p>
               </div>
             </div>
             
