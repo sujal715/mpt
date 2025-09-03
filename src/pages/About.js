@@ -121,11 +121,7 @@ function About() {
               </div>
             </div>
             
-            <div className="location-banner">
-              <div className="banner-icon">🌍</div>
-              <div className="banner-title">Our Location</div>
-              <div className="banner-pin">📍</div>
-            </div>
+
             
             <div className="location-main">
               <div className="location-section-item compact">
