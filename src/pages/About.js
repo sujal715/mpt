@@ -130,31 +130,19 @@ function About() {
                   <h4>Our Location</h4>
                 </div>
                 <div className="section-content">
-                  <p>Birtinya, QLD 4575, Sunshine Coast, Queensland, Australia</p>
+                  <a 
+                    href="https://maps.google.com/maps?q=Birtinya+QLD+4575+Australia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="location-link"
+                  >
+                    <p>Birtinya, QLD 4575, Sunshine Coast, Queensland, Australia</p>
+                    <span className="directions-hint">Click to get directions from your location</span>
+                  </a>
                 </div>
               </div>
               
-              <div className="location-section-item">
-                <div className="section-header">
-                  <span className="section-icon">🔍</span>
-                  <h4>Get directions from:</h4>
-                </div>
-                <div className="directions-input">
-                  <div className="input-wrapper">
-                    <span className="input-icon">🔍</span>
-                    <input 
-                      type="text" 
-                      placeholder="Start typing your address..." 
-                      className="directions-field"
-                    />
-                  </div>
-                  <button className="directions-btn">Get Directions</button>
-                  <p className="directions-hint">
-                    <span className="hint-icon">💡</span>
-                    Type to see suggestions • Select from dropdown
-                  </p>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>

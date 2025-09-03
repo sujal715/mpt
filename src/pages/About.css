@@ -333,6 +333,31 @@
   line-height: 1.4;
 }
 
+.location-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-normal);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+}
+
+.location-link:hover {
+  background: rgba(0, 102, 204, 0.05);
+  border-color: rgba(0, 102, 204, 0.2);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.location-link .directions-hint {
+  font-size: var(--font-size-sm);
+  color: #0066cc;
+  margin-top: var(--spacing-2);
+  display: block;
+  font-weight: 500;
+}
+
 .transport-options {
   display: flex;
   gap: 0.75rem;
