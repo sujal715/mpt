@@ -285,6 +285,12 @@
   gap: 2rem;
 }
 
+.transport-directions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
 .location-section-item {
   background: white;
   border-radius: var(--radius-lg);
