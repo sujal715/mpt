@@ -1,14 +1,12 @@
 services:
-  # Frontend Service (React)
+  # Static Site Service
   - type: web
     name: ppt-app
     rootDir: frontend
     buildCommand: npm run build
-    startCommand: npx serve -s build -l $PORT
+    staticPublishPath: ./build
     envVars:
       - key: NODE_ENV
         value: production
-      - key: REACT_APP_API_URL
-        value: https://mpt-backend.onrender.com
     autoDeploy: true
     plan: starter
