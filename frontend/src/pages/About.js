@@ -105,48 +105,7 @@ function About() {
         </div>
       </section>
 
-      {/* Location */}
-      <section className="location-section">
-        <div className="container">
-          <h2>Our Location</h2>
-          <div className="location-content">
-            <div className="location-sidebar">
-              <div className="location-header">
-                <p className="location-address">📍 Birtinya, QLD 4575</p>
-                <p className="location-region">Sunshine Coast, Queensland, Australia</p>
-              </div>
-              
-              <div className="location-description">
-                <p>Our facility provides the perfect environment for movement performance training and development.</p>
-              </div>
-            </div>
-            
 
-            
-            <div className="location-main">
-              <div className="location-section-item compact">
-                <div className="section-header">
-                  <span className="section-icon">📍</span>
-                  <h4>Our Location</h4>
-                </div>
-                <div className="section-content">
-                  <a 
-                    href="https://maps.google.com/maps?q=Birtinya+QLD+4575+Australia" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="location-link"
-                  >
-                    <p>Birtinya, QLD 4575, Sunshine Coast, Queensland, Australia</p>
-                    <span className="directions-hint">Click to get directions from your location</span>
-                  </a>
-                </div>
-              </div>
-              
-
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
