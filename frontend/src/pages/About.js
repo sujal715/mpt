@@ -66,7 +66,7 @@ function About() {
           <div className="team-grid">
             <div className="team-member featured">
               <div className="member-image">
-                <img src="/chloe-headshot.jpg" alt="Chloe Barrett - Founder & Head Instructor" />
+                <img src={process.env.PUBLIC_URL + '/chloe-headshot.jpg'} alt="Chloe Barrett - Founder & Head Instructor" />
               </div>
               <div className="member-info">
                 <h3>Chloe Barrett</h3>

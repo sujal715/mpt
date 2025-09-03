@@ -8,7 +8,7 @@ const Header = () => {
       <div className="header-container">
         <Link to="/" className="logo">
           <div className="logo-icon">
-            <img src="/mpt-logo.jpeg" alt="MPT Logo" className="logo-image" />
+            <img src={process.env.PUBLIC_URL + '/mpt-logo.jpeg'} alt="MPT Logo" className="logo-image" />
           </div>
           <div className="logo-text">
             MOVEMENT PERFORMANCE TRAINING
