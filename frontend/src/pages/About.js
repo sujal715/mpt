@@ -113,22 +113,29 @@ function About() {
             <div className="location-info">
               <div className="location-header">
                 <h3>Ezyfit Health Club</h3>
-                <p className="location-address">Birtinya, QLD 4575</p>
+                <p className="location-address">📍 Birtinya, QLD 4575</p>
                 <p className="location-region">Sunshine Coast, Queensland, Australia</p>
               </div>
               
               <div className="location-description">
-                <p>Nestled in the stunning Sunshine Coast region, our facility provides the perfect environment for movement performance training and development.</p>
+                <p>Our facility provides the perfect environment for movement performance training and development, located in the beautiful Sunshine Coast region.</p>
               </div>
               
-              <div className="location-features">
-                <h4>Facility Highlights</h4>
-                <ul>
-                  <li>Modern training equipment and amenities</li>
-                  <li>Convenient location with ample parking</li>
-                  <li>Professional training environment</li>
-                  <li>Part of a vibrant health and fitness community</li>
-                </ul>
+              <div className="location-details">
+                <div className="detail-item">
+                  <h4>📍 Address</h4>
+                  <p>Ezyfit Health Club<br />Birtinya, QLD 4575</p>
+                </div>
+                
+                <div className="detail-item">
+                  <h4>🚗 Parking</h4>
+                  <p>Ample free parking available on-site</p>
+                </div>
+                
+                <div className="detail-item">
+                  <h4>🏋️ Facilities</h4>
+                  <p>Modern training equipment and professional environment</p>
+                </div>
               </div>
             </div>
             
