@@ -274,6 +274,13 @@ function Home() {
         </div>
         <h1 className="luxury-title">Unlock Your Performance Potential</h1>
         <p className="luxury-subtitle">Experience world-class training methodologies backed by scientific research and proven results. Our comprehensive programs are designed to optimize performance, enhance capabilities, and deliver measurable outcomes for elite athletes and professionals.</p>
+        
+        <div className="hero-cta">
+          <Link to="/booking" className="book-now-btn luxury-btn">
+            <span>Book Your Free Consultation</span>
+            <FaArrowRight className="btn-icon" />
+          </Link>
+        </div>
       </div>
 
       {/* Luxury Scroll Indicator */}
