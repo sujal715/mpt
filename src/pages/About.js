@@ -129,15 +129,14 @@ function About() {
             </div>
             
             <div className="location-main">
-              <div className="location-section-item">
+              <div className="location-section-item compact">
                 <div className="section-header">
                   <span className="section-icon">📍</span>
                   <h4>Our Location</h4>
                 </div>
                 <div className="section-content">
                   <h5>Ezyfit Health Club</h5>
-                  <p>Birtinya, QLD 4575</p>
-                  <p>Sunshine Coast, Queensland, Australia</p>
+                  <p>Birtinya, QLD 4575, Sunshine Coast, Queensland, Australia</p>
                 </div>
               </div>
               

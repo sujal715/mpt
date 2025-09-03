@@ -282,13 +282,7 @@
 .location-main {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-}
-
-.transport-directions-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .location-section-item {
@@ -297,6 +291,14 @@
   padding: 1.5rem;
   box-shadow: var(--shadow-md);
   border: 1px solid #e5e7eb;
+}
+
+.location-section-item.compact {
+  padding: 1rem;
+}
+
+.location-section-item.compact .section-header {
+  margin-bottom: 0.75rem;
 }
 
 .section-header {
@@ -318,17 +320,17 @@
 }
 
 .section-content h5 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #333;
   margin: 0 0 0.5rem 0;
 }
 
 .section-content p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #555;
-  margin: 0.25rem 0;
-  line-height: 1.5;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .transport-options {
