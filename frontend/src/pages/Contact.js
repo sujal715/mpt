@@ -23,8 +23,16 @@ function Contact() {
                 <FaMapMarkerAlt />
               </div>
               <h3>Our Location</h3>
-              <p>Ezyfit Health Club, Birtinya, QLD 4575</p>
-              <p>Sunshine Coast, Queensland, Australia</p>
+              <a 
+                href="https://maps.google.com/maps?q=Birtinya+QLD+4575+Australia" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="location-link"
+              >
+                <p>📍 Birtinya, QLD 4575</p>
+                <p>Sunshine Coast, Queensland, Australia</p>
+                <span className="directions-hint">Click to get directions from your location</span>
+              </a>
             </div>
 
             <div className="contact-card">
@@ -151,6 +159,18 @@ function Contact() {
             />
             <div className="location-details">
               <h3>Getting Here</h3>
+              <a 
+                href="https://maps.google.com/maps?q=Birtinya+QLD+4575+Australia" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="location-link-large"
+              >
+                <div className="location-info">
+                  <h4>📍 Our Location</h4>
+                  <p>Birtinya, QLD 4575, Sunshine Coast, Queensland, Australia</p>
+                  <span className="directions-hint">Click to get directions from your location</span>
+                </div>
+              </a>
               <div className="transport-options">
                 <div className="transport-option">
                   <h4>🚗 By Car</h4>
