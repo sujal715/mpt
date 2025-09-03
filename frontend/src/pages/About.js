@@ -110,7 +110,7 @@ function About() {
         <div className="container">
           <h2>Our Location</h2>
           <div className="location-content">
-            <div className="location-info">
+            <div className="location-sidebar">
               <div className="location-header">
                 <h3>Ezyfit Health Club</h3>
                 <p className="location-address">📍 Birtinya, QLD 4575</p>
@@ -118,25 +118,71 @@ function About() {
               </div>
               
               <div className="location-description">
-                <p>Our facility provides the perfect environment for movement performance training and development, located in the beautiful Sunshine Coast region.</p>
-              </div>
-              
-              <div className="location-simple">
-                <p><strong>📍 Address:</strong> Ezyfit Health Club, Birtinya, QLD 4575</p>
-                <p><strong>🚗 Parking:</strong> Free parking available</p>
-                <p><strong>🏋️ Facilities:</strong> Modern training equipment</p>
+                <p>Our facility provides the perfect environment for movement performance training and development.</p>
               </div>
             </div>
             
-            <div className="location-map">
-              <InteractiveMap 
-                location={{
-                  name: 'Ezyfit Health Club',
-                  address: 'Birtinya, QLD 4575',
-                  city: 'Sunshine Coast, Queensland, Australia',
-                  coordinates: { lat: -26.7500, lng: 153.1167 }
-                }}
-              />
+            <div className="location-banner">
+              <div className="banner-icon">🌍</div>
+              <div className="banner-title">Ezyfit Health Club</div>
+              <div className="banner-pin">📍</div>
+            </div>
+            
+            <div className="location-main">
+              <div className="location-section-item">
+                <div className="section-header">
+                  <span className="section-icon">📍</span>
+                  <h4>Our Location</h4>
+                </div>
+                <div className="section-content">
+                  <h5>Ezyfit Health Club</h5>
+                  <p>Birtinya, QLD 4575</p>
+                  <p>Sunshine Coast, Queensland, Australia</p>
+                </div>
+              </div>
+              
+              <div className="location-section-item">
+                <div className="section-header">
+                  <span className="section-icon">🚗</span>
+                  <h4>How to get here:</h4>
+                </div>
+                <div className="transport-options">
+                  <button className="transport-btn active">
+                    <span className="btn-icon">🚗</span>
+                    <span>Driving</span>
+                  </button>
+                  <button className="transport-btn">
+                    <span className="btn-icon">🚶</span>
+                    <span>Walking</span>
+                  </button>
+                  <button className="transport-btn">
+                    <span className="btn-icon">🚲</span>
+                    <span>Cycling</span>
+                  </button>
+                </div>
+              </div>
+              
+              <div className="location-section-item">
+                <div className="section-header">
+                  <span className="section-icon">🔍</span>
+                  <h4>Get directions from:</h4>
+                </div>
+                <div className="directions-input">
+                  <div className="input-wrapper">
+                    <span className="input-icon">🔍</span>
+                    <input 
+                      type="text" 
+                      placeholder="Start typing your address..." 
+                      className="directions-field"
+                    />
+                  </div>
+                  <button className="directions-btn">Get Directions</button>
+                  <p className="directions-hint">
+                    <span className="hint-icon">💡</span>
+                    Type to see suggestions • Select from dropdown
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
