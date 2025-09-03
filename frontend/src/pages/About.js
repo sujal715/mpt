@@ -62,15 +62,22 @@ function About() {
       {/* Team */}
       <section className="team-section">
         <div className="container">
-          <h2>Our Team</h2>
+          <h2>Meet Our Founder</h2>
           <div className="team-grid">
-            <div className="team-member">
+            <div className="team-member featured">
               <div className="member-image">
-                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop" alt="Chloe - Head Instructor" />
+                <img src="/chloe-headshot.jpg" alt="Chloe Barrett - Founder & Head Instructor" />
               </div>
-              <h3>Chloe</h3>
-              <p className="member-title">Head Instructor</p>
-              <p>With 14 years of experience in water sports, Chloe leads our training programs with passion and expertise. She specializes in kitesurfing and hydrofoiling instruction.</p>
+              <div className="member-info">
+                <h3>Chloe Barrett</h3>
+                <p className="member-title">Founder & Head Instructor</p>
+                <p className="member-description">With 14 years of experience in sports and fitness, Chloe leads Movement Performance Training with passion and expertise. An extreme sports enthusiast, she specializes in kitesurfing, wing foiling, and movement performance training.</p>
+                <div className="member-credentials">
+                  <span className="credential">Bachelor of Clinical Exercise Physiology</span>
+                  <span className="credential">Certified Personal Trainer</span>
+                  <span className="credential">Scuba Diving & Kitesurfing Instructor</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
