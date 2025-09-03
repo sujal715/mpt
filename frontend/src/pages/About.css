@@ -180,6 +180,31 @@
   border: 4px solid #ffffff;
 }
 
+.chloe-placeholder {
+  width: 180px;
+  height: 180px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #0891b2 0%, #0ea5e9 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border: 4px solid #ffffff;
+  color: white;
+}
+
+.placeholder-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.placeholder-text {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 .team-member h3 {
   font-size: 1.5rem;
   font-weight: bold;
