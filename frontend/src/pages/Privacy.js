@@ -62,8 +62,8 @@ const Privacy = () => {
         <section className="privacy-section">
           <h2>Contact Us</h2>
           <p>If you have any questions about this Privacy Policy or our data practices, please contact us at:</p>
-          <p>Email: info@goldcoastwatersports.com.au</p>
-          <p>Phone: 0404 445 000</p>
+                        <p>Email: chloebarrettraining@icloud.com</p>
+              <p>Phone: 04 98 471 509</p>
         </section>
 
         <section className="privacy-section">

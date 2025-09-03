@@ -40,7 +40,7 @@ function Contact() {
                 <FaPhone />
               </div>
               <h3>Phone</h3>
-              <p>0404 445 000</p>
+              <p>04 98 471 509</p>
               <p>Available during business hours</p>
             </div>
 
@@ -49,7 +49,7 @@ function Contact() {
                 <FaEnvelope />
               </div>
               <h3>Email</h3>
-              <p>info@goldcoastwatersports.com.au</p>
+              <p>chloebarrettraining@icloud.com</p>
               <p>We'll respond within 24 hours</p>
             </div>
 
@@ -190,7 +190,7 @@ function Contact() {
           <div className="emergency-content">
             <div className="emergency-card">
               <h3>During Business Hours</h3>
-              <p>Call us directly at <strong>0404 445 000</strong></p>
+              <p>Call us directly at <strong>04 98 471 509</strong></p>
             </div>
             <div className="emergency-card">
               <h3>After Hours</h3>
