@@ -478,6 +478,9 @@ function Home() {
       {renderFeaturesSection()}
       {renderTestimonials()}
       
+      {/* Chatbot */}
+      <Chatbot />
+      
       {/* Luxury Mouse Follower */}
       <div 
         className="luxury-mouse-follower"
