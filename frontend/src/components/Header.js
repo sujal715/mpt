@@ -8,7 +8,7 @@ const Header = () => {
       <div className="header-container">
         <Link to="/" className="logo">
           <div className="logo-icon">
-            <div className="logo-symbol">MPT</div>
+            <img src="/mpt-logo.png" alt="MPT Logo" className="logo-image" />
           </div>
           <div className="logo-text">
             MOVEMENT PERFORMANCE TRAINING
