@@ -4,16 +4,17 @@ services:
     name: ppt-app
     buildCommand: |
       export SKIP_PREFLIGHT_CHECK=true
-      npm install
+      npm ci --only=production
       npm run build
     startCommand: npm run start-prod
     envVars:
       - key: NODE_ENV
         value: production
-      - key: eveREACT_APP_API_URL
+      - key: REACT_APP_API_URL
         value: https://mpt-backend.onrender.com
       - key: NODE_VERSION
-        value: "16"
+        value: "18"
       - key: SKIP_PREFLIGHT_CHECK
         value: "true"
     autoDeploy: true
+    plan: starter
