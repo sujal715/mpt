@@ -17,6 +17,7 @@ import FAQ from './pages/FAQ';
 import Gallery from './pages/Gallery';
 import Resources from './pages/Resources';
 import Services from './pages/Services';
+import Terms from './pages/Terms';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
         <Footer />

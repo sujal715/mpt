@@ -14,6 +14,7 @@ import Resources from './pages/Resources';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 import FAQ from './pages/FAQ';
 import Booking from './pages/Booking';
 import Admin from './pages/Admin';
@@ -31,6 +32,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/faqs" element={<FAQ />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/admin" element={<Admin />} />
