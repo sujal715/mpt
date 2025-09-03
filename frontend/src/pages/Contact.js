@@ -149,40 +149,33 @@ function Contact() {
         <div className="container">
           <h2>Find Us</h2>
           <div className="location-content">
-            <InteractiveMap 
-              location={{
-                name: 'Ezyfit Health Club',
-                address: 'Birtinya, QLD 4575',
-                city: 'Sunshine Coast, Queensland, Australia',
-                coordinates: { lat: -26.7500, lng: 153.1167 }
-              }}
-            />
-            <div className="location-details">
-              <h3>Getting Here</h3>
-              <a 
-                href="https://maps.google.com/maps?q=Birtinya+QLD+4575+Australia" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="location-link-large"
-              >
-                <div className="location-info">
-                  <h4>📍 Our Location</h4>
-                  <p>Birtinya, QLD 4575, Sunshine Coast, Queensland, Australia</p>
-                  <span className="directions-hint">Click to get directions from your location</span>
+            <div className="location-sidebar">
+              <div className="location-header">
+                <p className="location-address">📍 Birtinya, QLD 4575</p>
+                <p className="location-region">Sunshine Coast, Queensland, Australia</p>
+              </div>
+              
+              <div className="location-description">
+                <p>Our facility provides the perfect environment for movement performance training and development.</p>
+              </div>
+            </div>
+            
+            <div className="location-main">
+              <div className="location-section-item compact">
+                <div className="section-header">
+                  <span className="section-icon">📍</span>
+                  <h4>Our Location</h4>
                 </div>
-              </a>
-              <div className="transport-options">
-                <div className="transport-option">
-                  <h4>🚗 By Car</h4>
-                  <p>Free parking available on-site</p>
-                </div>
-                <div className="transport-option">
-                  <h4>🚌 By Bus</h4>
-                  <p>Bus routes 600 and 601 stop nearby</p>
-                </div>
-                <div className="transport-option">
-                  <h4>🚴 By Bike</h4>
-                  <p>Bike racks available for cyclists</p>
+                <div className="section-content">
+                  <a 
+                    href="https://maps.google.com/maps?q=Birtinya+QLD+4575+Australia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="location-link"
+                  >
+                    <p>Birtinya, QLD 4575, Sunshine Coast, Queensland, Australia</p>
+                    <span className="directions-hint">Click to get directions from your location</span>
+                  </a>
                 </div>
               </div>
             </div>
