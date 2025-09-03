@@ -4,7 +4,7 @@ services:
     name: ppt-app
     rootDir: frontend
     buildCommand: npm run build
-    staticPublishPath: ./build
+    startCommand: npx serve -s build -l $PORT
     envVars:
       - key: NODE_ENV
         value: production
