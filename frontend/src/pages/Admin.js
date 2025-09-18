@@ -153,7 +153,7 @@ const Admin = () => {
   // Notification management
   const addNotification = (message, type = 'info') => {
     const notification = {
-      id: Date.now(),
+      id: Date.now() + Math.random(), // Ensure unique IDs
       message,
       type,
       timestamp: new Date()
