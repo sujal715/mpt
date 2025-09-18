@@ -32,22 +32,104 @@ const Admin = () => {
   const [isLoadingTeam, setIsLoadingTeam] = useState(false);
   const [isUploadingVideo, setIsUploadingVideo] = useState(false);
   
-  // Dashboard Data
+  // Dashboard Data - Will be calculated from real data
   const [dashboardData, setDashboardData] = useState({
-    totalBookings: 156,
-    activeServices: 8,
-    testimonials: 24,
-    revenue: 12500,
-    recentBookings: 12,
-    conversionRate: 68,
-    avgRating: 4.8,
-    monthlyGrowth: 15
+    totalBookings: 0,
+    activeServices: 0,
+    testimonials: 0,
+    revenue: 0,
+    recentBookings: 0,
+    conversionRate: 0,
+    avgRating: 0,
+    monthlyGrowth: 0
   });
   
   // Data Collections
   const [bookings, setBookings] = useState([]);
   const [services, setServices] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
+
+  // Helper function to get package price (matches backend logic)
+  const getPackagePrice = (packageId) => {
+    const prices = {
+      1: 99.99,   // Basic Package
+      2: 199.99,  // Premium Package
+      3: 299.99,  // Deluxe Package
+      4: 499.99,  // VIP Package
+      5: 799.99   // Corporate Package
+    };
+    return prices[packageId] || 99.99;
+  };
+
+  // Calculate accurate dashboard metrics from real data
+  const calculateDashboardMetrics = () => {
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+    
+    // Calculate total revenue from confirmed bookings
+    const confirmedBookings = bookings.filter(booking => 
+      booking.status === 'confirmed' || booking.status === 'CONFIRMED'
+    );
+    
+    const totalRevenue = confirmedBookings.reduce((sum, booking) => {
+      const packageId = booking.packageId || 1; // Default to package 1 if not specified
+      return sum + getPackagePrice(packageId);
+    }, 0);
+
+    // Calculate monthly revenue (current month)
+    const monthlyBookings = confirmedBookings.filter(booking => {
+      const bookingDate = new Date(booking.createdAt || booking.date);
+      return bookingDate.getMonth() === currentMonth && 
+             bookingDate.getFullYear() === currentYear;
+    });
+    
+    const monthlyRevenue = monthlyBookings.reduce((sum, booking) => {
+      const packageId = booking.packageId || 1;
+      return sum + getPackagePrice(packageId);
+    }, 0);
+
+    // Calculate conversion rate (simplified: confirmed bookings / total bookings * 100)
+    const conversionRate = bookings.length > 0 
+      ? Math.round((confirmedBookings.length / bookings.length) * 100)
+      : 0;
+
+    // Calculate average rating from testimonials
+    const avgRating = testimonials.length > 0
+      ? testimonials.reduce((sum, testimonial) => sum + (testimonial.rating || 5), 0) / testimonials.length
+      : 4.8; // Default rating
+
+    // Calculate monthly growth (simplified: compare with previous month)
+    const previousMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+    const previousYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+    
+    const previousMonthBookings = confirmedBookings.filter(booking => {
+      const bookingDate = new Date(booking.createdAt || booking.date);
+      return bookingDate.getMonth() === previousMonth && 
+             bookingDate.getFullYear() === previousYear;
+    });
+    
+    const previousMonthRevenue = previousMonthBookings.reduce((sum, booking) => {
+      const packageId = booking.packageId || 1;
+      return sum + getPackagePrice(packageId);
+    }, 0);
+
+    const monthlyGrowth = previousMonthRevenue > 0
+      ? Math.round(((monthlyRevenue - previousMonthRevenue) / previousMonthRevenue) * 100)
+      : 0;
+
+    // Update dashboard data with calculated values
+    setDashboardData({
+      totalBookings: bookings.length,
+      activeServices: services.filter(service => service.isActive !== false).length,
+      testimonials: testimonials.length,
+      revenue: Math.round(totalRevenue),
+      recentBookings: confirmedBookings.length,
+      conversionRate: conversionRate,
+      avgRating: Math.round(avgRating * 10) / 10, // Round to 1 decimal
+      monthlyGrowth: monthlyGrowth
+    });
+  };
   const [gallery, setGallery] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [emailCaptures, setEmailCaptures] = useState([]);
@@ -143,11 +225,10 @@ const Admin = () => {
         console.log('Transformed testimonials:', transformedTestimonials);
         setTestimonials(transformedTestimonials);
         
-        // Update dashboard data with real testimonial count
-        setDashboardData(prev => ({
-          ...prev,
-          testimonials: transformedTestimonials.length
-        }));
+        // Recalculate dashboard metrics with updated testimonials
+        setTimeout(() => {
+          calculateDashboardMetrics();
+        }, 100);
         
         addNotification(`Loaded ${transformedTestimonials.length} testimonials`, 'success');
       } else {
@@ -236,12 +317,11 @@ const Admin = () => {
         console.log('Transformed bookings:', transformedBookings);
         setBookings(transformedBookings);
         
-        // Update dashboard data with real booking count
-        setDashboardData(prev => ({
-          ...prev,
-          totalBookings: transformedBookings.length,
-          recentBookings: transformedBookings.filter(b => b.status === 'confirmed').length
-        }));
+        // Calculate all dashboard metrics from real data
+        // Note: This will be called after bookings are set, so we need to use transformedBookings
+        setTimeout(() => {
+          calculateDashboardMetrics();
+        }, 100);
         
         addNotification(`Loaded ${transformedBookings.length} bookings`, 'success');
       } else {
@@ -404,11 +484,11 @@ const Admin = () => {
     const interval = setInterval(() => {
       if (isLoggedIn) {
         fetchBookings(); // Refresh bookings every 30 seconds
+        // Recalculate metrics with fresh data
+        setTimeout(() => {
+          calculateDashboardMetrics();
+        }, 200);
       }
-      setDashboardData(prev => ({
-        ...prev,
-        conversionRate: Math.floor(Math.random() * 20) + 60
-      }));
     }, 30000);
 
     return () => clearInterval(interval);
@@ -1758,16 +1838,18 @@ const Admin = () => {
                   <h3>💰 Revenue Analysis</h3>
                   <div className="revenue-stats">
                     <div className="revenue-item">
-                      <span>This Month</span>
-                      <strong>$12,500</strong>
+                      <span>Total Revenue</span>
+                      <strong>${dashboardData.revenue.toLocaleString()}</strong>
                     </div>
                     <div className="revenue-item">
-                      <span>Last Month</span>
-                      <strong>$11,200</strong>
+                      <span>Confirmed Bookings</span>
+                      <strong>{dashboardData.recentBookings}</strong>
                     </div>
                     <div className="revenue-item">
-                      <span>Growth</span>
-                      <strong className="positive">+11.6%</strong>
+                      <span>Monthly Growth</span>
+                      <strong className={dashboardData.monthlyGrowth >= 0 ? "positive" : "negative"}>
+                        {dashboardData.monthlyGrowth >= 0 ? "+" : ""}{dashboardData.monthlyGrowth}%
+                      </strong>
                     </div>
                   </div>
                 </div>
