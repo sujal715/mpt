@@ -448,9 +448,12 @@ const Admin = () => {
       console.log('🔄 Fetching team members from backend...');
       const response = await apiService.get('/team');
       console.log('📡 Team API response:', response);
+      console.log('📡 Response type:', typeof response);
+      console.log('📡 Is array:', Array.isArray(response));
       
       if (Array.isArray(response)) {
         console.log('✅ Setting team with', response.length, 'members');
+        console.log('📋 Team members data:', response);
         setTeamMembers(response);
         addNotification(`Team loaded: ${response.length} members`, 'success');
       } else {
@@ -1734,7 +1737,7 @@ const Admin = () => {
                           )}
                           <div className="member-meta">
                             <span>Display Order: {member.displayOrder}</span>
-                            <span>Created: {new Date(member.createdAt).toLocaleDateString()}</span>
+                            <span>Created: {member.createdAt ? new Date(member.createdAt).toLocaleDateString() : 'N/A'}</span>
                           </div>
                         </div>
                         <div className="team-actions">
