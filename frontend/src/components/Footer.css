@@ -1,0 +1,149 @@
+/* Footer Styles */
+.footer {
+  background: #1e293b;
+  color: #ffffff;
+  padding: 3rem 0;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Logo Section */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.footer-logo-icon {
+  font-size: 2rem;
+  color: #3b82f6;
+}
+
+.footer-logo-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.footer-logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tripadvisor-badge {
+  background-color: #00af87;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* Contact Info */
+.footer-links .footer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  padding: 0.125rem 0;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links .footer-link:hover {
+  color: #ffffff;
+}
+
+.contact-icon {
+  font-size: 1rem;
+  min-width: 20px;
+  color: #3b82f6;
+}
+
+.contact-text {
+  color: #94a3b8;
+}
+
+/* Links */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #f97316;
+  border: 1px solid #f97316;
+  border-radius: 2px;
+  color: #ffffff;
+  font-size: 10px;
+  text-align: center;
+  line-height: 14px;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .footer {
+    padding: 2rem 0;
+  }
+} 
