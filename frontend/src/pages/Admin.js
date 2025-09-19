@@ -52,13 +52,13 @@ const Admin = () => {
   // Helper function to get package price (matches backend logic)
   const getPackagePrice = (packageId) => {
     const prices = {
-      1: 99.99,   // Basic Package
-      2: 199.99,  // Premium Package
-      3: 299.99,  // Deluxe Package
-      4: 499.99,  // VIP Package
-      5: 799.99   // Corporate Package
+      0: 0.00,    // FREE Consultation
+      1: 99.00,   // Basic Package
+      2: 119.00,  // Premium Package
+      3: 139.00,  // Deluxe Package
+      4: 159.00   // VIP Package
     };
-    return prices[packageId] || 99.99;
+    return prices[packageId] || 0.00;
   };
 
   // Calculate accurate dashboard metrics from real data
@@ -143,10 +143,35 @@ const Admin = () => {
   // Helper function to convert service name to package ID
   const getPackageIdFromService = (serviceName) => {
     switch (serviceName) {
+      case 'FREE Consultation (30 minutes)': return 0;
       case 'Kitesurfing Training': return 1;
       case 'Hydrofoil Training': return 2;
-      case 'Wing Foil Training': return 3;
+      case 'Nutrition Coaching': return 3;
       default: return 1; // Default to Basic Package
+    }
+  };
+
+  // Helper function to get service name from package ID
+  const getServiceNameFromPackageId = (packageId) => {
+    switch (packageId) {
+      case 0: return 'FREE Consultation (30 minutes)';
+      case 1: return 'Basic Package (1 hour)';
+      case 2: return 'Premium Package (2 hours)';
+      case 3: return 'Deluxe Package (3 hours)';
+      case 4: return 'VIP Package (4 hours)';
+      default: return 'Unknown Package';
+    }
+  };
+
+  // Helper function to map backend service names to frontend display names
+  const getServiceNameFromServiceName = (serviceName) => {
+    switch (serviceName) {
+      case 'FREE Consultation (30 minutes)': return 'FREE Consultation (30 minutes)';
+      case 'Basic Package': return 'Basic Package (1 hour)';
+      case 'Premium Package': return 'Premium Package (2 hours)';
+      case 'Deluxe Package': return 'Deluxe Package (3 hours)';
+      case 'VIP Package': return 'VIP Package (4 hours)';
+      default: return serviceName; // Return as-is if no mapping found
     }
   };
   
@@ -1500,14 +1525,22 @@ const Admin = () => {
                             <small>{booking.email}</small>
                 </div>
                         </td>
-                        <td>{booking.service}</td>
+                        <td>
+                          {getServiceNameFromServiceName(booking.service)}
+                        </td>
                         <td>{booking.date}</td>
                         <td>
                           <span className={`status-badge ${booking.status}`}>
                             {booking.status}
                           </span>
                         </td>
-                        <td>${booking.amount}</td>
+                        <td>
+                          {booking.amount === 0 ? (
+                            <span className="free-badge">FREE</span>
+                          ) : (
+                            `$${booking.amount}`
+                          )}
+                        </td>
                         <td>
                           <button className="edit-btn" onClick={() => openModal('booking', booking)}>
                             Edit
@@ -1895,7 +1928,7 @@ const Admin = () => {
                     </div>
                     <div className="service-rank">
                       <span>3.</span>
-                      <span>Wing Foil Training</span>
+                      <span>Nutrition Coaching</span>
                       <span>28 bookings</span>
                     </div>
                   </div>
@@ -2399,7 +2432,7 @@ const Admin = () => {
                         <option value="">Select Service</option>
                         <option value="Kitesurfing Training">Kitesurfing Training</option>
                         <option value="Hydrofoil Training">Hydrofoil Training</option>
-                        <option value="Wing Foil Training">Wing Foil Training</option>
+                        <option value="Nutrition Coaching">Nutrition Coaching</option>
                       </select>
                     </div>
                     <div className="form-group">

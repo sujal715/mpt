@@ -1,5 +1,19 @@
 /* Advanced Admin Dashboard Styles */
 
+/* Free Consultation Badge */
+.free-badge {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+  display: inline-block;
+}
+
 /* Screen Reader Only */
 .sr-only {
   position: absolute;

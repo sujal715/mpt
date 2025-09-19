@@ -138,23 +138,23 @@ public class BookingController {
     
     private Double getPackagePrice(Integer packageId) {
         switch (packageId) {
-            case 1: return 99.99;  // Basic Package
-            case 2: return 199.99; // Premium Package
-            case 3: return 299.99; // Deluxe Package
-            case 4: return 499.99; // VIP Package
-            case 5: return 799.99; // Corporate Package
-            default: return 99.99;
+            case 0: return 0.00;  // FREE Consultation
+            case 1: return 99.00;  // Basic Package
+            case 2: return 119.00; // Premium Package
+            case 3: return 139.00; // Deluxe Package
+            case 4: return 159.00; // VIP Package
+            default: return 0.00;
         }
     }
     
     private String getPackageName(Integer packageId) {
         switch (packageId) {
+            case 0: return "FREE Consultation (30 minutes)";
             case 1: return "Basic Package";
             case 2: return "Premium Package";
             case 3: return "Deluxe Package";
             case 4: return "VIP Package";
-            case 5: return "Corporate Package";
-            default: return "Basic Package";
+            default: return "FREE Consultation (30 minutes)";
         }
     }
 }

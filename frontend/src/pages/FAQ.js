@@ -42,7 +42,7 @@ const FAQ = () => {
     },
     {
       question: "How do I book a consultation?",
-      answer: "You can book your free 15-minute consultation through our website. Simply click on any 'Book Now' button or visit our booking page. During the consultation, we'll discuss your goals, assess your current fitness level, and create a personalized training plan for you."
+      answer: "You can book your free 30-minute consultation through our website. Simply click on any 'Book Now' button or visit our booking page. During the consultation, we'll discuss your goals, assess your current fitness level, and create a personalized training plan for you."
     },
     {
       question: "Do you offer gift certificates?",

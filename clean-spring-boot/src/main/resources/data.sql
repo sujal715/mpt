@@ -2,20 +2,20 @@
 DELETE FROM gallery;
 
 INSERT INTO gallery (title, url, category, is_featured) VALUES 
--- Featured Items
-('MOVEMENT PERFORMANCE TRAINING', '/images/gallery-1757259504398.jpg', 'featured', true),
-('MOVEMENT PERFORMANCE TRAINING - Advanced', '/images/gallery-1757260718-15.jpg', 'featured', true),
-('MOVEMENT PERFORMANCE TRAINING - Elite', '/images/gallery-1757260718-4.jpeg', 'featured', true),
-('MOVEMENT PERFORMANCE TRAINING - Premium', '/images/gallery-1757266039576.jpeg', 'featured', true),
+-- Featured Items (using actual training images)
+('MOVEMENT PERFORMANCE TRAINING', '/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg', 'featured', true),
+('MOVEMENT PERFORMANCE TRAINING - Advanced', '/images/training/WhatsApp Image 2025-09-01 at 11.21.34 AM.jpeg', 'featured', true),
+('MOVEMENT PERFORMANCE TRAINING - Elite', '/images/training/WhatsApp Image 2025-09-01 at 11.21.36 AM.jpeg', 'featured', true),
+('MOVEMENT PERFORMANCE TRAINING - Premium', '/images/training/WhatsApp Image 2025-09-01 at 11.21.38 AM.jpeg', 'featured', true),
 
--- Training Sessions (unique, descriptive titles)
-('High-Intensity Training Session', '/images/gallery-1757263603685.jpeg', 'training', false),
-('Strength Training Workout', '/images/gallery-1757265188010.jpeg', 'training', false),
-('Functional Movement Training', '/images/gallery-1757266045114.jpeg', 'training', false),
-('Personal Training Session', '/images/gallery-1757266050603.jpeg', 'training', false),
-('Group Fitness Class', '/images/gallery-1757266329372.jpeg', 'training', false),
-('Nutrition Coaching Session', '/images/gallery-1757290824322.jpeg', 'training', false),
-('Group Classes Training', '/images/gallery-1757291077052.jpeg', 'training', false),
+-- Training Sessions (using actual training images)
+('High-Intensity Training Session', '/images/training/WhatsApp Image 2025-09-01 at 11.21.40 AM.jpeg', 'training', false),
+('Strength Training Workout', '/images/training/WhatsApp Image 2025-09-01 at 11.21.41 AM.jpeg', 'training', false),
+('Functional Movement Training', '/images/training/WhatsApp Image 2025-09-01 at 11.21.43 AM.jpeg', 'training', false),
+('Personal Training Session', '/images/training/WhatsApp Image 2025-09-01 at 11.21.46 AM.jpeg', 'training', false),
+('Group Fitness Class', '/images/training/WhatsApp Image 2025-09-01 at 11.21.47 AM.jpeg', 'training', false),
+('Nutrition Coaching Session', '/images/training/WhatsApp Image 2025-09-01 at 11.23.32 AM.jpeg', 'training', false),
+('Group Classes Training', '/images/training/WhatsApp Image 2025-09-01 at 11.23.34 AM.jpeg', 'training', false),
 
 -- Logos and Branding
 ('MPT Logo', '/images/logos/mpt-logo.jpeg', 'logos', true),
@@ -70,6 +70,6 @@ DELETE FROM testimonials;
 INSERT INTO testimonials (customer_name, rating, comment, service_used, is_approved) VALUES 
 ('Sarah Mitchell', 5, 'Chloe is an incredible instructor! Her patience and expertise helped me master kitesurfing in just a few sessions. The personalized approach and attention to detail made all the difference.', 'Kitesurfing Training', true),
 ('James Rodriguez', 5, 'The hydrofoil training was outstanding. Chloe''s technical knowledge and teaching methods are top-notch. I felt confident and safe throughout the entire learning process.', 'Hydrofoil Training', true),
-('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.', 'Wing Foil Training', true),
-('David Chen', 4, 'Professional, knowledgeable, and fun! The wing foil sessions were challenging but incredibly rewarding. Chloe''s coaching style is perfect for all skill levels.', 'Wing Foil Training', true),
+('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.', 'Nutrition Coaching', true),
+('David Chen', 4, 'Professional, knowledgeable, and fun! The nutrition coaching sessions were challenging but incredibly rewarding. Chloe''s coaching style is perfect for all skill levels.', 'Nutrition Coaching', true),
 ('Lisa Anderson', 5, 'I''ve tried other instructors before, but Chloe stands out. Her understanding of movement and performance is exceptional. Highly recommend for anyone serious about improving their skills.', 'Movement Performance Training', true);

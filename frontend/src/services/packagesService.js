@@ -5,7 +5,7 @@ const fallbackPackages = [
   {
     packageId: 1,
     packageName: "Basic Package",
-    price: 99.99,
+    price: 99.00,
     duration: "1 hour",
     description: "Perfect for beginners",
     features: ["Personal training session", "Fitness assessment", "Basic workout plan"]
@@ -13,7 +13,7 @@ const fallbackPackages = [
   {
     packageId: 2,
     packageName: "Premium Package",
-    price: 199.99,
+    price: 119.00,
     duration: "2 hours",
     description: "Great for regular fitness enthusiasts",
     features: ["Extended training session", "Nutrition guidance", "Progress tracking"]
@@ -21,10 +21,18 @@ const fallbackPackages = [
   {
     packageId: 3,
     packageName: "Deluxe Package",
-    price: 299.99,
+    price: 139.00,
     duration: "3 hours",
     description: "Comprehensive fitness solution",
     features: ["Full day program", "Meal planning", "24/7 support"]
+  },
+  {
+    packageId: 4,
+    packageName: "VIP Package",
+    price: 159.00,
+    duration: "4 hours",
+    description: "Premium fitness experience",
+    features: ["VIP treatment", "Personal trainer", "Exclusive facilities"]
   }
 ];
 

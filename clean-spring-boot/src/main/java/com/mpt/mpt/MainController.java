@@ -42,11 +42,11 @@ public class MainController {
 
     // Static list to store services (in-memory storage)
     private static java.util.List<Map<String, Object>> services = new java.util.ArrayList<>(Arrays.asList(
-        Map.of("id", 1, "name", "Kitesurfing Training", "description", "Comprehensive kitesurfing lessons for all skill levels", "price", 99.99, "category", "Training", "isActive", true, "duration", "2 hours"),
-        Map.of("id", 2, "name", "Hydrofoil Training", "description", "Master the art of hydrofoiling with expert instructors", "price", 149.99, "category", "Training", "isActive", true, "duration", "2 hours"),
-        Map.of("id", 3, "name", "Wing Foil Training", "description", "Learn wing foiling techniques and safety protocols", "price", 129.99, "category", "Training", "isActive", true, "duration", "2 hours"),
-        Map.of("id", 4, "name", "Equipment Rental", "description", "High-quality kitesurfing and foiling equipment rental", "price", 79.99, "category", "Rental", "isActive", true, "duration", "Full day"),
-        Map.of("id", 5, "name", "Private Coaching", "description", "One-on-one personalized coaching sessions", "price", 199.99, "category", "Coaching", "isActive", true, "duration", "1 hour")
+        Map.of("id", 1, "name", "Kitesurfing Training", "description", "Comprehensive kitesurfing lessons for all skill levels", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
+        Map.of("id", 2, "name", "Hydrofoil Training", "description", "Master the art of hydrofoiling with expert instructors", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
+        Map.of("id", 3, "name", "Nutrition Coaching", "description", "Learn nutrition principles and meal planning strategies", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
+        Map.of("id", 4, "name", "Equipment Rental", "description", "High-quality kitesurfing and foiling equipment rental", "price", 99.00, "category", "Rental", "isActive", true, "duration", "Full day"),
+        Map.of("id", 5, "name", "Private Coaching", "description", "One-on-one personalized coaching sessions", "price", 99.00, "category", "Coaching", "isActive", true, "duration", "1 hour")
     ));
     private static int nextServiceId = 6;
 
@@ -103,11 +103,11 @@ public class MainController {
         Map<String, Object> response = new HashMap<>();
         response.put("success", true);
         response.put("data", new Object[]{
-            Map.of("packageId", 1, "packageName", "Basic Package", "price", 99.99, "duration", "1 hour"),
-            Map.of("packageId", 2, "packageName", "Premium Package", "price", 199.99, "duration", "2 hours"),
-            Map.of("packageId", 3, "packageName", "Deluxe Package", "price", 299.99, "duration", "3 hours"),
-            Map.of("packageId", 4, "packageName", "VIP Package", "price", 499.99, "duration", "4 hours"),
-            Map.of("packageId", 5, "packageName", "Corporate Package", "price", 799.99, "duration", "6 hours")
+            Map.of("packageId", 0, "packageName", "FREE Consultation", "price", 0.00, "duration", "30 minutes"),
+            Map.of("packageId", 1, "packageName", "Basic Package", "price", 99.00, "duration", "1 hour"),
+            Map.of("packageId", 2, "packageName", "Premium Package", "price", 119.00, "duration", "2 hours"),
+            Map.of("packageId", 3, "packageName", "Deluxe Package", "price", 139.00, "duration", "3 hours"),
+            Map.of("packageId", 4, "packageName", "VIP Package", "price", 159.00, "duration", "4 hours")
         });
         return response;
     }

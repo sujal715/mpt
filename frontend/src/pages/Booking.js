@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Booking.css';
 import apiService from '../services/api';
 import PaymentForm from '../components/PaymentForm';
@@ -8,7 +8,7 @@ const Booking = () => {
     customerName: '',
     customerEmail: '',
     customerPhone: '',
-    packageId: 1,
+    packageId: 0,
     selectedDate: '',
     selectedTime: '10:00',
     specialRequests: ''
@@ -17,6 +17,22 @@ const Booking = () => {
   const [bookingResult, setBookingResult] = useState(null);
   const [showPayment, setShowPayment] = useState(false);
   const [bookingData, setBookingData] = useState(null);
+  
+  // Ensure date and time inputs work properly
+  useEffect(() => {
+    const dateInput = document.getElementById('selectedDate');
+    const timeInput = document.getElementById('selectedTime');
+    
+    if (dateInput) {
+      dateInput.setAttribute('type', 'date');
+      dateInput.style.cursor = 'pointer';
+    }
+    
+    if (timeInput) {
+      timeInput.setAttribute('type', 'time');
+      timeInput.style.cursor = 'pointer';
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,24 +44,24 @@ const Booking = () => {
 
   const getPackagePrice = (packageId) => {
     const prices = {
-      1: 99.99,
-      2: 199.99,
-      3: 299.99,
-      4: 499.99,
-      5: 799.99
+      0: 0.00,    // FREE Consultation
+      1: 99.00,   // Basic Package
+      2: 119.00,  // Premium Package
+      3: 139.00,  // Deluxe Package
+      4: 159.00   // VIP Package
     };
-    return prices[packageId] || 99.99;
+    return prices[packageId] || 0.00;
   };
 
   const getPackageName = (packageId) => {
     const names = {
+      0: 'FREE Consultation (30 minutes)',
       1: 'Basic Package (1 hour)',
       2: 'Premium Package (2 hours)',
       3: 'Deluxe Package (3 hours)',
-      4: 'VIP Package (4 hours)',
-      5: 'Corporate Package (6 hours)'
+      4: 'VIP Package (4 hours)'
     };
-    return names[packageId] || 'Basic Package';
+    return names[packageId] || 'FREE Consultation';
   };
 
   const handleSubmit = async (e) => {
@@ -63,7 +79,7 @@ const Booking = () => {
         return;
       }
 
-      // Prepare booking data for payment (don't create booking yet)
+      // Prepare booking data
       const packagePrice = getPackagePrice(formData.packageId);
       const packageName = getPackageName(formData.packageId);
       
@@ -80,11 +96,79 @@ const Booking = () => {
         specialRequests: formData.specialRequests
       });
       
-      setShowPayment(true);
+      // Skip payment for free consultation
+      if (packagePrice === 0) {
+        // Create free consultation booking directly
+        await handleFreeConsultationBooking(formData, packageName);
+      } else {
+        // Show payment for paid packages
+        setShowPayment(true);
+      }
     } catch (error) {
       setBookingResult({
         success: false,
         message: 'Error preparing booking: ' + error.message
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleFreeConsultationBooking = async (formData, packageName) => {
+    try {
+      // Create free consultation booking directly
+      const bookingPayload = {
+        customerName: formData.customerName,
+        customerEmail: formData.customerEmail,
+        customerPhone: formData.customerPhone,
+        packageId: formData.packageId,
+        selectedDate: formData.selectedDate,
+        selectedTime: formData.selectedTime,
+        specialRequests: formData.specialRequests,
+        paymentId: 'free_consultation',
+        paymentStatus: 'free'
+      };
+
+      const result = await apiService.post('/bookings/create', bookingPayload);
+      
+      if (result.success) {
+        setBookingResult({
+          success: true,
+          message: 'Free consultation booked successfully! We\'ll contact you soon to confirm your appointment.',
+          data: {
+            bookingId: result.data.bookingId,
+            totalAmount: 0,
+            customerName: formData.customerName,
+            customerEmail: formData.customerEmail,
+            selectedDate: formData.selectedDate,
+            selectedTime: formData.selectedTime,
+            serviceType: packageName,
+            paymentId: 'free_consultation',
+            status: 'confirmed'
+          }
+        });
+        
+        // Reset form
+        setFormData({
+          customerName: '',
+          customerEmail: '',
+          customerPhone: '',
+          packageId: 0, // Default to free consultation
+          selectedDate: '',
+          selectedTime: '10:00',
+          specialRequests: ''
+        });
+        setBookingData(null);
+      } else {
+        setBookingResult({
+          success: false,
+          message: 'Failed to book free consultation. Please try again or contact us directly.'
+        });
+      }
+    } catch (error) {
+      setBookingResult({
+        success: false,
+        message: 'Error booking free consultation: ' + error.message
       });
     } finally {
       setIsSubmitting(false);
@@ -166,11 +250,23 @@ const Booking = () => {
       <div className="booking-container">
         {/* Left Side - Consultation Details */}
         <div className="consultation-details">
-          <h1>Book your free 15-minute consultation.</h1>
-          <h2>Your First Step to Better Performance on the Water! 🌊</h2>
+          <h1>Book your free 30-minute consultation.</h1>
+          <h2>Your First Step to Better Performance on the Water! 
+            <img 
+              src="/images/logos/mpt-logo.jpeg" 
+              alt="MPT Logo" 
+              style={{
+                width: '30px', 
+                height: '30px', 
+                marginLeft: '10px',
+                verticalAlign: 'middle',
+                borderRadius: '4px'
+              }}
+            />
+          </h2>
           
           <p className="consultation-intro">
-            In this quick, personalized 15-minute consultation, we'll dive into your kitesurfing or wing foiling goals and assess your current mobility, strength, and balance. Here's what you can expect:
+            In this quick, personalized 30-minute consultation, we'll dive into your kitesurfing or wing foiling goals and assess your current mobility, strength, and balance. Here's what you can expect:
           </p>
           
           <ul className="consultation-benefits">
@@ -190,7 +286,7 @@ const Booking = () => {
           </p>
           
           <p className="cta-text">
-            Book your free 15-minute consultation now!
+            Book your free 30-minute consultation now!
           </p>
         </div>
 
@@ -248,11 +344,11 @@ const Booking = () => {
                 onChange={handleInputChange}
                 required
               >
-                <option value={1}>Basic Package - $99.99 (1 hour)</option>
-                <option value={2}>Premium Package - $199.99 (2 hours)</option>
-                <option value={3}>Deluxe Package - $299.99 (3 hours)</option>
-                <option value={4}>VIP Package - $499.99 (4 hours)</option>
-                <option value={5}>Corporate Package - $799.99 (6 hours)</option>
+                <option value={0}>FREE Consultation - $0.00 (30 minutes)</option>
+                <option value={1}>Basic Package - $99.00 (1 hour)</option>
+                <option value={2}>Premium Package - $119.00 (2 hours)</option>
+                <option value={3}>Deluxe Package - $139.00 (3 hours)</option>
+                <option value={4}>VIP Package - $159.00 (4 hours)</option>
               </select>
             </div>
 
@@ -266,6 +362,7 @@ const Booking = () => {
                 onChange={handleInputChange}
                 required
                 min={new Date().toISOString().split('T')[0]}
+                style={{ cursor: 'pointer' }}
               />
             </div>
 

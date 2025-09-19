@@ -40,7 +40,7 @@ function Products() {
                   <li>Insurance coverage</li>
                 </ul>
                 <div className="package-price">
-                  <span className="price">$299</span>
+                  <span className="price">$99</span>
                   <Link to="/booking" className="book-btn">Book Now</Link>
                 </div>
               </div>
@@ -60,7 +60,7 @@ function Products() {
                   <li>Video analysis</li>
                 </ul>
                 <div className="package-price">
-                  <span className="price">$499</span>
+                  <span className="price">$99</span>
                   <Link to="/booking" className="book-btn">Book Now</Link>
                 </div>
               </div>
@@ -80,7 +80,7 @@ function Products() {
                   <li>Personalized coaching</li>
                 </ul>
                 <div className="package-price">
-                  <span className="price">$799</span>
+                  <span className="price">$99</span>
                   <Link to="/booking" className="book-btn">Book Now</Link>
                 </div>
               </div>
@@ -108,7 +108,7 @@ function Products() {
                   <li>Progress tracking</li>
                 </ul>
                 <div className="package-price">
-                  <span className="price">$399</span>
+                  <span className="price">$99</span>
                   <Link to="/booking" className="book-btn">Book Now</Link>
                 </div>
               </div>
@@ -128,7 +128,7 @@ function Products() {
                   <li>Performance analysis</li>
                 </ul>
                 <div className="package-price">
-                  <span className="price">$599</span>
+                  <span className="price">$99</span>
                   <Link to="/booking" className="book-btn">Book Now</Link>
                 </div>
               </div>
@@ -156,7 +156,7 @@ function Products() {
                   <li>Safety procedures</li>
                 </ul>
                 <div className="package-price">
-                  <span className="price">$349</span>
+                  <span className="price">$99</span>
                   <Link to="/booking" className="book-btn">Book Now</Link>
                 </div>
               </div>
@@ -176,7 +176,7 @@ function Products() {
                   <li>Personalized coaching</li>
                 </ul>
                 <div className="package-price">
-                  <span className="price">$549</span>
+                  <span className="price">$99</span>
                   <Link to="/booking" className="book-btn">Book Now</Link>
                 </div>
               </div>

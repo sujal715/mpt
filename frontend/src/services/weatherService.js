@@ -703,7 +703,7 @@ class WeatherService {
       // Service recommendations
       recommendations.services.push({
         name: 'Kitesurfing Training',
-        price: '$149.99',
+        price: '$99.00',
         duration: '2 hours',
         description: 'Perfect conditions for comprehensive kitesurfing instruction',
         suitability: 'Excellent'
@@ -711,10 +711,10 @@ class WeatherService {
       
       if (windSpeed >= 12 && windSpeed <= 20) {
         recommendations.services.push({
-          name: 'Wing Foil Training',
-          price: '$129.99',
+          name: 'Nutrition Coaching',
+          price: '$99.00',
           duration: '2 hours',
-          description: 'Ideal wind conditions for wing foiling progression',
+          description: 'Perfect conditions for nutrition coaching sessions',
           suitability: 'Excellent'
         });
       }
@@ -760,7 +760,7 @@ class WeatherService {
       // Service recommendations
       recommendations.services.push({
         name: 'Private Coaching',
-        price: '$199.99',
+        price: '$99.00',
         duration: '1 hour',
         description: 'Personalized instruction for challenging conditions',
         suitability: 'Good'
@@ -769,7 +769,7 @@ class WeatherService {
       if (windSpeed < 10) {
         recommendations.services.push({
           name: 'Equipment Rental',
-          price: '$79.99',
+          price: '$99.00',
           duration: 'Full day',
           description: 'Try paddleboarding or kayaking in calm conditions',
           suitability: 'Excellent'
@@ -811,7 +811,7 @@ class WeatherService {
       // Service recommendations
       recommendations.services.push({
         name: 'Indoor Training',
-        price: '$99.99',
+        price: '$99.00',
         duration: '1 hour',
         description: 'Movement performance training in controlled environment',
         suitability: 'Good'
@@ -859,7 +859,7 @@ class WeatherService {
       // Service recommendations
       recommendations.services.push({
         name: 'Indoor Training',
-        price: '$99.99',
+        price: '$99.00',
         duration: '1 hour',
         description: 'Movement performance training in controlled environment',
         suitability: 'Excellent'

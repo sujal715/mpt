@@ -375,6 +375,20 @@
   background-color: #ffffff;
 }
 
+/* Simple date and time input styling - let browser handle the rest */
+.form-group input[type="date"],
+.form-group input[type="time"] {
+  cursor: pointer;
+}
+
+/* Let native browser icons work naturally */
+.form-group input[type="date"],
+.form-group input[type="time"] {
+  cursor: pointer;
+  padding-right: 40px;
+}
+
+
 .form-group textarea {
   resize: vertical;
   min-height: 80px;

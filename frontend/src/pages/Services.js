@@ -115,24 +115,24 @@ function Services() {
             </div>
 
             <div className="feature-card luxury-feature-card scroll-fade-in" id="wingfoil-feature">
-              <h3 className="luxury-feature-title">Wing Foil Training</h3>
-              <p className="luxury-feature-description">Discover the exciting world of wing foiling with our comprehensive training programs.</p>
+              <h3 className="luxury-feature-title">Nutrition Coaching</h3>
+              <p className="luxury-feature-description">Discover the power of proper nutrition with our comprehensive coaching programs.</p>
               <div className="feature-benefits luxury-benefits">
                 <div className="benefit-item luxury-benefit-item">
                   <FaCheck />
-                  <span>Wing control fundamentals</span>
+                  <span>Meal planning strategies</span>
                 </div>
                 <div className="benefit-item luxury-benefit-item">
                   <FaCheck />
-                  <span>Foil board riding</span>
+                  <span>Macro and micronutrient balance</span>
                 </div>
                 <div className="benefit-item luxury-benefit-item">
                   <FaCheck />
-                  <span>Advanced wing techniques</span>
+                  <span>Performance nutrition</span>
                 </div>
                 <div className="benefit-item luxury-benefit-item">
                   <FaCheck />
-                  <span>Wave riding instruction</span>
+                  <span>Hydration protocols</span>
                 </div>
               </div>
               <div className="feature-luxury-border" />

@@ -58,11 +58,10 @@ CREATE TABLE IF NOT EXISTS gallery (
 
 -- Insert sample packages
 INSERT INTO packages (name, description, price, duration) VALUES
-('Basic Package', 'Essential services for small projects', 99.99, '1-2 weeks'),
-('Premium Package', 'Advanced services with priority support', 199.99, '2-3 weeks'),
-('Deluxe Package', 'Comprehensive services with premium features', 299.99, '3-4 weeks'),
-('VIP Package', 'Exclusive services with dedicated support', 499.99, '4-6 weeks'),
-('Corporate Package', 'Enterprise-level services for large organizations', 799.99, '6-8 weeks');
+('Basic Package', 'Essential services for small projects', 99.00, '1-2 weeks'),
+('Premium Package', 'Advanced services with priority support', 119.00, '2-3 weeks'),
+('Deluxe Package', 'Comprehensive services with premium features', 139.00, '3-4 weeks'),
+('VIP Package', 'Exclusive services with dedicated support', 159.00, '4-6 weeks');
 
 -- Insert sample services
 INSERT INTO services (name, description, price, category) VALUES
@@ -76,8 +75,8 @@ INSERT INTO services (name, description, price, category) VALUES
 INSERT INTO testimonials (customer_name, rating, comment, service_used, is_approved) VALUES
 ('Sarah Mitchell', 5, 'Chloe is an incredible instructor! Her patience and expertise helped me master kitesurfing in just a few sessions. The personalized approach and attention to detail made all the difference.', 'Kitesurfing Training', true),
 ('James Rodriguez', 5, 'The hydrofoil training was outstanding. Chloe''s technical knowledge and teaching methods are top-notch. I felt confident and safe throughout the entire learning process.', 'Hydrofoil Training', true),
-('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.', 'Wing Foil Training', true),
-('David Chen', 4, 'Professional, knowledgeable, and fun! The wing foil sessions were challenging but incredibly rewarding. Chloe''s coaching style is perfect for all skill levels.', 'Wing Foil Training', true),
+('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.', 'Nutrition Coaching', true),
+('David Chen', 4, 'Professional, knowledgeable, and fun! The nutrition coaching sessions were challenging but incredibly rewarding. Chloe''s coaching style is perfect for all skill levels.', 'Nutrition Coaching', true),
 ('Lisa Anderson', 5, 'I''ve tried other instructors before, but Chloe stands out. Her understanding of movement and performance is exceptional. Highly recommend for anyone serious about improving their skills.', 'Movement Performance Training', true);
 
 -- Insert gallery images

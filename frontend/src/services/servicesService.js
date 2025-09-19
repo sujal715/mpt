@@ -14,7 +14,7 @@ const fallbackServices = [
     id: 2,
     name: "Group Classes",
     description: "High-energy group fitness classes for all levels",
-    price: "$25/class",
+    price: "$99/class",
     duration: "45 minutes",
     category: "group"
   },
@@ -22,7 +22,7 @@ const fallbackServices = [
     id: 3,
     name: "Nutrition Coaching",
     description: "Personalized diet and nutrition guidance",
-    price: "$150/month",
+    price: "$99/month",
     duration: "Monthly program",
     category: "nutrition"
   }

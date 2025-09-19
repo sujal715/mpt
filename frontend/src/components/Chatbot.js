@@ -126,7 +126,7 @@ const Chatbot = () => {
       // Booking and scheduling
       booking: {
         patterns: ['book', 'lesson', 'appointment', 'consultation', 'schedule', 'how to start', 'get started'],
-        response: "Book your free 15-minute consultation! Click any 'Book Now' button on our website. We'll discuss your goals and create a personalized plan."
+        response: "Book your free 30-minute consultation! Click any 'Book Now' button on our website. We'll discuss your goals and create a personalized plan."
       },
       
       // Pricing and costs
