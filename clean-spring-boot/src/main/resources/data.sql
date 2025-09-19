@@ -58,18 +58,12 @@ INSERT INTO gallery (title, url, category, is_featured) VALUES
 ('Homepage Hero - Training Excellence', '/images/hero/homepage.jpeg', 'featured', true),
 ('Kettlebell Workout Hero', '/images/hero/kettlebell-workout-hero.png', 'training', true);
 
--- Team Members
-DELETE FROM team;
-
-INSERT INTO team (name, title, description, image_url, credentials, is_featured, display_order) VALUES 
-('Chloe Barrett', 'Founder & Head Trainer', 'Chloe Barrett is the founder and head trainer of Movement Performance Training. With over 10 years of experience in kitesurfing, hydrofoil, and wing foil training, Chloe brings unparalleled expertise and passion to every session. Her innovative approach to movement training has helped hundreds of students achieve their goals and unlock their potential on the water.', '/images/team/chloe-headshot.jpg', 'IKO Level 3 Instructor, Hydrofoil Specialist, Movement Performance Coach, First Aid Certified', true, 1);
-
 -- Testimonials
 DELETE FROM testimonials;
 
-INSERT INTO testimonials (customer_name, rating, comment, service_used, is_approved) VALUES 
-('Sarah Mitchell', 5, 'Chloe is an incredible instructor! Her patience and expertise helped me master kitesurfing in just a few sessions. The personalized approach and attention to detail made all the difference.', 'Kitesurfing Training', true),
-('James Rodriguez', 5, 'The hydrofoil training was outstanding. Chloe''s technical knowledge and teaching methods are top-notch. I felt confident and safe throughout the entire learning process.', 'Hydrofoil Training', true),
-('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.', 'Nutrition Coaching', true),
-('David Chen', 4, 'Professional, knowledgeable, and fun! The nutrition coaching sessions were challenging but incredibly rewarding. Chloe''s coaching style is perfect for all skill levels.', 'Nutrition Coaching', true),
-('Lisa Anderson', 5, 'I''ve tried other instructors before, but Chloe stands out. Her understanding of movement and performance is exceptional. Highly recommend for anyone serious about improving their skills.', 'Movement Performance Training', true);
+INSERT INTO testimonials (customer_name, rating, testimonial_text) VALUES 
+('Sarah Mitchell', 5, 'Chloe is an incredible instructor! Her patience and expertise helped me master kitesurfing in just a few sessions. The personalized approach and attention to detail made all the difference.'),
+('James Rodriguez', 5, 'The hydrofoil training was outstanding. Chloe''s technical knowledge and teaching methods are top-notch. I felt confident and safe throughout the entire learning process.'),
+('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.'),
+('David Chen', 4, 'Professional, knowledgeable, and fun! The nutrition coaching sessions were challenging but incredibly rewarding. Chloe''s coaching style is perfect for all skill levels.'),
+('Lisa Anderson', 5, 'I''ve tried other instructors before, but Chloe stands out. Her understanding of movement and performance is exceptional. Highly recommend for anyone serious about improving their skills.');
