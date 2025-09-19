@@ -21,8 +21,8 @@ COPY src src
 # Build the application
 RUN ./mvnw clean package -DskipTests
 
-# Expose port 8081
-EXPOSE 8081
+# Expose port (Render will set PORT environment variable)
+EXPOSE $PORT
 
-# Run the application
-CMD ["java", "-jar", "target/mpt-0.0.1-SNAPSHOT.jar"]
+# Run the application with PORT environment variable
+CMD ["sh", "-c", "java -jar target/mpt-0.0.1-SNAPSHOT.jar --server.port=${PORT:-8081}"]
