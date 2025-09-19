@@ -72,12 +72,12 @@ INSERT INTO services (name, description, price, category) VALUES
 ('Content Creation', 'Professional content writing', 50.00, 'Content');
 
 -- Insert sample testimonials
-INSERT INTO testimonials (customer_name, rating, comment, service_used, is_approved) VALUES
-('Sarah Mitchell', 5, 'Chloe is an incredible instructor! Her patience and expertise helped me master kitesurfing in just a few sessions. The personalized approach and attention to detail made all the difference.', 'Kitesurfing Training', true),
-('James Rodriguez', 5, 'The hydrofoil training was outstanding. Chloe''s technical knowledge and teaching methods are top-notch. I felt confident and safe throughout the entire learning process.', 'Hydrofoil Training', true),
-('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.', 'Nutrition Coaching', true),
-('David Chen', 4, 'Professional, knowledgeable, and fun! The nutrition coaching sessions were challenging but incredibly rewarding. Chloe''s coaching style is perfect for all skill levels.', 'Nutrition Coaching', true),
-('Lisa Anderson', 5, 'I''ve tried other instructors before, but Chloe stands out. Her understanding of movement and performance is exceptional. Highly recommend for anyone serious about improving their skills.', 'Movement Performance Training', true);
+INSERT INTO testimonials (customer_name, rating, testimonial_text) VALUES
+('Sarah Mitchell', 5, 'Chloe is an incredible instructor! Her patience and expertise helped me master kitesurfing in just a few sessions. The personalized approach and attention to detail made all the difference.'),
+('James Rodriguez', 5, 'The hydrofoil training was outstanding. Chloe''s technical knowledge and teaching methods are top-notch. I felt confident and safe throughout the entire learning process.'),
+('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.'),
+('David Chen', 4, 'Professional, knowledgeable, and fun! The nutrition coaching sessions were challenging but incredibly rewarding. Chloe''s coaching style is perfect for all skill levels.'),
+('Lisa Anderson', 5, 'I''ve tried other instructors before, but Chloe stands out. Her understanding of movement and performance is exceptional. Highly recommend for anyone serious about improving their skills.');
 
 -- Insert gallery images
 INSERT INTO gallery (title, url, category, is_featured) VALUES
