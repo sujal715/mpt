@@ -1026,8 +1026,8 @@ public class MainController {
         return "forward:/index.html";
     }
     
-    // Catch-all for any other routes (except API and h2-console)
-    @GetMapping(value = "/{path:^(?!api|h2-console|static).*$}")
+    // Catch-all for any other routes (except API, h2-console, and static)
+    @GetMapping(value = "/{path:^(?!api|h2-console|static|css|js|images|pdfs|videos).*$}")
     public String catchAll(@PathVariable String path) {
         return "forward:/index.html";
     }
