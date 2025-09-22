@@ -264,9 +264,12 @@ export const galleryService = {
       console.log('Gallery API response length:', response?.length);
       console.log('Gallery API response type:', typeof response);
       
-      // Backend returns array directly
-      if (Array.isArray(response)) {
-        console.log(`Successfully loaded ${response.length} gallery items from backend`);
+      // Backend returns object with data property
+      if (response && response.success && Array.isArray(response.data)) {
+        console.log(`Successfully loaded ${response.data.length} gallery items from backend`);
+        return { success: true, data: response.data };
+      } else if (Array.isArray(response)) {
+        console.log(`Successfully loaded ${response.length} gallery items from backend (direct array)`);
         return { success: true, data: response };
       } else {
         console.log('Unexpected response format:', response);
