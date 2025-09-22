@@ -39,11 +39,11 @@ public class MainController {
         return Map.of(
             "success", true,
             "data", Arrays.asList(
-                Map.of("id", 1, "name", "Kitesurfing Training", "description", "Comprehensive kitesurfing lessons for all skill levels", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
-                Map.of("id", 2, "name", "Hydrofoil Training", "description", "Master the art of hydrofoiling with expert instructors", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
-                Map.of("id", 3, "name", "Nutrition Coaching", "description", "Learn nutrition principles and meal planning strategies", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
-                Map.of("id", 4, "name", "Equipment Rental", "description", "High-quality kitesurfing and foiling equipment rental", "price", 99.00, "category", "Rental", "isActive", true, "duration", "Full day"),
-                Map.of("id", 5, "name", "Private Coaching", "description", "One-on-one personalized coaching sessions", "price", 99.00, "category", "Coaching", "isActive", true, "duration", "1 hour")
+        Map.of("id", 1, "name", "Kitesurfing Training", "description", "Comprehensive kitesurfing lessons for all skill levels", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
+        Map.of("id", 2, "name", "Hydrofoil Training", "description", "Master the art of hydrofoiling with expert instructors", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
+        Map.of("id", 3, "name", "Nutrition Coaching", "description", "Learn nutrition principles and meal planning strategies", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
+        Map.of("id", 4, "name", "Equipment Rental", "description", "High-quality kitesurfing and foiling equipment rental", "price", 99.00, "category", "Rental", "isActive", true, "duration", "Full day"),
+        Map.of("id", 5, "name", "Private Coaching", "description", "One-on-one personalized coaching sessions", "price", 99.00, "category", "Coaching", "isActive", true, "duration", "1 hour")
             )
         );
     }
@@ -106,6 +106,24 @@ public class MainController {
             "message", "Test bookings endpoint working",
             "data", Arrays.asList(
                 Map.of("id", 1, "name", "Test Booking", "service", "Test Service", "date", "2025-09-23", "status", "confirmed", "email", "test@example.com", "phone", "1234567890", "amount", 99)
+            )
+        );
+    }
+
+    @GetMapping("/team")
+    public List<Map<String, Object>> getTeam() {
+        return Arrays.asList(
+            Map.of(
+                "id", 1,
+                "name", "Chloe Barrett",
+                "title", "Founder & Head Trainer",
+                "description", "Chloe Barrett is the founder and head trainer at Movement Performance Training. With over 8 years of experience in kitesurfing, hydrofoiling, and movement coaching, she brings a unique blend of technical expertise and personalized instruction to every session. Chloe is passionate about helping students achieve their goals while maintaining the highest standards of safety and performance.",
+                "imageUrl", "/images/team/chloe-headshot.jpg",
+                "credentials", "• Certified Kitesurfing Instructor (IKO Level 2)\\n• Hydrofoil Specialist\\n• Movement Performance Coach\\n• Nutrition & Wellness Consultant\\n• Water Safety Instructor\\n• 8+ Years Experience\\n• 500+ Students Trained",
+                "isFeatured", true,
+                "displayOrder", 1,
+                "createdAt", "2025-09-22T20:44:18.029036",
+                "updatedAt", "2025-09-22T20:44:18.029036"
             )
         );
     }
