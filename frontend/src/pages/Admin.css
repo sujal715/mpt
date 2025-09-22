@@ -309,6 +309,10 @@
   backdrop-filter: blur(10px);
   margin-top: 0;
   margin-bottom: 0;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .admin-header-content {
@@ -362,11 +366,17 @@
   gap: 1rem;
   flex-shrink: 0;
   min-height: 40px;
+  height: 40px;
+  position: relative;
+  z-index: 10;
 }
 
 .search-box {
   position: relative;
   flex-shrink: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .search-box input {
@@ -408,6 +418,11 @@
   height: 40px;
   box-sizing: border-box;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  font-size: 0.9rem;
 }
 
 .logout-btn:hover {
