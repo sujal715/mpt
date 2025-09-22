@@ -68,8 +68,11 @@ INSERT INTO services (name, description, price, category, is_active) VALUES
 ('Equipment Rental', 'High-quality kitesurfing and foiling equipment rental', 99.00, 'Rental', true),
 ('Private Coaching', 'One-on-one personalized coaching sessions', 99.00, 'Coaching', true);
 
--- Team Members - Start with empty table (no default data)
+-- Team Members - Start with Chloe only
 DELETE FROM team;
+
+INSERT INTO team (name, title, description, image_url, credentials, is_featured, display_order) VALUES 
+('Chloe Barrett', 'Founder & Head Trainer', 'Chloe Barrett is the founder and head trainer at Movement Performance Training. With over 8 years of experience in kitesurfing, hydrofoiling, and movement coaching, she brings a unique blend of technical expertise and personalized instruction to every session. Chloe is passionate about helping students achieve their goals while maintaining the highest standards of safety and performance.', '/images/team/chloe-headshot.jpg', '• Certified Kitesurfing Instructor (IKO Level 2)\n• Hydrofoil Specialist\n• Movement Performance Coach\n• Nutrition & Wellness Consultant\n• Water Safety Instructor\n• 8+ Years Experience\n• 500+ Students Trained', true, 1);
 
 -- Testimonials
 DELETE FROM testimonials;
