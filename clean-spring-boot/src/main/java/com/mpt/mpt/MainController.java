@@ -79,6 +79,270 @@ public class MainController {
         return "<!DOCTYPE html><html><head><title>Gallery Test</title><style>body { font-family: Arial, sans-serif; margin: 20px; } .gallery-item { border: 1px solid #ccc; margin: 10px; padding: 10px; display: inline-block; width: 300px; } .gallery-item img { max-width: 280px; max-height: 200px; } .error { color: red; } .success { color: green; } .upload-form { border: 2px solid #007bff; padding: 20px; margin: 20px 0; } input, select, button { margin: 5px; padding: 8px; } button { background: #007bff; color: white; border: none; cursor: pointer; }</style></head><body><h1>🎯 Gallery Test Page</h1><div id='status'></div><h2>📸 Current Gallery Items:</h2><div id='gallery'></div><div class='upload-form'><h2>📤 Upload New Image:</h2><form id='uploadForm'><input type='file' id='fileInput' accept='image/*' required><input type='text' id='titleInput' placeholder='Image Title' required><select id='categoryInput'><option value='Action'>Action</option><option value='Training'>Training</option><option value='Scenic'>Scenic</option><option value='Equipment'>Equipment</option></select><button type='submit'>Upload Image</button></form></div><script>const statusDiv = document.getElementById('status'); const galleryDiv = document.getElementById('gallery'); function log(message, type = 'info') { const className = type === 'error' ? 'error' : type === 'success' ? 'success' : ''; statusDiv.innerHTML += '<div class=\"' + className + '\">' + new Date().toLocaleTimeString() + ': ' + message + '</div>'; } async function fetchGallery() { try { log('🔄 Fetching gallery from backend...'); const response = await fetch('http://localhost:8081/api/gallery'); const data = await response.json(); log('✅ Received ' + data.length + ' gallery items', 'success'); galleryDiv.innerHTML = ''; data.forEach(item => { const itemDiv = document.createElement('div'); itemDiv.className = 'gallery-item'; itemDiv.innerHTML = '<h3>' + item.title + ' (ID: ' + item.id + ')</h3><p><strong>Category:</strong> ' + item.category + '</p><p><strong>Featured:</strong> ' + (item.isFeatured ? 'Yes' : 'No') + '</p><img src=\"http://localhost:8081' + item.url + '\" alt=\"' + item.title + '\" onerror=\"this.style.border=\\\'3px solid red\\\'; this.alt=\\\'❌ Image failed to load\\\'\"><p><strong>URL:</strong> ' + item.url + '</p>'; galleryDiv.appendChild(itemDiv); }); } catch (error) { log('❌ Error fetching gallery: ' + error.message, 'error'); } } document.getElementById('uploadForm').addEventListener('submit', async (e) => { e.preventDefault(); const file = document.getElementById('fileInput').files[0]; const title = document.getElementById('titleInput').value; const category = document.getElementById('categoryInput').value; if (!file) { log('❌ No file selected', 'error'); return; } try { log('📤 Uploading file...'); const formData = new FormData(); formData.append('file', file); formData.append('title', title); formData.append('category', category); formData.append('isFeatured', 'false'); const response = await fetch('http://localhost:8081/api/gallery/upload', { method: 'POST', body: formData }); const result = await response.json(); if (result.success) { log('✅ Upload successful! ID: ' + result.data.id, 'success'); fetchGallery(); document.getElementById('uploadForm').reset(); } else { log('❌ Upload failed: ' + result.message, 'error'); } } catch (error) { log('❌ Upload error: ' + error.message, 'error'); } }); fetchGallery();</script></body></html>";
     }
 
+    // Clear and repopulate gallery with existing images
+    @PostMapping("/gallery/reset")
+    @CrossOrigin(origins = "*", allowCredentials = "false")
+    public ResponseEntity<Map<String, Object>> resetGallery() {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            // Clear all existing gallery items
+            List<Gallery> allItems = galleryService.getAllGalleryItems();
+            for (Gallery item : allItems) {
+                galleryService.deleteGalleryItem(item.getId());
+            }
+            
+            // Add logo image
+            Gallery logo = new Gallery();
+            logo.setTitle("MPT Logo");
+            logo.setUrl("/images/logos/mpt-logo.jpeg");
+            logo.setCategory("logos");
+            logo.setIsFeatured(true);
+            galleryService.createGalleryItem(logo);
+            
+            // Add team image
+            Gallery team = new Gallery();
+            team.setTitle("Team Member");
+            team.setUrl("/images/team/chloe-headshot.jpg");
+            team.setCategory("team");
+            team.setIsFeatured(true);
+            galleryService.createGalleryItem(team);
+            
+            // Add story image
+            Gallery story = new Gallery();
+            story.setTitle("Success Story - Deadlift Achievement");
+            story.setUrl("/images/story/deadlift-story.jpg");
+            story.setCategory("story");
+            story.setIsFeatured(true);
+            galleryService.createGalleryItem(story);
+            
+            // Add hero image
+            Gallery hero = new Gallery();
+            hero.setTitle("Homepage Hero - Training Excellence");
+            hero.setUrl("/images/hero/homepage.jpeg");
+            hero.setCategory("hero");
+            hero.setIsFeatured(true);
+            galleryService.createGalleryItem(hero);
+            
+            // List of existing images to add to gallery
+            String[] imageFiles = {
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.31 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.34 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.38 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.32 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.40 AM.jpeg"
+            };
+            
+            String[] titles = {
+                "Kitesurfing Training Session",
+                "Hydrofoil Practice",
+                "Advanced Training Techniques",
+                "Equipment Setup",
+                "Water Safety Training",
+                "Group Training Session",
+                "Professional Coaching"
+            };
+            
+            int addedCount = 0;
+            for (int i = 0; i < imageFiles.length; i++) {
+                Gallery gallery = new Gallery();
+                gallery.setTitle(titles[i]);
+                gallery.setUrl(imageFiles[i]);
+                gallery.setCategory("training");
+                gallery.setIsFeatured(i < 2); // First 2 training images are featured
+                
+                galleryService.createGalleryItem(gallery);
+                addedCount++;
+            }
+            
+            response.put("success", true);
+            response.put("message", "Gallery reset and populated successfully!");
+            response.put("clearedCount", allItems.size());
+            response.put("addedCount", addedCount);
+            response.put("totalImages", imageFiles.length + 2);
+            response.put("logoCount", 1);
+            response.put("teamCount", 1);
+            response.put("trainingCount", imageFiles.length);
+            
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error resetting gallery: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    // Populate gallery with existing images
+    @PostMapping("/gallery/populate")
+    @CrossOrigin(origins = "*", allowCredentials = "false")
+    public ResponseEntity<Map<String, Object>> populateGallery() {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            // List of existing images to add to gallery
+            String[] imageFiles = {
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.31 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.34 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.38 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.32 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.40 AM.jpeg"
+            };
+            
+            String[] titles = {
+                "Kitesurfing Training Session",
+                "Hydrofoil Practice",
+                "Advanced Training Techniques",
+                "Equipment Setup",
+                "Water Safety Training",
+                "Group Training Session",
+                "Professional Coaching"
+            };
+            
+            int addedCount = 0;
+            for (int i = 0; i < imageFiles.length; i++) {
+                Gallery gallery = new Gallery();
+                gallery.setTitle(titles[i]);
+                gallery.setUrl(imageFiles[i]);
+                gallery.setCategory("training");
+                gallery.setIsFeatured(i < 3); // First 3 are featured
+                
+                galleryService.createGalleryItem(gallery);
+                addedCount++;
+            }
+            
+            response.put("success", true);
+            response.put("message", "Gallery populated successfully!");
+            response.put("addedCount", addedCount);
+            response.put("totalImages", imageFiles.length);
+            
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error populating gallery: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    // Add comprehensive gallery with all available images
+    @PostMapping("/gallery/add-more")
+    @CrossOrigin(origins = "*", allowCredentials = "false")
+    public ResponseEntity<Map<String, Object>> addMoreImages() {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            // Comprehensive list of all available training images
+            String[] imageFiles = {
+                "/images/training/WhatsApp Image 2025-07-20 at 8.53.52 PM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.31 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM-2.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.34 AM-2.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.34 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.35 AM-2.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.35 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.36 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.37 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.38 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.39 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.40 AM-2.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.40 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.41 AM-2.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.41 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.43 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.46 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.21.47 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.32 AM-2.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.32 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.34 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.37 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.40 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.42 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.45 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.23.48 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.26.48 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.26.50 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.26.54 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.26.58 AM.jpeg",
+                "/images/training/WhatsApp Image 2025-09-01 at 11.26.59 AM.jpeg"
+            };
+            
+            String[] titles = {
+                "Early Training Session",
+                "Kitesurfing Fundamentals",
+                "Hydrofoil Basics",
+                "Advanced Kitesurfing Techniques",
+                "Equipment Mastery Training",
+                "Water Safety Protocols",
+                "Performance Enhancement",
+                "Weather Conditions Training",
+                "Rescue Techniques",
+                "Emergency Response Training",
+                "Student Progress Session",
+                "Certification Training",
+                "Instructor Development",
+                "Master Class Session",
+                "Elite Training Program",
+                "Group Fitness Training",
+                "Personal Training Session",
+                "Technique Refinement",
+                "Skill Development",
+                "Competition Preparation",
+                "Equipment Setup Training",
+                "Group Training Class",
+                "Nutrition Coaching Session",
+                "Safety Protocol Training",
+                "Professional Coaching",
+                "Advanced Maneuvers",
+                "Rescue Techniques Advanced",
+                "Emergency Response",
+                "Student Assessment",
+                "Instructor Certification",
+                "Master Class Advanced",
+                "Elite Performance Training",
+                "Championship Preparation"
+            };
+            
+            int addedCount = 0;
+            for (int i = 0; i < imageFiles.length; i++) {
+                // Check if this image already exists in gallery
+                List<Gallery> existingItems = galleryService.getAllGalleryItems();
+                final String currentImageUrl = imageFiles[i];
+                boolean exists = existingItems.stream()
+                    .anyMatch(item -> item.getUrl().equals(currentImageUrl));
+                
+                if (!exists) {
+                    Gallery gallery = new Gallery();
+                    gallery.setTitle(titles[i]);
+                    gallery.setUrl(imageFiles[i]);
+                    gallery.setCategory("training");
+                    gallery.setIsFeatured(i < 5); // First 5 are featured
+                    
+                    galleryService.createGalleryItem(gallery);
+                    addedCount++;
+                }
+            }
+            
+            response.put("success", true);
+            response.put("message", "Additional images added successfully!");
+            response.put("addedCount", addedCount);
+            response.put("totalAvailable", imageFiles.length);
+            
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error adding images: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
     @GetMapping("/customers")
     public Map<String, Object> getCustomers() {
         Map<String, Object> response = new HashMap<>();
@@ -506,6 +770,75 @@ public class MainController {
         } catch (Exception e) {
             response.put("success", false);
             response.put("message", "Error during cleanup: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    // Populate team with sample members
+    @PostMapping("/team/populate")
+    @CrossOrigin(origins = "*", allowCredentials = "false")
+    public ResponseEntity<Map<String, Object>> populateTeam() {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            // Clear existing team members
+            List<Team> existingMembers = teamService.getAllTeamMembers();
+            for (Team member : existingMembers) {
+                teamService.deleteTeamMember(member.getId());
+            }
+            
+            // Create sample team members
+            Team member1 = new Team();
+            member1.setName("Alex Johnson");
+            member1.setTitle("Head Kitesurfing Instructor");
+            member1.setDescription("Certified IKO instructor with 10+ years of experience in kitesurfing and hydrofoiling.");
+            member1.setImageUrl("/images/team/alex-johnson.jpg");
+            member1.setCredentials("IKO Level 3 Instructor, First Aid Certified, Water Safety Specialist");
+            member1.setIsFeatured(true);
+            member1.setDisplayOrder(1);
+            teamService.createTeamMember(member1);
+            
+            Team member2 = new Team();
+            member2.setName("Sarah Chen");
+            member2.setTitle("Hydrofoil Specialist");
+            member2.setDescription("Professional hydrofoil racer and instructor specializing in advanced techniques and equipment setup.");
+            member2.setImageUrl("/images/team/sarah-chen.jpg");
+            member2.setCredentials("Professional Hydrofoil Racer, Equipment Specialist, Advanced Techniques Certified");
+            member2.setIsFeatured(true);
+            member2.setDisplayOrder(2);
+            teamService.createTeamMember(member2);
+            
+            Team member3 = new Team();
+            member3.setName("Mike Rodriguez");
+            member3.setTitle("Safety Coordinator");
+            member3.setDescription("Experienced water safety coordinator ensuring safe and enjoyable training sessions for all participants.");
+            member3.setImageUrl("/images/team/mike-rodriguez.jpg");
+            member3.setCredentials("Water Safety Coordinator, Emergency Response Certified, CPR Instructor");
+            member3.setIsFeatured(true);
+            member3.setDisplayOrder(3);
+            teamService.createTeamMember(member3);
+            
+            Team member4 = new Team();
+            member4.setName("Emma Thompson");
+            member4.setTitle("Beginner Specialist");
+            member4.setDescription("Patient and experienced instructor specializing in beginner kitesurfing lessons and confidence building.");
+            member4.setImageUrl("/images/team/emma-thompson.jpg");
+            member4.setCredentials("Beginner Specialist, Psychology of Learning Certified, Youth Instructor");
+            member4.setIsFeatured(false);
+            member4.setDisplayOrder(4);
+            teamService.createTeamMember(member4);
+            
+            response.put("success", true);
+            response.put("message", "Team populated successfully!");
+            response.put("clearedCount", existingMembers.size());
+            response.put("addedCount", 4);
+            response.put("totalMembers", 4);
+            
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error populating team: " + e.getMessage());
             return ResponseEntity.badRequest().body(response);
         }
     }

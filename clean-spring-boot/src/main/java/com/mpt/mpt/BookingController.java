@@ -61,8 +61,11 @@ public class BookingController {
             String specialRequests = (String) bookingRequest.get("specialRequests");
             
             // Validate required fields
-            if (customerName == null || customerEmail == null || packageId == null || 
-                selectedDate == null || selectedTime == null) {
+            if (customerName == null || customerName.trim().isEmpty() || 
+                customerEmail == null || customerEmail.trim().isEmpty() || 
+                packageId == null || 
+                selectedDate == null || selectedDate.trim().isEmpty() || 
+                selectedTime == null || selectedTime.trim().isEmpty()) {
                 response.put("success", false);
                 response.put("message", "Missing required fields");
                 return response;
@@ -145,6 +148,77 @@ public class BookingController {
         return ResponseEntity.notFound().build();
     }
     
+    @GetMapping("/bookings/stats")
+    public ResponseEntity<Map<String, Object>> getBookingStats() {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            List<Booking> bookings = bookingService.getAllBookings();
+            
+            // Calculate booking statistics
+            int totalBookings = bookings.size();
+            int confirmedBookings = (int) bookings.stream()
+                .filter(b -> "CONFIRMED".equals(b.getStatus()))
+                .count();
+            int pendingBookings = (int) bookings.stream()
+                .filter(b -> "PENDING".equals(b.getStatus()))
+                .count();
+            int cancelledBookings = (int) bookings.stream()
+                .filter(b -> "CANCELLED".equals(b.getStatus()))
+                .count();
+            
+            double totalRevenue = bookings.stream()
+                .filter(b -> "CONFIRMED".equals(b.getStatus()))
+                .mapToDouble(this::getBookingRevenue)
+                .sum();
+            
+            // Monthly stats
+            int currentMonth = java.time.LocalDate.now().getMonthValue();
+            int currentYear = java.time.LocalDate.now().getYear();
+            
+            long monthlyBookings = bookings.stream()
+                .filter(b -> {
+                    if (b.getCreatedAt() == null) return false;
+                    java.time.LocalDate bookingDate = b.getCreatedAt().toLocalDate();
+                    return bookingDate.getMonthValue() == currentMonth && 
+                           bookingDate.getYear() == currentYear;
+                })
+                .count();
+            
+            double monthlyRevenue = bookings.stream()
+                .filter(b -> {
+                    if (b.getCreatedAt() == null) return false;
+                    java.time.LocalDate bookingDate = b.getCreatedAt().toLocalDate();
+                    return bookingDate.getMonthValue() == currentMonth && 
+                           bookingDate.getYear() == currentYear &&
+                           "CONFIRMED".equals(b.getStatus());
+                })
+                .mapToDouble(this::getBookingRevenue)
+                .sum();
+            
+            Map<String, Object> stats = new HashMap<>();
+            stats.put("totalBookings", totalBookings);
+            stats.put("confirmedBookings", confirmedBookings);
+            stats.put("pendingBookings", pendingBookings);
+            stats.put("cancelledBookings", cancelledBookings);
+            stats.put("totalRevenue", Math.round(totalRevenue));
+            stats.put("monthlyBookings", Math.toIntExact(monthlyBookings));
+            stats.put("monthlyRevenue", Math.round(monthlyRevenue));
+            stats.put("conversionRate", totalBookings > 0 ? 
+                Math.round((confirmedBookings * 100.0) / totalBookings) : 0);
+            
+            response.put("success", true);
+            response.put("data", stats);
+            
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error fetching booking stats: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+        
+        return ResponseEntity.ok(response);
+    }
+    
     private Double getPackagePrice(Integer packageId) {
         switch (packageId) {
             case 0: return 0.00;  // FREE Consultation
@@ -165,5 +239,16 @@ public class BookingController {
             case 4: return "VIP Package";
             default: return "FREE Consultation (30 minutes)";
         }
+    }
+    
+    private double getBookingRevenue(Booking booking) {
+        // Extract package info from service name or use default pricing
+        String service = booking.getService();
+        if (service.contains("Basic")) return 99.00;
+        if (service.contains("Premium")) return 119.00;
+        if (service.contains("Deluxe")) return 139.00;
+        if (service.contains("VIP")) return 159.00;
+        if (service.contains("FREE")) return 0.00;
+        return 99.00; // Default price
     }
 }

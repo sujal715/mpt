@@ -56,6 +56,20 @@ CREATE TABLE IF NOT EXISTS gallery (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Create team table
+CREATE TABLE IF NOT EXISTS team (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    image_url VARCHAR(500),
+    credentials TEXT,
+    is_featured BOOLEAN DEFAULT FALSE,
+    display_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 -- Insert sample packages
 INSERT INTO packages (name, description, price, duration) VALUES
 ('Basic Package', 'Essential services for small projects', 99.00, '1-2 weeks'),

@@ -58,6 +58,12 @@ INSERT INTO gallery (title, url, category, is_featured) VALUES
 ('Homepage Hero - Training Excellence', '/images/hero/homepage.jpeg', 'featured', true),
 ('Kettlebell Workout Hero', '/images/hero/kettlebell-workout-hero.png', 'training', true);
 
+-- Team Members
+DELETE FROM team;
+
+INSERT INTO team (name, title, description, image_url, credentials, is_featured, display_order) VALUES 
+('Chloe Barrett', 'Founder & Head Trainer', 'Chloe Barrett is the founder and head trainer at Movement Performance Training. With over 8 years of experience in kitesurfing, hydrofoiling, and movement coaching, she brings a unique blend of technical expertise and personalized instruction to every session. Chloe is passionate about helping students achieve their goals while maintaining the highest standards of safety and performance.', '/images/team/chloe-headshot.jpg', '• Certified Kitesurfing Instructor (IKO Level 2)\n• Hydrofoil Specialist\n• Movement Performance Coach\n• Nutrition & Wellness Consultant\n• Water Safety Instructor\n• 8+ Years Experience\n• 500+ Students Trained', true, 1);
+
 -- Testimonials
 DELETE FROM testimonials;
 
