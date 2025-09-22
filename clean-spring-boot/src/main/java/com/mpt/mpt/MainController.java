@@ -1021,7 +1021,7 @@ public class MainController {
     }
 
     // Serve the React app for all non-API routes
-    @GetMapping(value = {"/", "/admin", "/gallery", "/about", "/contact", "/services", "/products", "/resources", "/faq", "/privacy", "/terms"})
+    @GetMapping(value = {"/", "/admin", "/about", "/contact", "/services", "/products", "/resources", "/faq", "/privacy", "/terms"})
     public String serveReactApp() {
         return "forward:/index.html";
     }
