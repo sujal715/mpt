@@ -319,13 +319,33 @@ const Admin = () => {
 
   // Function to fetch real bookings from backend
   const fetchBookings = async () => {
+    // Only fetch if user is logged in
+    if (!isLoggedIn) {
+      console.log('User not logged in, skipping bookings fetch');
+      return;
+    }
+    
     setIsLoadingBookings(true);
     try {
       console.log('Fetching bookings from backend...');
       console.log('API Base URL:', apiService.baseURL);
       console.log('Full URL:', `${apiService.baseURL}/bookings`);
+      console.log('User logged in:', isLoggedIn);
       
-      const response = await apiService.get('/bookings');
+      // Check if API service is properly configured
+      if (!apiService.baseURL) {
+        throw new Error('API service not properly configured');
+      }
+      
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout')), 10000)
+      );
+      
+      const response = await Promise.race([
+        apiService.get('/bookings'),
+        timeoutPromise
+      ]);
       console.log('Backend response:', response);
       
       // The API returns an array directly, not wrapped in success/bookings
