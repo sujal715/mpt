@@ -471,9 +471,9 @@ public class MainController {
         return response;
     }
 
-    // Gallery Management Endpoints
+    // Gallery Management Endpoints - SIMPLIFIED VERSION
     @GetMapping("/gallery")
-    public ResponseEntity<Map<String, Object>> getGallery() {
+    public Map<String, Object> getGallery() {
         Map<String, Object> response = new HashMap<>();
         response.put("success", true);
         response.put("message", "Gallery data loaded successfully");
@@ -489,7 +489,7 @@ public class MainController {
             Map.of("id", 9L, "title", "Professional Coaching", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.23.40 AM.jpeg", "category", "training", "isFeatured", false)
         ));
         response.put("count", 9);
-        return ResponseEntity.ok(response);
+        return response;
     }
 
     // Test endpoint to verify API is working
