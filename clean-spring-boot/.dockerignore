@@ -1,8 +1,5 @@
-# Maven
-target/
-.mvn/
-mvnw
-mvnw.cmd
+# Maven build output
+clean-spring-boot/target/
 
 # IDE
 .idea/
@@ -22,6 +19,10 @@ logs/
 # Git
 .git/
 .gitignore
+
+# Frontend (not needed for backend build)
+frontend/
+node_modules/
 
 # Other
 README.md
