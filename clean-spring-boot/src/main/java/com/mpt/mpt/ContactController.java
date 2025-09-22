@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:8081", allowCredentials = "true")
+@CrossOrigin(origins = "*", allowCredentials = "false")
 public class ContactController {
 
     @Autowired

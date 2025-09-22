@@ -21,7 +21,7 @@ import com.mpt.mpt.service.BookingService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = {"http://localhost:8081", "http://localhost:3000", "http://localhost:3001", "https://ppt-app-y42f.onrender.com"}, allowCredentials = "true")
+@CrossOrigin(origins = "*", allowCredentials = "false")
 public class BookingController {
 
     @Autowired

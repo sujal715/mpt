@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api/weather")
-@CrossOrigin(origins = {"http://localhost:8081", "http://localhost:3000", "http://localhost:3001", "https://ppt-app-y42f.onrender.com"})
+@CrossOrigin(origins = "*")
 public class WeatherController {
 
     @Value("${weather.api.key}")

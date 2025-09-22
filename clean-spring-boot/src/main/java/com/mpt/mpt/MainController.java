@@ -31,7 +31,7 @@ import com.mpt.mpt.service.TeamService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:8081", allowCredentials = "true")
+@CrossOrigin(origins = "*", allowCredentials = "false")
 public class MainController {
 
     @Autowired
@@ -374,7 +374,7 @@ public class MainController {
 
     // File upload endpoint for Gallery images
     @PostMapping("/gallery/upload")
-    @CrossOrigin(origins = {"http://localhost:8081", "http://localhost:3000", "http://localhost:3001", "https://ppt-app-y42f.onrender.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = "*", allowCredentials = "false")
     public ResponseEntity<Map<String, Object>> uploadGalleryImage(
             @RequestParam("file") MultipartFile file,
             @RequestParam("title") String title,
@@ -472,7 +472,7 @@ public class MainController {
     
     // Gallery cleanup endpoint to remove duplicates and orphaned entries
     @PostMapping("/gallery/cleanup")
-    @CrossOrigin(origins = {"http://localhost:8081", "http://localhost:3000", "http://localhost:3001", "https://ppt-app-y42f.onrender.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = "*", allowCredentials = "false")
     public ResponseEntity<Map<String, Object>> cleanupGallery() {
         Map<String, Object> response = new HashMap<>();
         

@@ -20,7 +20,7 @@ import com.stripe.model.PaymentIntent;
 
 @RestController
 @RequestMapping("/api/payments")
-@CrossOrigin(origins = {"http://localhost:8081", "http://localhost:3000", "http://localhost:3001", "https://ppt-app-y42f.onrender.com"})
+@CrossOrigin(origins = "*")
 public class PaymentController {
 
     @Value("${stripe.secret.key:sk_test_51234567890abcdefghijklmnopqrstuvwxyz}")
