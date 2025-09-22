@@ -525,9 +525,18 @@ const Admin = () => {
 
   // Function to fetch team members from backend
   const loadTeamMembers = async () => {
+    // Only fetch if user is logged in
+    if (!isLoggedIn) {
+      console.log('User not logged in, skipping team fetch');
+      return;
+    }
+    
     setIsLoadingTeam(true);
     try {
       console.log('🔄 Fetching team members from backend...');
+      console.log('API Base URL:', apiService.baseURL);
+      console.log('Full URL:', `${apiService.baseURL}/team`);
+      console.log('User logged in:', isLoggedIn);
       
       // Use direct fetch to /api/team endpoint
       const response = await fetch(`${apiService.baseURL}/team`, {
@@ -541,6 +550,7 @@ const Admin = () => {
       
       console.log('📡 Team API response status:', response.status);
       console.log('📡 Team API response ok:', response.ok);
+      console.log('📡 Team API response headers:', response.headers);
       
       if (response.ok) {
         const data = await response.json();
@@ -559,12 +569,33 @@ const Admin = () => {
           addNotification('Invalid team response format', 'error');
         }
       } else {
+        console.log('❌ Response not ok:', response.status, response.statusText);
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
     } catch (error) {
       console.error('💥 Error fetching team:', error);
-      addNotification('Failed to fetch team: ' + error.message, 'error');
-      setTeamMembers([]);
+      console.error('💥 Error details:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
+      
+      // Use fallback data if API fails
+      console.log('Using fallback team data due to API error');
+      const fallbackTeam = [
+        {
+          id: 1,
+          name: 'Chloe Barrett',
+          title: 'Founder & Head Trainer',
+          description: 'Chloe Barrett is the founder and head trainer at Movement Performance Training. With over 8 years of experience in kitesurfing, hydrofoiling, and movement coaching.',
+          imageUrl: '/images/team/chloe-headshot.jpg',
+          credentials: '• Certified Kitesurfing Instructor (IKO Level 2)\n• Hydrofoil Specialist\n• Movement Performance Coach',
+          isFeatured: true,
+          displayOrder: 1
+        }
+      ];
+      setTeamMembers(fallbackTeam);
+      addNotification('Using fallback team data', 'warning');
     } finally {
       setIsLoadingTeam(false);
     }
