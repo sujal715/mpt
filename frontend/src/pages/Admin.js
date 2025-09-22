@@ -332,31 +332,27 @@ const Admin = () => {
       console.log('Full URL:', `${apiService.baseURL}/bookings`);
       console.log('User logged in:', isLoggedIn);
       
-      // Check if API service is properly configured
-      if (!apiService.baseURL) {
-        throw new Error('API service not properly configured');
-      }
+      // Use direct fetch with simple approach
+      const response = await fetch(`${apiService.baseURL}/bookings`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'omit'
+      });
       
-      // Add timeout to prevent hanging
-      const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Request timeout')), 10000)
-      );
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
       
-      // Try the test endpoint first to see if MainController is working
-      try {
-        const testResponse = await apiService.get('/test-bookings');
-        console.log('Test bookings response:', testResponse);
-      } catch (testError) {
-        console.log('Test endpoint failed, trying main bookings endpoint:', testError.message);
-      }
-      
-      // Try AdminController endpoint first (we know this works)
-      try {
-        const adminResponse = await apiService.get('/admin/bookings');
-        console.log('Admin bookings response:', adminResponse);
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Backend response:', data);
         
-        if (adminResponse.success && Array.isArray(adminResponse.data)) {
-          const transformedBookings = adminResponse.data.map((booking, index) => ({
+        // The API returns an array directly, not wrapped in success/bookings
+        if (Array.isArray(data)) {
+          // Transform backend booking format to frontend format
+          const transformedBookings = data.map((booking, index) => ({
             id: booking.id || index + 1,
             name: booking.name || 'Unknown',
             service: booking.service || 'General Training',
@@ -364,92 +360,24 @@ const Admin = () => {
             status: booking.status?.toLowerCase() || 'confirmed',
             email: booking.email || '',
             phone: booking.phone || '',
-            amount: 150
+            amount: 150 // Default amount since it's not stored in the backend
           }));
           
-          console.log('Transformed bookings from admin endpoint:', transformedBookings);
+          console.log('Transformed bookings:', transformedBookings);
           setBookings(transformedBookings);
-          addNotification(`Loaded ${transformedBookings.length} bookings`, 'success');
-          return;
-        }
-      } catch (adminError) {
-        console.log('Admin endpoint failed, trying direct fetch:', adminError.message);
-      }
-      
-      // Try direct fetch as fallback
-      try {
-        const directResponse = await fetch(`${apiService.baseURL}/bookings`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          mode: 'cors',
-          credentials: 'omit'
-        });
-        
-        if (directResponse.ok) {
-          const directData = await directResponse.json();
-          console.log('Direct fetch response:', directData);
           
-          // Transform the response
-          if (Array.isArray(directData)) {
-            const transformedBookings = directData.map((booking, index) => ({
-              id: booking.id || index + 1,
-              name: booking.name || 'Unknown',
-              service: booking.service || 'General Training',
-              date: booking.createdAt ? new Date(booking.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-              status: booking.status?.toLowerCase() || 'confirmed',
-              email: booking.email || '',
-              phone: booking.phone || '',
-              amount: 150
-            }));
-            
-            console.log('Transformed bookings from direct fetch:', transformedBookings);
-            setBookings(transformedBookings);
-            addNotification(`Loaded ${transformedBookings.length} bookings`, 'success');
-            return;
-          }
+          // Calculate all dashboard metrics from real data
+          setTimeout(() => {
+            calculateDashboardMetrics();
+          }, 100);
+          
+          addNotification(`Loaded ${transformedBookings.length} bookings`, 'success');
         } else {
-          console.log('Direct fetch failed with status:', directResponse.status);
+          console.log('No bookings found in response');
+          addNotification('No bookings found', 'warning');
         }
-      } catch (directError) {
-        console.log('Direct fetch failed:', directError.message);
-      }
-      
-      // Fallback to API service
-      const response = await Promise.race([
-        apiService.get('/bookings'),
-        timeoutPromise
-      ]);
-      console.log('Backend response:', response);
-      
-      // The API returns an array directly, not wrapped in success/bookings
-      if (Array.isArray(response)) {
-        // Transform backend booking format to frontend format
-        const transformedBookings = response.map((booking, index) => ({
-          id: booking.id || index + 1,
-          name: booking.name || 'Unknown',
-          service: booking.service || 'General Training',
-          date: booking.createdAt ? new Date(booking.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-          status: booking.status?.toLowerCase() || 'confirmed',
-          email: booking.email || '',
-          phone: booking.phone || '',
-          amount: 150 // Default amount since it's not stored in the backend
-        }));
-        
-        console.log('Transformed bookings:', transformedBookings);
-        setBookings(transformedBookings);
-        
-        // Calculate all dashboard metrics from real data
-        // Note: This will be called after bookings are set, so we need to use transformedBookings
-        setTimeout(() => {
-          calculateDashboardMetrics();
-        }, 100);
-        
-        addNotification(`Loaded ${transformedBookings.length} bookings`, 'success');
       } else {
-        console.log('No bookings found in response');
-        addNotification('No bookings found', 'warning');
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
     } catch (error) {
       console.error('Error fetching bookings:', error);
