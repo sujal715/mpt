@@ -68,13 +68,8 @@ INSERT INTO services (name, description, price, category, is_active) VALUES
 ('Equipment Rental', 'High-quality kitesurfing and foiling equipment rental', 99.00, 'Rental', true),
 ('Private Coaching', 'One-on-one personalized coaching sessions', 99.00, 'Coaching', true);
 
--- Team Members
+-- Team Members - Start with empty table (no default data)
 DELETE FROM team;
-
-INSERT INTO team (name, title, description, image_url, credentials, is_featured, display_order) VALUES 
-('Chloe Barrett', 'Founder & Head Trainer', 'Chloe Barrett is the founder and head trainer at Movement Performance Training. With over 8 years of experience in kitesurfing, hydrofoiling, and movement coaching, she brings a unique blend of technical expertise and personalized instruction to every session. Chloe is passionate about helping students achieve their goals while maintaining the highest standards of safety and performance.', '/images/team/chloe-headshot.jpg', '• Certified Kitesurfing Instructor (IKO Level 2)\n• Hydrofoil Specialist\n• Movement Performance Coach\n• Nutrition & Wellness Consultant\n• Water Safety Instructor\n• 8+ Years Experience\n• 500+ Students Trained', true, 1),
-('Alex Johnson', 'Senior Kitesurfing Instructor', 'Alex Johnson brings 6 years of professional kitesurfing experience to our team. Specializing in advanced techniques and safety protocols, Alex has trained over 300 students and is known for his patient teaching style and technical expertise.', '/images/team/alex-johnson.jpg', '• IKO Level 2 Certified Instructor\n• Advanced Kitesurfing Techniques\n• Safety & Rescue Specialist\n• 6+ Years Experience\n• 300+ Students Trained', true, 2),
-('Maria Rodriguez', 'Nutrition & Wellness Coach', 'Maria Rodriguez is our certified nutrition and wellness coach, helping students optimize their performance through proper nutrition and lifestyle habits. With a background in sports nutrition, she provides personalized meal plans and wellness strategies.', '/images/team/chloe-headshot.jpg', '• Certified Sports Nutritionist\n• Wellness & Lifestyle Coach\n• Performance Optimization Specialist\n• 4+ Years Experience\n• 200+ Clients Helped', false, 3);
 
 -- Testimonials
 DELETE FROM testimonials;
