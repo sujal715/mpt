@@ -1,5 +1,5 @@
-# Render.com Build Command
+# Render.com Build Command - Updated for deployment fix
 ./mvnw clean package -DskipTests
 
-# Render.com Start Command  
+# Render.com Start Command - Updated for deployment fix
 java -jar target/mpt-0.0.1-SNAPSHOT.jar --spring.profiles.active=render
