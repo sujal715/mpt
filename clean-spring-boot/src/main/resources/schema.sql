@@ -72,7 +72,7 @@ INSERT INTO services (name, description, price, category) VALUES
 ('Content Creation', 'Professional content writing', 50.00, 'Content');
 
 -- Insert sample testimonials
-INSERT INTO testimonials (customer_name, rating, testimonial_text) VALUES
+INSERT INTO testimonials (customer_name, rating, comment) VALUES
 ('Sarah Mitchell', 5, 'Chloe is an incredible instructor! Her patience and expertise helped me master kitesurfing in just a few sessions. The personalized approach and attention to detail made all the difference.'),
 ('James Rodriguez', 5, 'The hydrofoil training was outstanding. Chloe''s technical knowledge and teaching methods are top-notch. I felt confident and safe throughout the entire learning process.'),
 ('Emma Thompson', 5, 'Movement Performance Training exceeded my expectations. Chloe''s passion for the sport is contagious, and her ability to break down complex techniques into manageable steps is remarkable.'),
