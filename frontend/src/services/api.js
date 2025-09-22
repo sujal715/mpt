@@ -1,6 +1,7 @@
 // API Configuration for Java Spring Boot Backend
-// Updated to use local Java backend
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8081/api';
+// Updated to handle both local and production environments
+const API_BASE_URL = process.env.REACT_APP_API_URL || 
+  (window.location.hostname === 'localhost' ? 'http://localhost:8081/api' : `${window.location.origin}/api`);
 
 // API Service Class
 class ApiService {
