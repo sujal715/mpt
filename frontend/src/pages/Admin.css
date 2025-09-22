@@ -295,6 +295,8 @@
 .admin-dashboard {
   min-height: 100vh;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  margin: 0;
+  padding: 0;
 }
 
 .admin-header {
@@ -305,6 +307,8 @@
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .admin-header-content {
@@ -314,12 +318,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 60px;
 }
 
 .admin-brand {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
 .admin-brand-icon {
@@ -354,10 +360,13 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-shrink: 0;
+  min-height: 40px;
 }
 
 .search-box {
   position: relative;
+  flex-shrink: 0;
 }
 
 .search-box input {
@@ -368,6 +377,8 @@
   background: #f9fafb;
   transition: all 0.3s ease;
   min-width: 250px;
+  height: 40px;
+  box-sizing: border-box;
 }
 
 .search-box input:focus {
@@ -394,6 +405,9 @@
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  height: 40px;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .logout-btn:hover {

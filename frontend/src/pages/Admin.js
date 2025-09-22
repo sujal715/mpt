@@ -1292,10 +1292,10 @@ const Admin = () => {
                 autoComplete="off"
               />
               <span className="search-icon">🔍</span>
-          </div>
-          <button className="logout-btn" onClick={handleLogout}>
-            Logout
-          </button>
+            </div>
+            <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </div>
       </div>
