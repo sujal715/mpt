@@ -475,28 +475,21 @@ public class MainController {
     @GetMapping("/gallery")
     public ResponseEntity<Map<String, Object>> getGallery() {
         Map<String, Object> response = new HashMap<>();
-        
-        try {
-            // Try to get gallery items from database
-            List<Gallery> galleryItems = galleryService.getAllGalleryItems();
-            response.put("success", true);
-            response.put("data", galleryItems);
-            response.put("count", galleryItems.size());
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            // Fallback to static data if database fails
-            response.put("success", true);
-            response.put("message", "Using fallback gallery data");
-            response.put("data", Arrays.asList(
-                Map.of("id", 1L, "title", "MPT Logo", "url", "/images/logos/mpt-logo.jpeg", "category", "logos", "isFeatured", true),
-                Map.of("id", 2L, "title", "Team Member", "url", "/images/team/chloe-headshot.jpg", "category", "team", "isFeatured", true),
-                Map.of("id", 3L, "title", "Training Session", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg", "category", "training", "isFeatured", true),
-                Map.of("id", 4L, "title", "Hydrofoil Practice", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.31 AM.jpeg", "category", "training", "isFeatured", false),
-                Map.of("id", 5L, "title", "Advanced Training", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM.jpeg", "category", "training", "isFeatured", false)
-            ));
-            response.put("count", 5);
-            return ResponseEntity.ok(response);
-        }
+        response.put("success", true);
+        response.put("message", "Gallery data loaded successfully");
+        response.put("data", Arrays.asList(
+            Map.of("id", 1L, "title", "MPT Logo", "url", "/images/logos/mpt-logo.jpeg", "category", "logos", "isFeatured", true),
+            Map.of("id", 2L, "title", "Chloe Barrett - Founder & Head Trainer", "url", "/images/team/chloe-headshot.jpg", "category", "team", "isFeatured", true),
+            Map.of("id", 3L, "title", "Kitesurfing Training Session", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg", "category", "training", "isFeatured", true),
+            Map.of("id", 4L, "title", "Hydrofoil Practice", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.31 AM.jpeg", "category", "training", "isFeatured", false),
+            Map.of("id", 5L, "title", "Advanced Training Techniques", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM.jpeg", "category", "training", "isFeatured", false),
+            Map.of("id", 6L, "title", "Equipment Setup", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.34 AM.jpeg", "category", "training", "isFeatured", false),
+            Map.of("id", 7L, "title", "Water Safety Training", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.38 AM.jpeg", "category", "training", "isFeatured", false),
+            Map.of("id", 8L, "title", "Group Training Session", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.23.32 AM.jpeg", "category", "training", "isFeatured", false),
+            Map.of("id", 9L, "title", "Professional Coaching", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.23.40 AM.jpeg", "category", "training", "isFeatured", false)
+        ));
+        response.put("count", 9);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/gallery-fresh")
