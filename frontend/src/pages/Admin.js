@@ -1265,45 +1265,81 @@ const Admin = () => {
       </div>
 
       {/* ========================================================================
-          HEADER SECTION
+          HEADER SECTION - SIMPLIFIED AND ROBUST
           ======================================================================== */}
-      <div className="admin-header">
-        <div className="admin-header-content">
-          <div className="admin-brand">
-            <div className="admin-brand-icon">
-              <img src="/images/logos/mpt-logo.jpeg" alt="MPT Logo" className="admin-brand-image" />
-            </div>
-            <div>
-              <h1>MPT Admin Dashboard</h1>
-              <span className="admin-subtitle">Advanced Management Portal</span>
-            </div>
+      <div className="admin-header" style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 9999,
+        background: 'white',
+        padding: '1rem 2rem',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        minHeight: '80px',
+        width: '100%'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <img src="/images/logos/mpt-logo.jpeg" alt="MPT Logo" style={{ height: '40px', width: '40px' }} />
+          <div>
+            <h1 style={{ margin: 0, fontSize: '1.5rem', color: '#1f2937' }}>MPT Admin Dashboard</h1>
+            <span style={{ fontSize: '0.9rem', color: '#6b7280' }}>Advanced Management Portal</span>
           </div>
-          
-          <div className="admin-header-actions">
-            <div className="search-box">
-              <label htmlFor="admin-search-input" className="sr-only">Search</label>
-              <input
-                type="text"
-                id="admin-search-input"
-                name="adminSearch"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                autoComplete="off"
-              />
-              <span className="search-icon">🔍</span>
-            </div>
-            <button className="logout-btn" onClick={handleLogout}>
-              Logout
-            </button>
+        </div>
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ position: 'relative' }}>
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{
+                padding: '0.75rem 1rem 0.75rem 2.5rem',
+                border: '2px solid #e5e7eb',
+                borderRadius: '10px',
+                fontSize: '1rem',
+                width: '300px',
+                height: '40px',
+                boxSizing: 'border-box'
+              }}
+            />
+            <span style={{
+              position: 'absolute',
+              left: '0.75rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: '#9ca3af',
+              fontSize: '1.2rem'
+            }}>🔍</span>
           </div>
+          <button 
+            onClick={handleLogout}
+            style={{
+              background: 'linear-gradient(135deg, #ef4444, #dc2626)',
+              color: 'white',
+              border: 'none',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '10px',
+              cursor: 'pointer',
+              fontWeight: '600',
+              height: '40px',
+              minWidth: '80px',
+              fontSize: '0.9rem'
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
 
       {/* ========================================================================
           MAIN CONTENT AREA
           ======================================================================== */}
-      <div className="admin-content">
+      <div className="admin-content" style={{ paddingTop: '100px' }}>
         {/* ========================================================================
             SIDEBAR NAVIGATION
             ======================================================================== */}
