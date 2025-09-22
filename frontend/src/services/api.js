@@ -3,6 +3,10 @@
 const API_BASE_URL = process.env.REACT_APP_API_URL || 
   (window.location.hostname === 'localhost' ? 'http://localhost:8081/api' : `${window.location.origin}/api`);
 
+console.log('API_BASE_URL configured as:', API_BASE_URL);
+console.log('Current hostname:', window.location.hostname);
+console.log('Current origin:', window.location.origin);
+
 // API Service Class
 class ApiService {
   constructor() {
