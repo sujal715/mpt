@@ -28,6 +28,7 @@ const Admin = () => {
   
   // Loading States
   const [isLoadingBookings, setIsLoadingBookings] = useState(false);
+  const [isLoadingServices, setIsLoadingServices] = useState(false);
   const [isLoadingTestimonials, setIsLoadingTestimonials] = useState(false);
   const [isLoadingTeam, setIsLoadingTeam] = useState(false);
   const [isUploadingVideo, setIsUploadingVideo] = useState(false);
@@ -478,6 +479,7 @@ const Admin = () => {
 
   // Function to fetch real services from backend
   const fetchServices = async () => {
+    setIsLoadingServices(true);
     try {
       console.log('🔄 Fetching services from admin backend...');
       const response = await apiService.get('/admin/services');
@@ -499,6 +501,8 @@ const Admin = () => {
       console.error('💥 Error fetching services:', error);
       addNotification('Failed to fetch services: ' + error.message, 'error');
       setServices([]);
+    } finally {
+      setIsLoadingServices(false);
     }
   };
 
@@ -1687,30 +1691,36 @@ const Admin = () => {
               </div>
               
               <div className={`services-${viewMode}`}>
-                {services.map(service => (
-                  <div key={service.id} className="service-item">
-                    <div className="service-header">
-                      <h3>{service.name}</h3>
-                      <span className={`status-badge ${service.isActive ? 'active' : 'inactive'}`}>
-                        {service.isActive ? 'Active' : 'Inactive'}
-                      </span>
-                  </div>
-                    <p>{service.description}</p>
-                    <div className="service-details">
-                      <span>💰 ${service.price}</span>
-                      <span>⏱️ {service.duration}</span>
-                      <span>🏷️ {service.category}</span>
-                </div>
-                  <div className="service-actions">
-                      <button className="edit-btn" onClick={() => openModal('service', service)}>
-                        Edit
-                      </button>
-                      <button className="delete-btn" onClick={() => deleteService(service.id)}>
-                        Delete
-                      </button>
-                </div>
-                  </div>
-                ))}
+                {isLoadingServices ? (
+                  <div className="loading-indicator">Loading services...</div>
+                ) : services.length === 0 ? (
+                  <div className="no-data">No services found</div>
+                ) : (
+                  services.map(service => (
+                    <div key={service.id} className="service-item">
+                      <div className="service-header">
+                        <h3>{service.name}</h3>
+                        <span className={`status-badge ${service.isActive ? 'active' : 'inactive'}`}>
+                          {service.isActive ? 'Active' : 'Inactive'}
+                        </span>
+                      </div>
+                      <p>{service.description}</p>
+                      <div className="service-details">
+                        <span>💰 ${service.price}</span>
+                        <span>⏱️ {service.duration || 'N/A'}</span>
+                        <span>🏷️ {service.category}</span>
+                      </div>
+                      <div className="service-actions">
+                        <button className="edit-btn" onClick={() => openModal('service', service)}>
+                          Edit
+                        </button>
+                        <button className="delete-btn" onClick={() => deleteService(service.id)}>
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           )}
