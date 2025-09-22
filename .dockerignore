@@ -27,3 +27,9 @@ node_modules/
 # Other
 README.md
 LICENSE
+DEPLOYMENT.md
+MPT_Use_Case_Diagram.md
+PORT-CONFIGURATION.md
+deploy.sh
+re-enable-sql-init.sh
+start-backend.sh

@@ -7,19 +7,14 @@ WORKDIR /app
 # Set Maven options to avoid memory issues
 ENV MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256m"
 
-# Copy Maven wrapper and pom.xml first (for better caching)
-COPY clean-spring-boot/mvnw .
-COPY clean-spring-boot/.mvn .mvn
-COPY clean-spring-boot/pom.xml .
+# Copy the entire clean-spring-boot directory
+COPY clean-spring-boot/ .
 
 # Make mvnw executable
 RUN chmod +x ./mvnw
 
 # Download dependencies (this layer will be cached if pom.xml doesn't change)
 RUN ./mvnw dependency:go-offline -B
-
-# Copy source code
-COPY clean-spring-boot/src src
 
 # Build the application with memory optimization
 RUN ./mvnw clean package -DskipTests -Dmaven.test.skip=true
