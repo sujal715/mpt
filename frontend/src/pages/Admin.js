@@ -479,20 +479,24 @@ const Admin = () => {
   // Function to fetch real services from backend
   const fetchServices = async () => {
     try {
-      console.log('Fetching services from backend...');
+      console.log('🔄 Fetching services from backend...');
       const response = await apiService.get('/services');
-      console.log('Services response:', response);
+      console.log('📡 Services API response:', response);
+      console.log('📊 Response type:', typeof response, 'Is Array:', Array.isArray(response));
       
-      // The new ServiceController returns a list directly
+      // Handle both array response and object with data property
       if (Array.isArray(response)) {
         setServices(response);
-        console.log('Services loaded:', response);
+        console.log('✅ Services loaded (array format):', response);
+      } else if (response && response.success && Array.isArray(response.data)) {
+        setServices(response.data);
+        console.log('✅ Services loaded (object format):', response.data);
       } else {
-        console.log('No services found or invalid response format');
+        console.log('❌ No services found or invalid response format:', response);
         setServices([]);
       }
     } catch (error) {
-      console.error('Error fetching services:', error);
+      console.error('💥 Error fetching services:', error);
       addNotification('Failed to fetch services: ' + error.message, 'error');
       setServices([]);
     }
