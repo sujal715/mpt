@@ -50,14 +50,6 @@ public class MainController {
     ));
     private static int nextServiceId = 6;
 
-    @GetMapping("/test")
-    public Map<String, Object> test() {
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Backend is working!");
-        response.put("status", "success");
-        return response;
-    }
-
     @GetMapping("/test-image")
     public String testImage() {
         return "<!DOCTYPE html><html><head><title>Image Test</title></head><body><h1>Image Test</h1><img src='/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg' alt='Test Image' style='max-width: 300px;'><p>If you can see the image above, static file serving is working.</p></body></html>";
