@@ -20,10 +20,10 @@ public class MptApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:8000", "http://localhost:3000", "http://localhost:3001", "http://localhost:8081", "https://ppt-app-y42f.onrender.com")
+                        .allowedOriginPatterns("*")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowCredentials(false);
             }
 
             @Override
