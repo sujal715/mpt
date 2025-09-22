@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mpt.mpt.service.TeamService;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", allowCredentials = "false")
 public class MainController {
+    
+    @Autowired
+    private TeamService teamService;
 
     // Gallery Management Endpoints - WORKING VERSION
     @GetMapping("/gallery")
@@ -111,21 +117,8 @@ public class MainController {
     }
 
     @GetMapping("/team")
-    public List<Map<String, Object>> getTeam() {
-        return Arrays.asList(
-            Map.of(
-                "id", 1,
-                "name", "Chloe Barrett",
-                "title", "Founder & Head Trainer",
-                "description", "Chloe Barrett is the founder and head trainer at Movement Performance Training. With over 8 years of experience in kitesurfing, hydrofoiling, and movement coaching, she brings a unique blend of technical expertise and personalized instruction to every session. Chloe is passionate about helping students achieve their goals while maintaining the highest standards of safety and performance.",
-                "imageUrl", "/images/team/chloe-headshot.jpg",
-                "credentials", "• Certified Kitesurfing Instructor (IKO Level 2)\\n• Hydrofoil Specialist\\n• Movement Performance Coach\\n• Nutrition & Wellness Consultant\\n• Water Safety Instructor\\n• 8+ Years Experience\\n• 500+ Students Trained",
-                "isFeatured", true,
-                "displayOrder", 1,
-                "createdAt", "2025-09-22T20:44:18.029036",
-                "updatedAt", "2025-09-22T20:44:18.029036"
-            )
-        );
+    public List<com.mpt.mpt.entity.Team> getTeam() {
+        return teamService.getAllTeamMembers();
     }
 
     // Serve the React app for all non-API routes
