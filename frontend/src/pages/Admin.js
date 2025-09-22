@@ -861,7 +861,7 @@ const Admin = () => {
         // Team member creation/update
         if (data.id) {
           // Update existing team member
-          const response = await apiService.put(`/team/${data.id}`, {
+          const response = await apiService.put(`/admin/team/${data.id}`, {
             name: data.name,
             title: data.title,
             description: data.description,
@@ -882,7 +882,7 @@ const Admin = () => {
           }
         } else {
           // Create new team member
-          const response = await apiService.post('/team', {
+          const response = await apiService.post('/admin/team', {
             name: data.name,
             title: data.title,
             description: data.description,
@@ -956,7 +956,7 @@ const Admin = () => {
 
   const deleteTeamMember = async (teamId) => {
     try {
-      const response = await apiService.delete(`/team/${teamId}`);
+      const response = await apiService.delete(`/admin/team/${teamId}`);
       if (response.success) {
         setTeamMembers(prev => prev.filter(member => member.id !== teamId));
         addNotification('Team member deleted successfully!', 'success');
