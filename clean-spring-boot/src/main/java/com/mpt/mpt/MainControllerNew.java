@@ -1,11 +1,8 @@
 package com.mpt.mpt;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +49,19 @@ public class MainControllerNew {
             "success", true,
             "message", "New MainController working!",
             "timestamp", System.currentTimeMillis()
+        );
+    }
+
+    @GetMapping("/gallery-new")
+    public Map<String, Object> getGalleryNew() {
+        return Map.of(
+            "success", true,
+            "message", "Gallery NEW endpoint working!",
+            "data", Arrays.asList(
+                Map.of("id", 1L, "title", "MPT Logo", "url", "/images/logos/mpt-logo.jpeg", "category", "logos", "isFeatured", true),
+                Map.of("id", 2L, "title", "Chloe Barrett", "url", "/images/team/chloe-headshot.jpg", "category", "team", "isFeatured", true)
+            ),
+            "count", 2
         );
     }
 }
