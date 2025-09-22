@@ -558,4 +558,102 @@ public class AdminController {
 
         return ResponseEntity.ok(response);
     }
+
+    // ============================================================================
+    // GALLERY MANAGEMENT ENDPOINTS
+    // ============================================================================
+
+    @GetMapping("/gallery")
+    public ResponseEntity<Map<String, Object>> getGalleryItems() {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            List<Gallery> galleryItems = galleryService.getAllGalleryItems();
+            response.put("success", true);
+            response.put("data", galleryItems);
+            response.put("count", galleryItems.size());
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error fetching gallery items: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/gallery")
+    public ResponseEntity<Map<String, Object>> addGalleryItem(@RequestBody Gallery galleryItem) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            Gallery savedItem = galleryService.createGalleryItem(galleryItem);
+            response.put("success", true);
+            response.put("data", savedItem);
+            response.put("message", "Gallery item added successfully");
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error adding gallery item: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/gallery/{id}")
+    public ResponseEntity<Map<String, Object>> updateGalleryItem(@PathVariable Long id, @RequestBody Gallery galleryItem) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            Optional<Gallery> existingItem = galleryService.getGalleryItemById(id);
+            if (existingItem.isPresent()) {
+                Gallery updatedItem = galleryService.updateGalleryItem(id, galleryItem);
+                if (updatedItem != null) {
+                    response.put("success", true);
+                    response.put("data", updatedItem);
+                    response.put("message", "Gallery item updated successfully");
+                } else {
+                    response.put("success", false);
+                    response.put("message", "Failed to update gallery item");
+                    return ResponseEntity.badRequest().body(response);
+                }
+            } else {
+                response.put("success", false);
+                response.put("message", "Gallery item not found");
+                return ResponseEntity.notFound().build();
+            }
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error updating gallery item: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/gallery/{id}")
+    public ResponseEntity<Map<String, Object>> deleteGalleryItem(@PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            boolean deleted = galleryService.deleteGalleryItem(id);
+            if (deleted) {
+                response.put("success", true);
+                response.put("message", "Gallery item deleted successfully");
+            } else {
+                response.put("success", false);
+                response.put("message", "Gallery item not found");
+                return ResponseEntity.notFound().build();
+            }
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error deleting gallery item: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
 }

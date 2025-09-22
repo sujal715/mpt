@@ -1,6 +1,7 @@
 package com.mpt.mpt;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mpt.mpt.entity.Gallery;
 import com.mpt.mpt.service.TeamService;
 import com.mpt.mpt.service.ServiceService;
+import com.mpt.mpt.service.GalleryService;
 
 @RestController
 @RequestMapping("/api")
@@ -26,22 +29,27 @@ public class MainController {
     
     @Autowired
     private ServiceService serviceService;
+    
+    @Autowired
+    private GalleryService galleryService;
 
     // Gallery Management Endpoints - WORKING VERSION
     @GetMapping("/gallery")
     public Map<String, Object> getGallery() {
-        return Map.of(
-            "success", true,
-            "message", "Gallery data loaded successfully",
-            "data", Arrays.asList(
-                Map.of("id", 1L, "title", "MPT Logo", "url", "/images/logos/mpt-logo.jpeg", "category", "logos", "isFeatured", true),
-                Map.of("id", 2L, "title", "Chloe Barrett - Founder & Head Trainer", "url", "/images/team/chloe-headshot.jpg", "category", "team", "isFeatured", true),
-                Map.of("id", 3L, "title", "Kitesurfing Training Session", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg", "category", "training", "isFeatured", true),
-                Map.of("id", 4L, "title", "Hydrofoil Practice", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.31 AM.jpeg", "category", "training", "isFeatured", false),
-                Map.of("id", 5L, "title", "Advanced Training Techniques", "url", "/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM.jpeg", "category", "training", "isFeatured", false)
-            ),
-            "count", 5
-        );
+        Map<String, Object> response = new HashMap<>();
+        try {
+            List<Gallery> galleryItems = galleryService.getAllGalleryItems();
+            response.put("success", true);
+            response.put("message", "Gallery data loaded successfully");
+            response.put("data", galleryItems);
+            response.put("count", galleryItems.size());
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error loading gallery: " + e.getMessage());
+            response.put("data", new ArrayList<>());
+            response.put("count", 0);
+        }
+        return response;
     }
 
     @GetMapping("/services")

@@ -56,7 +56,38 @@ INSERT INTO gallery (title, url, category, is_featured) VALUES
 
 -- Hero Images
 ('Homepage Hero - Training Excellence', '/images/hero/homepage.jpeg', 'featured', true),
-('Kettlebell Workout Hero', '/images/hero/kettlebell-workout-hero.png', 'training', true);
+
+-- Additional Training Images (more variety)
+('Morning Training Session', '/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM-2.jpeg', 'training', false),
+('Afternoon Practice', '/images/training/WhatsApp Image 2025-09-01 at 11.21.34 AM-2.jpeg', 'training', false),
+('Evening Training', '/images/training/WhatsApp Image 2025-09-01 at 11.21.40 AM-2.jpeg', 'training', false),
+('Weekend Intensive', '/images/training/WhatsApp Image 2025-09-01 at 11.21.41 AM-2.jpeg', 'training', false),
+('Advanced Techniques', '/images/training/WhatsApp Image 2025-09-01 at 11.23.32 AM-2.jpeg', 'training', false),
+
+-- Facility Images (using placeholder for now)
+('Training Facility - Main Area', '/images/placeholder-gallery.jpg', 'facility', false),
+('Equipment Storage', '/images/placeholder-gallery.jpg', 'facility', false),
+('Changing Rooms', '/images/placeholder-gallery.jpg', 'facility', false),
+('Reception Area', '/images/placeholder-gallery.jpg', 'facility', false),
+
+-- Workout Images (using training images for now)
+('Strength Training Workout', '/images/training/WhatsApp Image 2025-09-01 at 11.21.30 AM.jpeg', 'workouts', false),
+('Cardio Session', '/images/training/WhatsApp Image 2025-09-01 at 11.21.31 AM.jpeg', 'workouts', false),
+('Flexibility Training', '/images/training/WhatsApp Image 2025-09-01 at 11.21.33 AM.jpeg', 'workouts', false),
+('Endurance Building', '/images/training/WhatsApp Image 2025-09-01 at 11.21.34 AM.jpeg', 'workouts', false),
+('Core Strengthening', '/images/training/WhatsApp Image 2025-09-01 at 11.21.35 AM.jpeg', 'workouts', false),
+('Balance Training', '/images/training/WhatsApp Image 2025-09-01 at 11.21.36 AM.jpeg', 'workouts', false),
+('Coordination Exercises', '/images/training/WhatsApp Image 2025-09-01 at 11.21.37 AM.jpeg', 'workouts', false),
+('Speed Training', '/images/training/WhatsApp Image 2025-09-01 at 11.21.38 AM.jpeg', 'workouts', false),
+('Power Development', '/images/training/WhatsApp Image 2025-09-01 at 11.21.39 AM.jpeg', 'workouts', false),
+('Recovery Session', '/images/training/WhatsApp Image 2025-09-01 at 11.21.40 AM.jpeg', 'workouts', false),
+
+-- Services Images
+('Kitesurfing Service', '/images/training/WhatsApp Image 2025-09-01 at 11.21.41 AM.jpeg', 'services', false),
+('Hydrofoil Service', '/images/training/WhatsApp Image 2025-09-01 at 11.21.43 AM.jpeg', 'services', false),
+('Nutrition Service', '/images/training/WhatsApp Image 2025-09-01 at 11.21.46 AM.jpeg', 'services', false),
+('Equipment Service', '/images/training/WhatsApp Image 2025-09-01 at 11.21.47 AM.jpeg', 'services', false),
+('Coaching Service', '/images/training/WhatsApp Image 2025-09-01 at 11.23.32 AM.jpeg', 'services', false);
 
 -- Services
 DELETE FROM services;
