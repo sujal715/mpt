@@ -32,6 +32,29 @@ public class AdminController {
 
     @Autowired
     private BookingService bookingService;
+
+    // ============================================================================
+    // BOOKINGS MANAGEMENT ENDPOINTS
+    // ============================================================================
+
+    @GetMapping("/bookings")
+    public ResponseEntity<Map<String, Object>> getBookings() {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            List<Booking> bookings = bookingService.getAllBookings();
+            response.put("success", true);
+            response.put("data", bookings);
+            response.put("count", bookings.size());
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error fetching bookings: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
     
     @Autowired
     private TestimonialService testimonialService;

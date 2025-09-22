@@ -350,7 +350,33 @@ const Admin = () => {
         console.log('Test endpoint failed, trying main bookings endpoint:', testError.message);
       }
       
-      // Try direct fetch first to avoid CORS issues
+      // Try AdminController endpoint first (we know this works)
+      try {
+        const adminResponse = await apiService.get('/admin/bookings');
+        console.log('Admin bookings response:', adminResponse);
+        
+        if (adminResponse.success && Array.isArray(adminResponse.data)) {
+          const transformedBookings = adminResponse.data.map((booking, index) => ({
+            id: booking.id || index + 1,
+            name: booking.name || 'Unknown',
+            service: booking.service || 'General Training',
+            date: booking.createdAt ? new Date(booking.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+            status: booking.status?.toLowerCase() || 'confirmed',
+            email: booking.email || '',
+            phone: booking.phone || '',
+            amount: 150
+          }));
+          
+          console.log('Transformed bookings from admin endpoint:', transformedBookings);
+          setBookings(transformedBookings);
+          addNotification(`Loaded ${transformedBookings.length} bookings`, 'success');
+          return;
+        }
+      } catch (adminError) {
+        console.log('Admin endpoint failed, trying direct fetch:', adminError.message);
+      }
+      
+      // Try direct fetch as fallback
       try {
         const directResponse = await fetch(`${apiService.baseURL}/bookings`, {
           method: 'GET',
