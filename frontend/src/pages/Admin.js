@@ -481,9 +481,9 @@ const Admin = () => {
   const fetchServices = async () => {
     setIsLoadingServices(true);
     try {
-      console.log('🔄 Fetching services from admin backend...');
-      const response = await apiService.get('/admin/services');
-      console.log('📡 Admin Services API response:', response);
+      console.log('🔄 Fetching services from backend...');
+      const response = await apiService.get('/services');
+      console.log('📡 Services API response:', response);
       console.log('📊 Response type:', typeof response, 'Is Array:', Array.isArray(response));
       
       // Handle both array response and object with data property
@@ -514,11 +514,17 @@ const Admin = () => {
       console.log('📡 Gallery API response:', response);
       console.log('📊 Response type:', typeof response, 'Is Array:', Array.isArray(response));
       
+      // Handle both array response and object with data property
       if (Array.isArray(response)) {
         console.log('✅ Setting gallery with', response.length, 'items');
         setGallery(response);
         console.log('🎯 Gallery state updated:', response);
         addNotification(`Gallery loaded: ${response.length} items`, 'success');
+      } else if (response && response.success && Array.isArray(response.data)) {
+        console.log('✅ Setting gallery with', response.data.length, 'items');
+        setGallery(response.data);
+        console.log('🎯 Gallery state updated:', response.data);
+        addNotification(`Gallery loaded: ${response.data.length} items`, 'success');
       } else {
         console.log('❌ Invalid response format:', response);
         setGallery([]);
