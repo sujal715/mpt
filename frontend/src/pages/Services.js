@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCheck } from 'react-icons/fa';
+import { servicesService } from '../services/servicesService';
 import './Services.css';
 
 function Services() {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setLoading(true);
+        const response = await servicesService.getAllServices();
+        if (response.success) {
+          setServices(response.data);
+        } else {
+          setError('Failed to load services');
+        }
+      } catch (err) {
+        setError('Failed to load services');
+        console.error('Error fetching services:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
   // Debug logging
-  console.log("Services component rendering with luxury animations");
+  console.log("Services component rendering with luxury animations", { services, loading, error });
   
   return (
     <div className="services-page">
@@ -66,77 +92,45 @@ function Services() {
           </div>
           
           <div className="features-grid luxury-features-grid">
-            <div className="feature-card luxury-feature-card scroll-fade-in" id="kitesurfing-feature">
-              <h3 className="luxury-feature-title">Kitesurfing Training</h3>
-              <p className="luxury-feature-description">Comprehensive kitesurfing lessons for all skill levels, from complete beginners to advanced riders.</p>
-              <div className="feature-benefits luxury-benefits">
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Beginner to advanced levels</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Safety training and certification</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Equipment provided</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Progress tracking</span>
-                </div>
+            {loading ? (
+              <div style={{textAlign: 'center', padding: '2rem', color: '#64748b'}}>
+                <p>Loading services...</p>
               </div>
-              <div className="feature-luxury-border" />
-            </div>
-
-            <div className="feature-card luxury-feature-card scroll-fade-in" id="recovery-feature">
-              <h3 className="luxury-feature-title">Injury Recovery</h3>
-              <p className="luxury-feature-description">Specialized rehabilitation and recovery programs to help you get back to peak performance after injuries.</p>
-              <div className="feature-benefits luxury-benefits">
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Post-injury rehabilitation</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Movement restoration</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Strength rebuilding</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Return-to-sport protocols</span>
-                </div>
+            ) : error ? (
+              <div style={{textAlign: 'center', padding: '2rem', color: '#ef4444'}}>
+                <p>Error loading services: {error}</p>
               </div>
-              <div className="feature-luxury-border" />
-            </div>
-
-            <div className="feature-card luxury-feature-card scroll-fade-in" id="wingfoil-feature">
-              <h3 className="luxury-feature-title">Nutrition Coaching</h3>
-              <p className="luxury-feature-description">Discover the power of proper nutrition with our comprehensive coaching programs.</p>
-              <div className="feature-benefits luxury-benefits">
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Meal planning strategies</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Macro and micronutrient balance</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Performance nutrition</span>
-                </div>
-                <div className="benefit-item luxury-benefit-item">
-                  <FaCheck />
-                  <span>Hydration protocols</span>
-                </div>
+            ) : services.length === 0 ? (
+              <div style={{textAlign: 'center', padding: '2rem', color: '#64748b'}}>
+                <p>No services available at the moment.</p>
               </div>
-              <div className="feature-luxury-border" />
-            </div>
+            ) : (
+              services.map((service, index) => (
+                <div key={service.id} className="feature-card luxury-feature-card scroll-fade-in">
+                  <h3 className="luxury-feature-title">{service.name}</h3>
+                  <p className="luxury-feature-description">{service.description}</p>
+                  <div className="feature-benefits luxury-benefits">
+                    <div className="benefit-item luxury-benefit-item">
+                      <FaCheck />
+                      <span>Category: {service.category}</span>
+                    </div>
+                    <div className="benefit-item luxury-benefit-item">
+                      <FaCheck />
+                      <span>Price: ${service.price}</span>
+                    </div>
+                    <div className="benefit-item luxury-benefit-item">
+                      <FaCheck />
+                      <span>Status: {service.isActive ? 'Active' : 'Inactive'}</span>
+                    </div>
+                    <div className="benefit-item luxury-benefit-item">
+                      <FaCheck />
+                      <span>Professional Service</span>
+                    </div>
+                  </div>
+                  <div className="feature-luxury-border" />
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
