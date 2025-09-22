@@ -373,8 +373,16 @@ public class MainController {
     // Testimonials endpoint moved to TestimonialController to avoid conflicts
 
     @GetMapping("/services")
-    public ResponseEntity<List<Map<String, Object>>> getServices() {
-        return ResponseEntity.ok(services);
+    public ResponseEntity<?> getServices() {
+        try {
+            return ResponseEntity.ok(services);
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("message", "Error fetching services: " + e.getMessage());
+            errorResponse.put("error", e.getClass().getSimpleName());
+            return ResponseEntity.status(500).body(errorResponse);
+        }
     }
 
     @PostMapping("/services")
@@ -465,9 +473,17 @@ public class MainController {
 
     // Gallery Management Endpoints
     @GetMapping("/gallery")
-    public ResponseEntity<List<Gallery>> getGallery() {
-        List<Gallery> galleryItems = galleryService.getAllGalleryItems();
-        return ResponseEntity.ok(galleryItems);
+    public ResponseEntity<?> getGallery() {
+        try {
+            List<Gallery> galleryItems = galleryService.getAllGalleryItems();
+            return ResponseEntity.ok(galleryItems);
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("message", "Error fetching gallery: " + e.getMessage());
+            errorResponse.put("error", e.getClass().getSimpleName());
+            return ResponseEntity.status(500).body(errorResponse);
+        }
     }
 
     @GetMapping("/gallery-fresh")
