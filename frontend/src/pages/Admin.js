@@ -350,6 +350,47 @@ const Admin = () => {
         console.log('Test endpoint failed, trying main bookings endpoint:', testError.message);
       }
       
+      // Try direct fetch first to avoid CORS issues
+      try {
+        const directResponse = await fetch(`${apiService.baseURL}/bookings`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          mode: 'cors',
+          credentials: 'omit'
+        });
+        
+        if (directResponse.ok) {
+          const directData = await directResponse.json();
+          console.log('Direct fetch response:', directData);
+          
+          // Transform the response
+          if (Array.isArray(directData)) {
+            const transformedBookings = directData.map((booking, index) => ({
+              id: booking.id || index + 1,
+              name: booking.name || 'Unknown',
+              service: booking.service || 'General Training',
+              date: booking.createdAt ? new Date(booking.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+              status: booking.status?.toLowerCase() || 'confirmed',
+              email: booking.email || '',
+              phone: booking.phone || '',
+              amount: 150
+            }));
+            
+            console.log('Transformed bookings from direct fetch:', transformedBookings);
+            setBookings(transformedBookings);
+            addNotification(`Loaded ${transformedBookings.length} bookings`, 'success');
+            return;
+          }
+        } else {
+          console.log('Direct fetch failed with status:', directResponse.status);
+        }
+      } catch (directError) {
+        console.log('Direct fetch failed:', directError.message);
+      }
+      
+      // Fallback to API service
       const response = await Promise.race([
         apiService.get('/bookings'),
         timeoutPromise
