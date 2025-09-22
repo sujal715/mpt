@@ -14,14 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mpt.mpt.service.TeamService;
+import com.mpt.mpt.service.ServiceService;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", allowCredentials = "false")
 public class MainController {
-    
+
     @Autowired
     private TeamService teamService;
+    
+    @Autowired
+    private ServiceService serviceService;
 
     // Gallery Management Endpoints - WORKING VERSION
     @GetMapping("/gallery")
@@ -42,16 +46,10 @@ public class MainController {
 
     @GetMapping("/services")
     public Map<String, Object> getServices() {
-        return Map.of(
-            "success", true,
-            "data", Arrays.asList(
-        Map.of("id", 1, "name", "Kitesurfing Training", "description", "Comprehensive kitesurfing lessons for all skill levels", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
-        Map.of("id", 2, "name", "Hydrofoil Training", "description", "Master the art of hydrofoiling with expert instructors", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
-        Map.of("id", 3, "name", "Nutrition Coaching", "description", "Learn nutrition principles and meal planning strategies", "price", 99.00, "category", "Training", "isActive", true, "duration", "2 hours"),
-        Map.of("id", 4, "name", "Equipment Rental", "description", "High-quality kitesurfing and foiling equipment rental", "price", 99.00, "category", "Rental", "isActive", true, "duration", "Full day"),
-        Map.of("id", 5, "name", "Private Coaching", "description", "One-on-one personalized coaching sessions", "price", 99.00, "category", "Coaching", "isActive", true, "duration", "1 hour")
-            )
-        );
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("data", serviceService.getAllServices());
+        return response;
     }
 
     // Alternative endpoints with different names

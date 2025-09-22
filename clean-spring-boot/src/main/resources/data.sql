@@ -58,6 +58,16 @@ INSERT INTO gallery (title, url, category, is_featured) VALUES
 ('Homepage Hero - Training Excellence', '/images/hero/homepage.jpeg', 'featured', true),
 ('Kettlebell Workout Hero', '/images/hero/kettlebell-workout-hero.png', 'training', true);
 
+-- Services
+DELETE FROM services;
+
+INSERT INTO services (name, description, price, category, is_active) VALUES 
+('Kitesurfing Training', 'Comprehensive kitesurfing lessons for all skill levels', 99.00, 'Training', true),
+('Hydrofoil Training', 'Master the art of hydrofoiling with expert instructors', 99.00, 'Training', true),
+('Nutrition Coaching', 'Learn nutrition principles and meal planning strategies', 99.00, 'Training', true),
+('Equipment Rental', 'High-quality kitesurfing and foiling equipment rental', 99.00, 'Rental', true),
+('Private Coaching', 'One-on-one personalized coaching sessions', 99.00, 'Coaching', true);
+
 -- Team Members
 DELETE FROM team;
 
