@@ -728,8 +728,7 @@ const Admin = () => {
             description: data.description,
             price: parseFloat(data.price),
             category: data.category,
-            isActive: data.isActive === 'true' || data.isActive === true,
-            duration: data.duration
+            isActive: data.isActive === 'true' || data.isActive === true
           });
           
           if (response.success) {
@@ -748,8 +747,7 @@ const Admin = () => {
             description: data.description,
             price: parseFloat(data.price),
             category: data.category,
-            isActive: data.isActive === 'true' || data.isActive === true,
-            duration: data.duration
+            isActive: data.isActive === 'true' || data.isActive === true
           });
           
           if (response.success) {
@@ -1707,8 +1705,8 @@ const Admin = () => {
                       <p>{service.description}</p>
                       <div className="service-details">
                         <span>💰 ${service.price}</span>
-                        <span>⏱️ {service.duration || 'N/A'}</span>
                         <span>🏷️ {service.category}</span>
+                        <span>📅 {service.createdAt ? new Date(service.createdAt).toLocaleDateString() : 'N/A'}</span>
                       </div>
                       <div className="service-actions">
                         <button className="edit-btn" onClick={() => openModal('service', service)}>
@@ -2620,17 +2618,6 @@ const Admin = () => {
                         id="service-category"
                         name="category" 
                         defaultValue={formData.category || ''} 
-                        autoComplete="off"
-                        required 
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="service-duration">Duration</label>
-                      <input 
-                        type="text" 
-                        id="service-duration"
-                        name="duration" 
-                        defaultValue={formData.duration || ''} 
                         autoComplete="off"
                         required 
                       />
