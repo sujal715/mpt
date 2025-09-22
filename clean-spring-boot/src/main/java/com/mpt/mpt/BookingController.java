@@ -106,6 +106,15 @@ public class BookingController {
         return response;
     }
     
+    @GetMapping("/bookings-test")
+    public Map<String, Object> testBookings() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Bookings endpoint is working!");
+        response.put("timestamp", System.currentTimeMillis());
+        response.put("bookings", new java.util.ArrayList<>());
+        return response;
+    }
+
     @GetMapping("/bookings")
     public ResponseEntity<List<Booking>> getAllBookings() {
         List<Booking> bookings = bookingService.getAllBookings();

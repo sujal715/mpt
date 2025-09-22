@@ -19,4 +19,13 @@ public class HealthController {
         response.put("version", "1.0.0");
         return response;
     }
+
+    @GetMapping("/test")
+    public Map<String, Object> test() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Backend is working!");
+        response.put("timestamp", System.currentTimeMillis());
+        response.put("environment", "production");
+        return response;
+    }
 }
