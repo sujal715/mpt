@@ -1019,4 +1019,10 @@ public class MainController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
+    // Fallback route for React Router - serve index.html for all non-API routes
+    @GetMapping(value = {"/", "/{path:^(?!api|h2-console).*$}"})
+    public String forwardToIndex() {
+        return "forward:/index.html";
+    }
 }
