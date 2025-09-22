@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Admin.css';
+// import './Admin.css'; // Temporarily disabled to avoid CSS conflicts
 import apiService from '../services/api';
 
 const Admin = () => {
@@ -1339,27 +1339,73 @@ const Admin = () => {
       {/* ========================================================================
           MAIN CONTENT AREA
           ======================================================================== */}
-      <div className="admin-content" style={{ paddingTop: '100px' }}>
+      <div className="admin-content" style={{ paddingTop: '120px' }}>
         {/* ========================================================================
             SIDEBAR NAVIGATION
             ======================================================================== */}
-        <div className="admin-sidebar">
-          <nav className="admin-nav">
+        <div className="admin-sidebar" style={{
+          position: 'fixed',
+          left: 0,
+          top: '120px',
+          width: '250px',
+          height: 'calc(100vh - 120px)',
+          background: '#f8fafc',
+          borderRight: '1px solid #e2e8f0',
+          padding: '1rem',
+          overflowY: 'auto'
+        }}>
+          <nav className="admin-nav" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <button
               className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`}
               onClick={() => setActiveTab('dashboard')}
+              style={{
+                padding: '0.75rem 1rem',
+                border: 'none',
+                borderRadius: '8px',
+                background: activeTab === 'dashboard' ? '#3b82f6' : 'transparent',
+                color: activeTab === 'dashboard' ? 'white' : '#374151',
+                cursor: 'pointer',
+                textAlign: 'left',
+                fontSize: '0.9rem',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
             >
               📊 Dashboard
             </button>
             <button
               className={`nav-item ${activeTab === 'bookings' ? 'active' : ''}`}
               onClick={() => setActiveTab('bookings')}
+              style={{
+                padding: '0.75rem 1rem',
+                border: 'none',
+                borderRadius: '8px',
+                background: activeTab === 'bookings' ? '#3b82f6' : 'transparent',
+                color: activeTab === 'bookings' ? 'white' : '#374151',
+                cursor: 'pointer',
+                textAlign: 'left',
+                fontSize: '0.9rem',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
             >
               📅 Bookings
             </button>
             <button
               className={`nav-item ${activeTab === 'services' ? 'active' : ''}`}
               onClick={() => setActiveTab('services')}
+              style={{
+                padding: '0.75rem 1rem',
+                border: 'none',
+                borderRadius: '8px',
+                background: activeTab === 'services' ? '#3b82f6' : 'transparent',
+                color: activeTab === 'services' ? 'white' : '#374151',
+                cursor: 'pointer',
+                textAlign: 'left',
+                fontSize: '0.9rem',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
             >
               🎯 Services
             </button>
@@ -1424,7 +1470,12 @@ const Admin = () => {
         {/* ========================================================================
             MAIN CONTENT PANEL
             ======================================================================== */}
-        <div className="admin-main">
+        <div className="admin-main" style={{ 
+          marginLeft: '250px', 
+          padding: '2rem',
+          minHeight: 'calc(100vh - 120px)',
+          background: '#ffffff'
+        }}>
           {/* ========================================================================
               DASHBOARD TAB CONTENT
               ======================================================================== */}
