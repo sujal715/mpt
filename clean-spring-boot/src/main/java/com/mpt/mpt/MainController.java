@@ -492,6 +492,16 @@ public class MainController {
         return ResponseEntity.ok(response);
     }
 
+    // Test endpoint to verify API is working
+    @GetMapping("/gallery-test")
+    public ResponseEntity<Map<String, Object>> getGalleryTest() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("message", "Gallery test endpoint working");
+        response.put("timestamp", System.currentTimeMillis());
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/gallery-fresh")
     public ResponseEntity<List<Gallery>> getGalleryFresh() {
         List<Gallery> galleryItems = galleryService.getAllGalleryItems();
