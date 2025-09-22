@@ -99,6 +99,17 @@ public class MainController {
         return response;
     }
 
+    @GetMapping("/test-bookings")
+    public Map<String, Object> getTestBookings() {
+        return Map.of(
+            "success", true,
+            "message", "Test bookings endpoint working",
+            "data", Arrays.asList(
+                Map.of("id", 1, "name", "Test Booking", "service", "Test Service", "date", "2025-09-23", "status", "confirmed", "email", "test@example.com", "phone", "1234567890", "amount", 99)
+            )
+        );
+    }
+
     // Serve the React app for all non-API routes
     @GetMapping(value = {"/", "/admin", "/about", "/contact", "/gallery", "/products", "/resources", "/faq", "/privacy", "/terms"})
     public String serveReactApp() {
