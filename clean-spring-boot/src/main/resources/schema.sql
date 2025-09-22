@@ -38,10 +38,10 @@ CREATE TABLE IF NOT EXISTS services (
 CREATE TABLE IF NOT EXISTS testimonials (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(255) NOT NULL,
-    testimonial_text TEXT NOT NULL,
+    comment TEXT NOT NULL,
     rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
-    is_featured BOOLEAN DEFAULT FALSE,
-    display_order INT DEFAULT 0,
+    service_used VARCHAR(255),
+    is_approved BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
