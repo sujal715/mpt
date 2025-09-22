@@ -322,6 +322,9 @@ const Admin = () => {
     setIsLoadingBookings(true);
     try {
       console.log('Fetching bookings from backend...');
+      console.log('API Base URL:', apiService.baseURL);
+      console.log('Full URL:', `${apiService.baseURL}/bookings`);
+      
       const response = await apiService.get('/bookings');
       console.log('Backend response:', response);
       
@@ -355,6 +358,11 @@ const Admin = () => {
       }
     } catch (error) {
       console.error('Error fetching bookings:', error);
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
       addNotification('Failed to load bookings: ' + error.message, 'error');
     } finally {
       setIsLoadingBookings(false);
