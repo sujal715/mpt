@@ -471,16 +471,16 @@ const Admin = () => {
     setIsLoadingTeam(true);
     try {
       console.log('🔄 Fetching team members from backend...');
-      const response = await apiService.get('/team');
+      const response = await apiService.get('/admin/team');
       console.log('📡 Team API response:', response);
       console.log('📡 Response type:', typeof response);
       console.log('📡 Is array:', Array.isArray(response));
       
-      if (Array.isArray(response)) {
-        console.log('✅ Setting team with', response.length, 'members');
-        console.log('📋 Team members data:', response);
-        setTeamMembers(response);
-        addNotification(`Team loaded: ${response.length} members`, 'success');
+      if (response.success && Array.isArray(response.data)) {
+        console.log('✅ Setting team with', response.data.length, 'members');
+        console.log('📋 Team members data:', response.data);
+        setTeamMembers(response.data);
+        addNotification(`Team loaded: ${response.data.length} members`, 'success');
       } else {
         console.log('❌ Invalid team response format:', response);
         setTeamMembers([]);
@@ -494,6 +494,7 @@ const Admin = () => {
       setIsLoadingTeam(false);
     }
   };
+
 
   useEffect(() => {
     // Fetch real data when component mounts
