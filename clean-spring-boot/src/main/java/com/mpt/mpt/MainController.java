@@ -1020,9 +1020,15 @@ public class MainController {
         }
     }
 
-    // Fallback route for React Router - serve index.html for all non-API routes
-    @GetMapping(value = {"/", "/{path:^(?!api|h2-console).*$}"})
-    public String forwardToIndex() {
+    // Serve the React app for all non-API routes
+    @GetMapping(value = {"/", "/admin", "/gallery", "/about", "/contact", "/services", "/products", "/resources", "/faq", "/privacy", "/terms"})
+    public String serveReactApp() {
+        return "forward:/index.html";
+    }
+    
+    // Catch-all for any other routes (except API and h2-console)
+    @GetMapping(value = "/{path:^(?!api|h2-console|static).*$}")
+    public String catchAll(@PathVariable String path) {
         return "forward:/index.html";
     }
 }
