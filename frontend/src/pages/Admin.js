@@ -342,6 +342,14 @@ const Admin = () => {
         setTimeout(() => reject(new Error('Request timeout')), 10000)
       );
       
+      // Try the test endpoint first to see if MainController is working
+      try {
+        const testResponse = await apiService.get('/test-bookings');
+        console.log('Test bookings response:', testResponse);
+      } catch (testError) {
+        console.log('Test endpoint failed, trying main bookings endpoint:', testError.message);
+      }
+      
       const response = await Promise.race([
         apiService.get('/bookings'),
         timeoutPromise
