@@ -1,6 +1,17 @@
-# Render.com Build Command - Updated for deployment fix
-export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256m"
-cd clean-spring-boot && chmod +x ./mvnw && ./mvnw clean package -DskipTests -Dmaven.test.skip=true
-
-# Render.com Start Command - Updated for deployment fix
-cd clean-spring-boot && java -Xmx512m -jar target/mpt-0.0.1-SNAPSHOT.jar --spring.profiles.active=render --server.port=$PORT
+services:
+  - type: web
+    name: mpt-backend
+    env: java
+    buildCommand: |
+      export MAVEN_OPTS="-Xmx1024m"
+      cd clean-spring-boot
+      chmod +x ./mvnw
+      ./mvnw clean package -DskipTests
+    startCommand: |
+      cd clean-spring-boot
+      java -Xmx512m -jar target/mpt-0.0.1-SNAPSHOT.jar --server.port=$PORT --spring.profiles.active=render
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: SERVER_PORT
+        value: $PORT
