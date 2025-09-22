@@ -479,9 +479,9 @@ const Admin = () => {
   // Function to fetch real services from backend
   const fetchServices = async () => {
     try {
-      console.log('🔄 Fetching services from backend...');
-      const response = await apiService.get('/services');
-      console.log('📡 Services API response:', response);
+      console.log('🔄 Fetching services from admin backend...');
+      const response = await apiService.get('/admin/services');
+      console.log('📡 Admin Services API response:', response);
       console.log('📊 Response type:', typeof response, 'Is Array:', Array.isArray(response));
       
       // Handle both array response and object with data property
@@ -719,7 +719,7 @@ const Admin = () => {
         // Service creation/update - now fully supported
         if (data.id) {
           // Update existing service
-          const response = await apiService.put(`/services/${data.id}`, {
+          const response = await apiService.put(`/admin/services/${data.id}`, {
             name: data.name,
             description: data.description,
             price: parseFloat(data.price),
@@ -739,7 +739,7 @@ const Admin = () => {
           }
         } else {
           // Create new service
-          const response = await apiService.post('/services', {
+          const response = await apiService.post('/admin/services', {
             name: data.name,
             description: data.description,
             price: parseFloat(data.price),
@@ -930,7 +930,7 @@ const Admin = () => {
 
   const deleteService = async (serviceId) => {
     try {
-      const response = await apiService.delete(`/services/${serviceId}`);
+      const response = await apiService.delete(`/admin/services/${serviceId}`);
       if (response.success) {
         setServices(prev => prev.filter(service => service.id !== serviceId));
         addNotification('Service deleted successfully!', 'success');

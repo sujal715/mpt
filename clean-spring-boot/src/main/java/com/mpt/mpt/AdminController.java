@@ -3,6 +3,7 @@ package com.mpt.mpt;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import com.mpt.mpt.entity.Team;
 import com.mpt.mpt.entity.Testimonial;
 import com.mpt.mpt.service.BookingService;
 import com.mpt.mpt.service.GalleryService;
+import com.mpt.mpt.service.ServiceService;
 import com.mpt.mpt.service.TeamService;
 import com.mpt.mpt.service.TestimonialService;
 
@@ -32,6 +34,9 @@ public class AdminController {
 
     @Autowired
     private BookingService bookingService;
+    
+    @Autowired
+    private ServiceService serviceService;
 
     // ============================================================================
     // BOOKINGS MANAGEMENT ENDPOINTS
@@ -437,5 +442,120 @@ public class AdminController {
         if (service.contains("Deluxe")) return 139.00;
         if (service.contains("VIP")) return 159.00;
         return 99.00; // Default price
+    }
+
+    // ============================================================================
+    // SERVICES MANAGEMENT ENDPOINTS
+    // ============================================================================
+
+    @GetMapping("/services")
+    public ResponseEntity<Map<String, Object>> getServices() {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            List<com.mpt.mpt.entity.Service> services = serviceService.getAllServices();
+            response.put("success", true);
+            response.put("data", services);
+            response.put("count", services.size());
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error fetching services: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/services")
+    public ResponseEntity<Map<String, Object>> createService(@RequestBody com.mpt.mpt.entity.Service service) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            com.mpt.mpt.entity.Service createdService = serviceService.createService(service);
+            response.put("success", true);
+            response.put("message", "Service created successfully");
+            response.put("data", createdService);
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error creating service: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/services/{id}")
+    public ResponseEntity<Map<String, Object>> getServiceById(@PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            Optional<com.mpt.mpt.entity.Service> service = serviceService.getServiceById(id);
+            if (service.isPresent()) {
+                response.put("success", true);
+                response.put("data", service.get());
+            } else {
+                response.put("success", false);
+                response.put("message", "Service not found");
+                return ResponseEntity.notFound().build();
+            }
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error fetching service: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/services/{id}")
+    public ResponseEntity<Map<String, Object>> updateService(@PathVariable Long id, @RequestBody com.mpt.mpt.entity.Service service) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            com.mpt.mpt.entity.Service updatedService = serviceService.updateService(id, service);
+            if (updatedService != null) {
+                response.put("success", true);
+                response.put("message", "Service updated successfully");
+                response.put("data", updatedService);
+            } else {
+                response.put("success", false);
+                response.put("message", "Service not found");
+                return ResponseEntity.notFound().build();
+            }
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error updating service: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/services/{id}")
+    public ResponseEntity<Map<String, Object>> deleteService(@PathVariable Long id) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            boolean deleted = serviceService.deleteService(id);
+            if (deleted) {
+                response.put("success", true);
+                response.put("message", "Service deleted successfully");
+            } else {
+                response.put("success", false);
+                response.put("message", "Service not found");
+                return ResponseEntity.notFound().build();
+            }
+
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Error deleting service: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        return ResponseEntity.ok(response);
     }
 }
