@@ -300,19 +300,21 @@
 }
 
 .admin-header {
-  background: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-  margin-top: 0;
-  margin-bottom: 0;
-  width: 100%;
-  min-height: 80px;
-  display: flex;
-  align-items: center;
+  background: white !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  padding: 1.5rem 0 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  backdrop-filter: blur(10px) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
+  min-height: 80px !important;
+  display: flex !important;
+  align-items: center !important;
+  left: 0 !important;
+  right: 0 !important;
 }
 
 .admin-header-content {
@@ -361,22 +363,26 @@
 }
 
 .admin-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-shrink: 0;
-  min-height: 40px;
-  height: 40px;
-  position: relative;
-  z-index: 10;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  flex-shrink: 0 !important;
+  min-height: 40px !important;
+  height: 40px !important;
+  position: relative !important;
+  z-index: 10 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .search-box {
-  position: relative;
-  flex-shrink: 0;
-  height: 40px;
-  display: flex;
-  align-items: center;
+  position: relative !important;
+  flex-shrink: 0 !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .search-box input {
@@ -407,22 +413,24 @@
 }
 
 .logout-btn {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  height: 40px;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 80px;
-  font-size: 0.9rem;
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  height: 40px !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 80px !important;
+  font-size: 0.9rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .logout-btn:hover {
