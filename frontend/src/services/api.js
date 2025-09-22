@@ -44,7 +44,10 @@ class ApiService {
         ...options,
       };
 
+      console.log('Making fetch request to:', url);
       const response = await fetch(url, config);
+      console.log('Response status:', response.status, response.statusText);
+      console.log('Response ok:', response.ok);
       
       // Handle different response statuses
       if (response.status === 401) {
@@ -90,7 +93,15 @@ class ApiService {
 
   // GET request
   async get(endpoint) {
-    return this.request(endpoint, { method: 'GET' });
+    console.log('API GET request to:', `${this.baseURL}${endpoint}`);
+    try {
+      const result = await this.request(endpoint, { method: 'GET' });
+      console.log('API GET response:', result);
+      return result;
+    } catch (error) {
+      console.error('API GET error:', error);
+      throw error;
+    }
   }
 
   // POST request
