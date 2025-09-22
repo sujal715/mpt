@@ -528,20 +528,38 @@ const Admin = () => {
     setIsLoadingTeam(true);
     try {
       console.log('🔄 Fetching team members from backend...');
-      const response = await apiService.get('/admin/team');
-      console.log('📡 Team API response:', response);
-      console.log('📡 Response type:', typeof response);
-      console.log('📡 Is array:', Array.isArray(response));
       
-      if (response.success && Array.isArray(response.data)) {
-        console.log('✅ Setting team with', response.data.length, 'members');
-        console.log('📋 Team members data:', response.data);
-        setTeamMembers(response.data);
-        addNotification(`Team loaded: ${response.data.length} members`, 'success');
+      // Use direct fetch to /api/team endpoint
+      const response = await fetch(`${apiService.baseURL}/team`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'omit'
+      });
+      
+      console.log('📡 Team API response status:', response.status);
+      console.log('📡 Team API response ok:', response.ok);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('📡 Team API response data:', data);
+        console.log('📡 Response type:', typeof data);
+        console.log('📡 Is array:', Array.isArray(data));
+        
+        if (Array.isArray(data)) {
+          console.log('✅ Setting team with', data.length, 'members');
+          console.log('📋 Team members data:', data);
+          setTeamMembers(data);
+          addNotification(`Team loaded: ${data.length} members`, 'success');
+        } else {
+          console.log('❌ Invalid team response format:', data);
+          setTeamMembers([]);
+          addNotification('Invalid team response format', 'error');
+        }
       } else {
-        console.log('❌ Invalid team response format:', response);
-        setTeamMembers([]);
-        addNotification('Invalid team response format', 'error');
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
     } catch (error) {
       console.error('💥 Error fetching team:', error);
