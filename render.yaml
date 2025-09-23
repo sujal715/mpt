@@ -2,15 +2,8 @@ services:
   # Backend Service (Spring Boot API)
   - type: web
     name: mpt-backend
-    env: java
-    buildCommand: |
-      export MAVEN_OPTS="-Xmx1024m"
-      cd clean-spring-boot
-      chmod +x ./mvnw
-      ./mvnw clean package -DskipTests
-    startCommand: |
-      cd clean-spring-boot
-      java -Xmx512m -jar target/mpt-0.0.1-SNAPSHOT.jar --server.port=$PORT --spring.profiles.active=render
+    env: docker
+    dockerfilePath: ./clean-spring-boot/Dockerfile
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: render
@@ -20,7 +13,6 @@ services:
         value: 17
     healthCheckPath: /api/health
     autoDeploy: true
-    dockerfilePath: ""
 
   # Frontend Service (React App)  
   - type: static
