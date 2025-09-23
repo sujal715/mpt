@@ -13,15 +13,8 @@ RUN mvn dependency:go-offline -B
 # Copy source code
 COPY src src
 
-# Copy Maven wrapper files
-COPY mvnw .
-COPY .mvn .mvn
-
-# Make Maven wrapper executable
-RUN chmod +x ./mvnw
-
-# Build the application
-RUN ./mvnw clean package -DskipTests
+# Build the application using Maven directly (since we're in a Maven container)
+RUN mvn clean package -DskipTests
 
 # Expose port (Render will override this with $PORT)
 EXPOSE 8080
