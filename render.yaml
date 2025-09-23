@@ -20,11 +20,11 @@ services:
         value: 17
     healthCheckPath: /api/health
     autoDeploy: true
+    dockerfilePath: ""
 
-  # Frontend Service (React App)
-  - type: web
+  # Frontend Service (React App)  
+  - type: static
     name: mpt-frontend
-    env: static
     buildCommand: |
       cd frontend
       npm install
