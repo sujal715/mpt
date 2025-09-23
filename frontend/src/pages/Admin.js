@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import './Admin.css'; // Temporarily disabled to avoid CSS conflicts
+import './Admin.css';
 import apiService from '../services/api';
 
 const Admin = () => {
@@ -28,7 +28,6 @@ const Admin = () => {
   
   // Loading States
   const [isLoadingBookings, setIsLoadingBookings] = useState(false);
-  const [isLoadingServices, setIsLoadingServices] = useState(false);
   const [isLoadingTestimonials, setIsLoadingTestimonials] = useState(false);
   const [isLoadingTeam, setIsLoadingTeam] = useState(false);
   const [isUploadingVideo, setIsUploadingVideo] = useState(false);
@@ -479,30 +478,23 @@ const Admin = () => {
 
   // Function to fetch real services from backend
   const fetchServices = async () => {
-    setIsLoadingServices(true);
     try {
-      console.log('🔄 Fetching services from backend...');
+      console.log('Fetching services from backend...');
       const response = await apiService.get('/services');
-      console.log('📡 Services API response:', response);
-      console.log('📊 Response type:', typeof response, 'Is Array:', Array.isArray(response));
+      console.log('Services response:', response);
       
-      // Handle both array response and object with data property
-      if (Array.isArray(response)) {
-        setServices(response);
-        console.log('✅ Services loaded (array format):', response);
-      } else if (response && response.success && Array.isArray(response.data)) {
+      // The API returns { data: [...], success: true }
+      if (response.success && response.data && Array.isArray(response.data)) {
         setServices(response.data);
-        console.log('✅ Services loaded (object format):', response.data);
+        console.log('Services loaded:', response.data);
       } else {
-        console.log('❌ No services found or invalid response format:', response);
+        console.log('No services found or invalid response format');
         setServices([]);
       }
     } catch (error) {
-      console.error('💥 Error fetching services:', error);
+      console.error('Error fetching services:', error);
       addNotification('Failed to fetch services: ' + error.message, 'error');
       setServices([]);
-    } finally {
-      setIsLoadingServices(false);
     }
   };
 
@@ -514,13 +506,8 @@ const Admin = () => {
       console.log('📡 Gallery API response:', response);
       console.log('📊 Response type:', typeof response, 'Is Array:', Array.isArray(response));
       
-      // Handle both array response and object with data property
-      if (Array.isArray(response)) {
-        console.log('✅ Setting gallery with', response.length, 'items');
-        setGallery(response);
-        console.log('🎯 Gallery state updated:', response);
-        addNotification(`Gallery loaded: ${response.length} items`, 'success');
-      } else if (response && response.success && Array.isArray(response.data)) {
+      // The API returns { data: [...], success: true, count: number }
+      if (response.success && response.data && Array.isArray(response.data)) {
         console.log('✅ Setting gallery with', response.data.length, 'items');
         setGallery(response.data);
         console.log('🎯 Gallery state updated:', response.data);
@@ -729,12 +716,13 @@ const Admin = () => {
         // Service creation/update - now fully supported
         if (data.id) {
           // Update existing service
-          const response = await apiService.put(`/admin/services/${data.id}`, {
+          const response = await apiService.put(`/services/${data.id}`, {
             name: data.name,
             description: data.description,
             price: parseFloat(data.price),
             category: data.category,
-            isActive: data.isActive === 'true' || data.isActive === true
+            isActive: data.isActive === 'true' || data.isActive === true,
+            duration: data.duration
           });
           
           if (response.success) {
@@ -748,12 +736,13 @@ const Admin = () => {
           }
         } else {
           // Create new service
-          const response = await apiService.post('/admin/services', {
+          const response = await apiService.post('/services', {
             name: data.name,
             description: data.description,
             price: parseFloat(data.price),
             category: data.category,
-            isActive: data.isActive === 'true' || data.isActive === true
+            isActive: data.isActive === 'true' || data.isActive === true,
+            duration: data.duration
           });
           
           if (response.success) {
@@ -873,7 +862,7 @@ const Admin = () => {
         // Team member creation/update
         if (data.id) {
           // Update existing team member
-          const response = await apiService.put(`/admin/team/${data.id}`, {
+          const response = await apiService.put(`/team/${data.id}`, {
             name: data.name,
             title: data.title,
             description: data.description,
@@ -894,7 +883,7 @@ const Admin = () => {
           }
         } else {
           // Create new team member
-          const response = await apiService.post('/admin/team', {
+          const response = await apiService.post('/team', {
             name: data.name,
             title: data.title,
             description: data.description,
@@ -938,7 +927,7 @@ const Admin = () => {
 
   const deleteService = async (serviceId) => {
     try {
-      const response = await apiService.delete(`/admin/services/${serviceId}`);
+      const response = await apiService.delete(`/services/${serviceId}`);
       if (response.success) {
         setServices(prev => prev.filter(service => service.id !== serviceId));
         addNotification('Service deleted successfully!', 'success');
@@ -968,7 +957,7 @@ const Admin = () => {
 
   const deleteTeamMember = async (teamId) => {
     try {
-      const response = await apiService.delete(`/admin/team/${teamId}`);
+      const response = await apiService.delete(`/team/${teamId}`);
       if (response.success) {
         setTeamMembers(prev => prev.filter(member => member.id !== teamId));
         addNotification('Team member deleted successfully!', 'success');
@@ -1265,147 +1254,65 @@ const Admin = () => {
       </div>
 
       {/* ========================================================================
-          HEADER SECTION - SIMPLIFIED AND ROBUST
+          HEADER SECTION
           ======================================================================== */}
-      <div className="admin-header" style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 9999,
-        background: 'white',
-        padding: '1rem 2rem',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        minHeight: '80px',
-        width: '100%'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <img src="/images/logos/mpt-logo.jpeg" alt="MPT Logo" style={{ height: '40px', width: '40px' }} />
-          <div>
-            <h1 style={{ margin: 0, fontSize: '1.5rem', color: '#1f2937' }}>MPT Admin Dashboard</h1>
-            <span style={{ fontSize: '0.9rem', color: '#6b7280' }}>Advanced Management Portal</span>
+      <div className="admin-header">
+        <div className="admin-header-content">
+          <div className="admin-brand">
+            <div className="admin-brand-icon">
+              <img src="/images/logos/mpt-logo.jpeg" alt="MPT Logo" className="admin-brand-image" />
+            </div>
+            <div>
+              <h1>MPT Admin Dashboard</h1>
+              <span className="admin-subtitle">Advanced Management Portal</span>
+            </div>
           </div>
-        </div>
-        
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <div style={{ position: 'relative' }}>
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                padding: '0.75rem 1rem 0.75rem 2.5rem',
-                border: '2px solid #e5e7eb',
-                borderRadius: '10px',
-                fontSize: '1rem',
-                width: '300px',
-                height: '40px',
-                boxSizing: 'border-box'
-              }}
-            />
-            <span style={{
-              position: 'absolute',
-              left: '0.75rem',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: '#9ca3af',
-              fontSize: '1.2rem'
-            }}>🔍</span>
+          
+          <div className="admin-header-actions">
+            <div className="search-box">
+              <label htmlFor="admin-search-input" className="sr-only">Search</label>
+              <input
+                type="text"
+                id="admin-search-input"
+                name="adminSearch"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                autoComplete="off"
+              />
+              <span className="search-icon">🔍</span>
           </div>
-          <button 
-            onClick={handleLogout}
-            style={{
-              background: 'linear-gradient(135deg, #ef4444, #dc2626)',
-              color: 'white',
-              border: 'none',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '10px',
-              cursor: 'pointer',
-              fontWeight: '600',
-              height: '40px',
-              minWidth: '80px',
-              fontSize: '0.9rem'
-            }}
-          >
+          <button className="logout-btn" onClick={handleLogout}>
             Logout
           </button>
+          </div>
         </div>
       </div>
 
       {/* ========================================================================
           MAIN CONTENT AREA
           ======================================================================== */}
-      <div className="admin-content" style={{ paddingTop: '120px' }}>
+      <div className="admin-content">
         {/* ========================================================================
             SIDEBAR NAVIGATION
             ======================================================================== */}
-        <div className="admin-sidebar" style={{
-          position: 'fixed',
-          left: 0,
-          top: '120px',
-          width: '250px',
-          height: 'calc(100vh - 120px)',
-          background: '#f8fafc',
-          borderRight: '1px solid #e2e8f0',
-          padding: '1rem',
-          overflowY: 'auto'
-        }}>
-          <nav className="admin-nav" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <div className="admin-sidebar">
+          <nav className="admin-nav">
             <button
               className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`}
               onClick={() => setActiveTab('dashboard')}
-              style={{
-                padding: '0.75rem 1rem',
-                border: 'none',
-                borderRadius: '8px',
-                background: activeTab === 'dashboard' ? '#3b82f6' : 'transparent',
-                color: activeTab === 'dashboard' ? 'white' : '#374151',
-                cursor: 'pointer',
-                textAlign: 'left',
-                fontSize: '0.9rem',
-                fontWeight: '500',
-                transition: 'all 0.2s ease'
-              }}
             >
               📊 Dashboard
             </button>
             <button
               className={`nav-item ${activeTab === 'bookings' ? 'active' : ''}`}
               onClick={() => setActiveTab('bookings')}
-              style={{
-                padding: '0.75rem 1rem',
-                border: 'none',
-                borderRadius: '8px',
-                background: activeTab === 'bookings' ? '#3b82f6' : 'transparent',
-                color: activeTab === 'bookings' ? 'white' : '#374151',
-                cursor: 'pointer',
-                textAlign: 'left',
-                fontSize: '0.9rem',
-                fontWeight: '500',
-                transition: 'all 0.2s ease'
-              }}
             >
               📅 Bookings
             </button>
             <button
               className={`nav-item ${activeTab === 'services' ? 'active' : ''}`}
               onClick={() => setActiveTab('services')}
-              style={{
-                padding: '0.75rem 1rem',
-                border: 'none',
-                borderRadius: '8px',
-                background: activeTab === 'services' ? '#3b82f6' : 'transparent',
-                color: activeTab === 'services' ? 'white' : '#374151',
-                cursor: 'pointer',
-                textAlign: 'left',
-                fontSize: '0.9rem',
-                fontWeight: '500',
-                transition: 'all 0.2s ease'
-              }}
             >
               🎯 Services
             </button>
@@ -1470,12 +1377,7 @@ const Admin = () => {
         {/* ========================================================================
             MAIN CONTENT PANEL
             ======================================================================== */}
-        <div className="admin-main" style={{ 
-          marginLeft: '250px', 
-          padding: '2rem',
-          minHeight: 'calc(100vh - 120px)',
-          background: '#ffffff'
-        }}>
+        <div className="admin-main">
           {/* ========================================================================
               DASHBOARD TAB CONTENT
               ======================================================================== */}
@@ -1782,36 +1684,30 @@ const Admin = () => {
               </div>
               
               <div className={`services-${viewMode}`}>
-                {isLoadingServices ? (
-                  <div className="loading-indicator">Loading services...</div>
-                ) : services.length === 0 ? (
-                  <div className="no-data">No services found</div>
-                ) : (
-                  services.map(service => (
-                    <div key={service.id} className="service-item">
-                      <div className="service-header">
-                        <h3>{service.name}</h3>
-                        <span className={`status-badge ${service.isActive ? 'active' : 'inactive'}`}>
-                          {service.isActive ? 'Active' : 'Inactive'}
-                        </span>
-                      </div>
-                      <p>{service.description}</p>
-                      <div className="service-details">
-                        <span>💰 ${service.price}</span>
-                        <span>🏷️ {service.category}</span>
-                        <span>📅 {service.createdAt ? new Date(service.createdAt).toLocaleDateString() : 'N/A'}</span>
-                      </div>
-                      <div className="service-actions">
-                        <button className="edit-btn" onClick={() => openModal('service', service)}>
-                          Edit
-                        </button>
-                        <button className="delete-btn" onClick={() => deleteService(service.id)}>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  ))
-                )}
+                {services.map(service => (
+                  <div key={service.id} className="service-item">
+                    <div className="service-header">
+                      <h3>{service.name}</h3>
+                      <span className={`status-badge ${service.isActive ? 'active' : 'inactive'}`}>
+                        {service.isActive ? 'Active' : 'Inactive'}
+                      </span>
+                  </div>
+                    <p>{service.description}</p>
+                    <div className="service-details">
+                      <span>💰 ${service.price}</span>
+                      <span>⏱️ {service.duration}</span>
+                      <span>🏷️ {service.category}</span>
+                </div>
+                  <div className="service-actions">
+                      <button className="edit-btn" onClick={() => openModal('service', service)}>
+                        Edit
+                      </button>
+                      <button className="delete-btn" onClick={() => deleteService(service.id)}>
+                        Delete
+                      </button>
+                </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -2711,6 +2607,17 @@ const Admin = () => {
                         id="service-category"
                         name="category" 
                         defaultValue={formData.category || ''} 
+                        autoComplete="off"
+                        required 
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="service-duration">Duration</label>
+                      <input 
+                        type="text" 
+                        id="service-duration"
+                        name="duration" 
+                        defaultValue={formData.duration || ''} 
                         autoComplete="off"
                         required 
                       />
